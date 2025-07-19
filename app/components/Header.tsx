@@ -1,12 +1,12 @@
-import {Suspense} from 'react';
-import {Await, NavLink, useAsyncValue} from 'react-router';
+import { Suspense } from 'react';
+import { Await, NavLink, useAsyncValue } from 'react-router';
 import {
   type CartViewPayload,
   useAnalytics,
   useOptimisticCart,
 } from '@shopify/hydrogen';
-import type {HeaderQuery, CartApiQueryFragment} from 'storefrontapi.generated';
-import {useAside} from '~/components/Aside';
+import type { HeaderQuery, CartApiQueryFragment } from 'storefrontapi.generated';
+import { useAside } from '~/components/Aside';
 
 interface HeaderProps {
   header: HeaderQuery;
@@ -23,20 +23,216 @@ export function Header({
   cart,
   publicStoreDomain,
 }: HeaderProps) {
-  const {shop, menu} = header;
+  const { shop, menu } = header;
+
+  const logoUrl = 'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/logo.png?v=1752934162';
+
   return (
-    <header className="header">
-      <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
-      </NavLink>
-      <HeaderMenu
-        menu={menu}
-        viewport="desktop"
-        primaryDomainUrl={header.shop.primaryDomain.url}
-        publicStoreDomain={publicStoreDomain}
-      />
-      <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
-    </header>
+    <>
+      <header className="header">
+        <form className="search-form" role="search" aria-label="Search entire store">
+          <input
+            type="search"
+            placeholder="Search entire store here..."
+            aria-label="Search entire store"
+            className="search-input"
+            spellCheck={false}
+            autoComplete="off"
+          />
+          <button type="submit" className="search-button" aria-label="Search">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="18"
+              width="18"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              viewBox="0 0 24 24"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </button>
+        </form>
+
+        <a href="/" className="logo-link" aria-label="Home">
+          <img src={logoUrl} alt={shop.name || 'Logo'} className="logo" />
+        </a>
+
+        <nav className="header-ctas" role="navigation">
+          <NavLink
+            to="/account"
+            prefetch="intent"
+            className={({ isActive }) => (isActive ? "account-link active" : "account-link")}
+          >
+            <Suspense fallback="Account">
+              <Await resolve={isLoggedIn} errorElement="Account">
+                {(loggedIn) => (loggedIn ? 'Account' : 'Account')}
+              </Await>
+            </Suspense>
+          </NavLink>
+          <CartToggle cart={cart} />
+        </nav>
+      </header>
+
+      {/* Menu block below header */}
+      <div className="header-menu-block">
+        <HeaderMenu
+          menu={menu}
+          viewport="desktop"
+          primaryDomainUrl={header.shop.primaryDomain.url}
+          publicStoreDomain={publicStoreDomain}
+        />
+      </div>
+
+      <style>{`
+        .header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1rem 2rem;
+          border-bottom: 1px solid #eaeaea;
+          background: white;
+          position: sticky;
+          top: 0;
+          z-index: 100;
+          box-shadow: 0 2px 5px rgb(0 0 0 / 0.05);
+        }
+        .search-form {
+          display: flex;
+          align-items: center;
+          max-width: 320px;
+          flex-grow: 1;
+          margin-right: auto;
+          border: 1px solid #ccc;
+          border-radius: 40px;
+          padding: 0 0.75rem;
+          background: #fff;
+          height: 32px;
+        }
+        .search-input {
+          flex-grow: 1;
+          border: none;
+          outline: none;
+          padding: 0 1rem;
+          font-style: italic;
+          font-size: 0.9rem;
+          color: #555;
+          background: transparent;
+          height: 100%;
+        }
+        .search-button {
+          background: transparent;
+          border: none;
+          font-size: 1.1rem;
+          cursor: pointer;
+          color: #666;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .logo-link {
+          flex-shrink: 0;
+          margin: 0 2rem;
+          margin-left: -10em; /* Shift logo left */
+          display: flex;
+          justify-content: center;
+          flex-grow: 0;
+          flex-basis: 15%;
+        }
+        .logo {
+          max-width: 100%;
+          max-height: 60px;
+          height: auto;
+          width: auto;
+          cursor: pointer;
+        }
+        .header-ctas {
+          display: flex;
+          align-items: center;
+          gap: 1.5rem;
+          margin-left: auto;
+          font-weight: 500;
+          color: #333;
+        }
+        .account-link {
+          color: inherit;
+          text-decoration: none;
+          font-weight: 500;
+          padding: 0.5rem 1rem;
+          text-transform: uppercase;
+          font-size: 0.85rem; /* Adjust this value as needed */
+        }
+        .account-link:hover {
+          text-decoration: none !important;
+          cursor: pointer;
+        }
+        .account-link.active {
+          font-weight: 700;
+          border-bottom: 2px solid #855f3f;
+        }
+        .header-menu-block {
+          border-top: 1px solid #eaeaea;
+          background: white;
+          padding: 0.75rem 2rem;
+          display: flex;
+          justify-content: center;
+          box-shadow: 0 2px 5px rgb(0 0 0 / 0.05);
+        }
+        .header-menu-desktop {
+          display: flex;
+          gap: 1.5rem;
+          align-items: center;
+        }
+        .header-menu-item {
+          font-weight: 500;
+          color: black;
+          text-decoration: none;
+          padding: 0.5rem 1rem;
+          white-space: nowrap;
+          font-size: 0.85rem;
+          text-transform: uppercase;
+          border-bottom: 2px solid transparent;
+          transition: none;
+        }
+        .header-menu-item:hover {
+          color: black;
+          cursor: pointer;
+          text-decoration: none !important;
+          border-bottom-color: transparent !important;
+        }
+        .header-menu-item.active {
+          border-bottom-color: #855f3f;
+          font-weight: 700;
+        }
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
+        .cart-count {
+          background: red;
+          color: white;
+          font-weight: bold;
+          font-size: 0.75rem;
+          padding: 2px 6px;
+          border-radius: 50%;
+          margin-left: 4px;
+        }
+        .cart-link svg {
+          display: block;
+          stroke: #666;
+          transition: stroke 0.2s ease;
+          width: 20px;
+          height: 20px;
+        }
+        .cart-link:hover svg {
+          stroke: #0071e3;
+          cursor: pointer;
+        }
+      `}</style>
+    </>
   );
 }
 
@@ -52,7 +248,7 @@ export function HeaderMenu({
   publicStoreDomain: HeaderProps['publicStoreDomain'];
 }) {
   const className = `header-menu-${viewport}`;
-  const {close} = useAside();
+  const { close } = useAside();
 
   return (
     <nav className={className} role="navigation">
@@ -61,30 +257,29 @@ export function HeaderMenu({
           end
           onClick={close}
           prefetch="intent"
-          style={activeLinkStyle}
+          className={({ isActive }) => (isActive ? "header-menu-item active" : "header-menu-item")}
           to="/"
         >
           Home
         </NavLink>
       )}
-      {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
+      {menu?.items.map((item) => {
         if (!item.url) return null;
 
-        // if the url is internal, we strip the domain
         const url =
           item.url.includes('myshopify.com') ||
           item.url.includes(publicStoreDomain) ||
           item.url.includes(primaryDomainUrl)
             ? new URL(item.url).pathname
             : item.url;
+
         return (
           <NavLink
-            className="header-menu-item"
+            className={({ isActive }) => (isActive ? "header-menu-item active" : "header-menu-item")}
             end
             key={item.id}
             onClick={close}
             prefetch="intent"
-            style={activeLinkStyle}
             to={url}
           >
             {item.title}
@@ -95,71 +290,7 @@ export function HeaderMenu({
   );
 }
 
-function HeaderCtas({
-  isLoggedIn,
-  cart,
-}: Pick<HeaderProps, 'isLoggedIn' | 'cart'>) {
-  return (
-    <nav className="header-ctas" role="navigation">
-      <HeaderMenuMobileToggle />
-      <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
-        <Suspense fallback="Sign in">
-          <Await resolve={isLoggedIn} errorElement="Sign in">
-            {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
-          </Await>
-        </Suspense>
-      </NavLink>
-      <SearchToggle />
-      <CartToggle cart={cart} />
-    </nav>
-  );
-}
-
-function HeaderMenuMobileToggle() {
-  const {open} = useAside();
-  return (
-    <button
-      className="header-menu-mobile-toggle reset"
-      onClick={() => open('mobile')}
-    >
-      <h3>☰</h3>
-    </button>
-  );
-}
-
-function SearchToggle() {
-  const {open} = useAside();
-  return (
-    <button className="reset" onClick={() => open('search')}>
-      Search
-    </button>
-  );
-}
-
-function CartBadge({count}: {count: number | null}) {
-  const {open} = useAside();
-  const {publish, shop, cart, prevCart} = useAnalytics();
-
-  return (
-    <a
-      href="/cart"
-      onClick={(e) => {
-        e.preventDefault();
-        open('cart');
-        publish('cart_viewed', {
-          cart,
-          prevCart,
-          shop,
-          url: window.location.href || '',
-        } as CartViewPayload);
-      }}
-    >
-      Cart {count === null ? <span>&nbsp;</span> : count}
-    </a>
-  );
-}
-
-function CartToggle({cart}: Pick<HeaderProps, 'cart'>) {
+function CartToggle({ cart }: Pick<HeaderProps, 'cart'>) {
   return (
     <Suspense fallback={<CartBadge count={null} />}>
       <Await resolve={cart}>
@@ -175,57 +306,44 @@ function CartBanner() {
   return <CartBadge count={cart?.totalQuantity ?? 0} />;
 }
 
-const FALLBACK_HEADER_MENU = {
-  id: 'gid://shopify/Menu/199655587896',
-  items: [
-    {
-      id: 'gid://shopify/MenuItem/461609500728',
-      resourceId: null,
-      tags: [],
-      title: 'Collections',
-      type: 'HTTP',
-      url: '/collections',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461609533496',
-      resourceId: null,
-      tags: [],
-      title: 'Blog',
-      type: 'HTTP',
-      url: '/blogs/journal',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461609566264',
-      resourceId: null,
-      tags: [],
-      title: 'Policies',
-      type: 'HTTP',
-      url: '/policies',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461609599032',
-      resourceId: 'gid://shopify/Page/92591030328',
-      tags: [],
-      title: 'About',
-      type: 'PAGE',
-      url: '/pages/about',
-      items: [],
-    },
-  ],
-};
+function CartBadge({ count }: { count: number | null }) {
+  const { open } = useAside();
+  const { publish, shop, cart, prevCart } = useAnalytics();
 
-function activeLinkStyle({
-  isActive,
-  isPending,
-}: {
-  isActive: boolean;
-  isPending: boolean;
-}) {
-  return {
-    fontWeight: isActive ? 'bold' : undefined,
-    color: isPending ? 'grey' : 'black',
-  };
+  const showCount = typeof count === 'number' && count > 0;
+
+  return (
+    <a
+      href="/cart"
+      onClick={(e) => {
+        e.preventDefault();
+        open('cart');
+        publish('cart_viewed', {
+          cart,
+          prevCart,
+          shop,
+          url: window.location.href || '',
+        } as CartViewPayload);
+      }}
+      aria-label={`Cart with ${count ?? 0} items`}
+      className="cart-link"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="20"
+        width="20"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        viewBox="0 0 24 24"
+      >
+        <circle cx="9" cy="21" r="1" />
+        <circle cx="20" cy="21" r="1" />
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+      </svg>
+      {showCount && <span className="cart-count">{count}</span>}
+    </a>
+  );
 }
