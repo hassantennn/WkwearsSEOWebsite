@@ -1,7 +1,7 @@
+import {useState} from 'react';
 import {redirect, type LoaderFunctionArgs} from '@shopify/remix-oxygen';
 import {useLoaderData, type MetaFunction} from 'react-router';
 import {getPaginationVariables, Analytics} from '@shopify/hydrogen';
-import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 import {ProductItem} from '~/components/ProductItem';
 
@@ -10,19 +10,11 @@ export const meta: MetaFunction<typeof loader> = ({data}) => {
 };
 
 export async function loader(args: LoaderFunctionArgs) {
-  // Start fetching non-critical data without blocking time to first byte
   const deferredData = loadDeferredData(args);
-
-  // Await the critical data required to render initial state of the page
   const criticalData = await loadCriticalData(args);
-
   return {...deferredData, ...criticalData};
 }
 
-/**
- * Load data necessary for rendering content above the fold. This is the critical data
- * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
- */
 async function loadCriticalData({
   context,
   params,
@@ -41,52 +33,100 @@ async function loadCriticalData({
   const [{collection}] = await Promise.all([
     storefront.query(COLLECTION_QUERY, {
       variables: {handle, ...paginationVariables},
-      // Add other queries here, so that they are loaded in parallel
     }),
   ]);
 
   if (!collection) {
-    throw new Response(`Collection ${handle} not found`, {
-      status: 404,
-    });
+    throw new Response(`Collection ${handle} not found`, {status: 404});
   }
 
-  // The API handle might be localized, so redirect to the localized handle
   redirectIfHandleIsLocalized(request, {handle, data: collection});
 
-  return {
-    collection,
-  };
+  return {collection};
 }
 
-/**
- * Load data for rendering content below the fold. This data is deferred and will be
- * fetched after the initial page load. If it's unavailable, the page should still 200.
- * Make sure to not throw any errors here, as it will cause the page to 500.
- */
 function loadDeferredData({context}: LoaderFunctionArgs) {
   return {};
 }
 
 export default function Collection() {
   const {collection} = useLoaderData<typeof loader>();
+  const [activeFilter, setActiveFilter] = useState('All');
+  const [sortOption, setSortOption] = useState('featured');
+
+  const products = collection.products?.nodes || [];
+
+  const sortedProducts = [...products].sort((a, b) => {
+    const aPrice = parseFloat(a.priceRange.minVariantPrice.amount);
+    const bPrice = parseFloat(b.priceRange.minVariantPrice.amount);
+
+    if (sortOption === 'price-asc') return aPrice - bPrice;
+    if (sortOption === 'price-desc') return bPrice - aPrice;
+    return 0;
+  });
 
   return (
-    <div className="collection">
-      <h1>{collection.title}</h1>
-      <p className="collection-description">{collection.description}</p>
-      <PaginatedResourceSection
-        connection={collection.products}
-        resourcesClassName="products-grid"
-      >
-        {({node: product, index}) => (
-          <ProductItem
-            key={product.id}
-            product={product}
-            loading={index < 8 ? 'eager' : undefined}
-          />
-        )}
-      </PaginatedResourceSection>
+    <section className="collection-page w-full">
+      {/* Hero Section */}
+      <div className="relative h-[25vh] flex flex-col items-center justify-center bg-[#1a1a1a] text-center px-4">
+        <h1
+          className="text-5xl md:text-7xl font-bold drop-shadow-xl"
+          style={{
+            color: '#d4af37',
+            fontSize: '3rem',
+            fontFamily: "'Great Vibes', cursive",
+            lineHeight: 1.1,
+          }}
+        >
+          {collection.title}
+        </h1>
+      </div>
+
+      {/* Filter and Sort Section */}
+      <div className="bg-white py-6 border-b border-gray-200">
+        <div className="container mx-auto px-4 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex gap-2 flex-wrap">
+            {['All', 'New Arrivals', 'Sale'].map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`px-4 py-2 rounded-md border transition ${
+                  activeFilter === filter
+                    ? 'bg-gray-900 text-white border-gray-900'
+                    : 'bg-gray-100 text-black hover:bg-gray-200 border-transparent'
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+          <div>
+            <select
+              className="border border-gray-300 rounded px-3 py-2 text-black"
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value)}
+            >
+              <option value="featured">Sort: Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      {/* Product Grid */}
+      <div id="products" className="container mx-auto px-4 py-10">
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {sortedProducts.map((product, index) => (
+            <ProductItem
+              key={product.id}
+              product={product}
+              loading={index < 8 ? 'eager' : undefined}
+            />
+          ))}
+        </div>
+      </div>
+
       <Analytics.CollectionView
         data={{
           collection: {
@@ -95,10 +135,11 @@ export default function Collection() {
           },
         }}
       />
-    </div>
+    </section>
   );
 }
 
+// GraphQL Fragments
 const PRODUCT_ITEM_FRAGMENT = `#graphql
   fragment MoneyProductItem on MoneyV2 {
     amount
@@ -126,7 +167,7 @@ const PRODUCT_ITEM_FRAGMENT = `#graphql
   }
 ` as const;
 
-// NOTE: https://shopify.dev/docs/api/storefront/2022-04/objects/collection
+// GraphQL Query
 const COLLECTION_QUERY = `#graphql
   ${PRODUCT_ITEM_FRAGMENT}
   query Collection(

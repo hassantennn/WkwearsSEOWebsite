@@ -1,11 +1,11 @@
-import {type LoaderFunctionArgs} from '@shopify/remix-oxygen';
-import {Await, useLoaderData, type MetaFunction} from 'react-router';
-import {Suspense} from 'react';
-import type {RecommendedProductsQuery} from 'storefrontapi.generated';
-import {useEffect, useState} from 'react';
+import { type LoaderFunctionArgs } from '@shopify/remix-oxygen';
+import { Await, useLoaderData, type MetaFunction, Link } from 'react-router';
+import { Suspense } from 'react';
+import { useEffect, useState } from 'react';
+import type { RecommendedProductsQuery } from 'storefrontapi.generated';
 
 export const meta: MetaFunction = () => {
-  return [{title: 'Hydrogen | Home'}];
+  return [{ title: 'Hydrogen | Home' }];
 };
 
 export async function loader(args: LoaderFunctionArgs) {
@@ -13,7 +13,7 @@ export async function loader(args: LoaderFunctionArgs) {
   return deferredData;
 }
 
-function loadDeferredData({context}: LoaderFunctionArgs) {
+function loadDeferredData({ context }: LoaderFunctionArgs) {
   const recommendedProducts = context.storefront
     .query(RECOMMENDED_PRODUCTS_QUERY)
     .catch((error) => {
@@ -30,7 +30,7 @@ export default function Homepage() {
   const data = useLoaderData<typeof loader>();
 
   return (
-    <div className="home">
+    <div className="w-full max-w-none m-0 p-0 overflow-x-hidden">
       <MainSection />
       <RecommendedProducts products={data.recommendedProducts} />
     </div>
@@ -55,13 +55,13 @@ function MainSection() {
   }, [images.length]);
 
   return (
-    <section className="w-full h-[90vh] relative overflow-hidden">
+    <section className="w-full h-screen relative overflow-hidden m-0 p-0">
       {images.map((src, index) => (
         <img
           key={index}
           src={src}
           alt={`Slide ${index + 1}`}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+          className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
             index === currentIndex ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -76,8 +76,8 @@ function RecommendedProducts({
   products: Promise<RecommendedProductsQuery | null>;
 }) {
   return (
-    <div className="recommended-products px-6 py-14 bg-white">
-      <div className="text-center max-w-7xl mx-auto mb-10 px-4 sm:px-8 lg:px-16">
+    <div className="recommended-products px-4 sm:px-8 py-14 bg-white">
+      <div className="text-center max-w-7xl mx-auto mb-10">
         <h2 className="text-3xl sm:text-4xl font-semibold tracking-wide uppercase mb-4">
           Timeless Elegance
         </h2>
@@ -91,26 +91,22 @@ function RecommendedProducts({
       <Suspense fallback={<div className="text-center">Loading...</div>}>
         <Await resolve={products}>
           {(response) => (
-            <div className="overflow-x-auto px-4 scrollbar-hide">
-              <div className="flex gap-4">
+            <div className="overflow-x-auto scrollbar-hide">
+              <div className="flex gap-6 px-4 sm:px-0 max-w-7xl mx-auto">
                 {response?.products.nodes.map((product) => (
-                  <div
+                  <Link
                     key={product.id}
-                    className="flex-shrink-0 bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 w-[300px]"
+                    to={`/products/${product.handle}`}
+                    className="flex-shrink-0 w-[300px] block group transition-all duration-300 transform hover:scale-105"
                   >
-                    <div className="h-[400px] w-full overflow-hidden rounded-t-xl">
+                    <div className="bg-white rounded-2xl shadow-md group-hover:shadow-xl overflow-hidden h-[420px]">
                       <img
                         src={product.featuredImage?.url}
-                        alt={product.featuredImage?.altText ?? product.title}
-                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                        alt={product.featuredImage?.altText ?? 'Product Image'}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                       />
                     </div>
-                    <div className="p-4">
-                      <h3 className="text-base font-medium tracking-tight text-gray-800 truncate">
-                        {product.title}
-                      </h3>
-                    </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -140,7 +136,7 @@ const RECOMMENDED_PRODUCTS_QUERY = `#graphql
       height
     }
   }
-  query RecommendedProducts ($country: CountryCode, $language: LanguageCode)
+  query RecommendedProducts($country: CountryCode, $language: LanguageCode)
     @inContext(country: $country, language: $language) {
     products(first: 20, sortKey: UPDATED_AT, reverse: true) {
       nodes {
