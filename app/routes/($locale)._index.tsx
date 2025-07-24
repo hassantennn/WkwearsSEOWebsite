@@ -188,6 +188,7 @@ function GridShowcase() {
           <img
             src={category.image}
             alt={category.title}
+            loading="lazy"
             className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute bottom-4 left-4 text-white drop-shadow-lg">
@@ -238,6 +239,7 @@ function CategoryShowcase() {
           <img
             src="https://cdn.shopify.com/s/files/1/0704/7908/5731/files/bluedress.webp?v=1753221040"
             alt="Women"
+            loading="lazy"
             className="w-full aspect-[3/4] object-cover mb-4 rounded-xl"
           />
           <div>
@@ -253,6 +255,7 @@ function CategoryShowcase() {
           <img
             src="https://cdn.shopify.com/s/files/1/0704/7908/5731/files/white_dress.png?v=1753222198"
             alt="Men"
+            loading="lazy"
             className="w-full aspect-[3/4] object-cover mb-4 rounded-xl"
           />
           <div>
