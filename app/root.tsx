@@ -147,7 +147,7 @@ export function Layout({children}: {children?: React.ReactNode}) {
   const data = useRouteLoaderData<RootLoader>('root');
 
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -157,7 +157,7 @@ export function Layout({children}: {children?: React.ReactNode}) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="overflow-x-hidden">
         {data ? (
           <Analytics.Provider
             cart={data.cart}
@@ -175,6 +175,7 @@ export function Layout({children}: {children?: React.ReactNode}) {
     </html>
   );
 }
+
 
 export default function App() {
   return <Outlet />;

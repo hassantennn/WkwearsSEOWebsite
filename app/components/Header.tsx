@@ -77,7 +77,6 @@ export function Header({
         </nav>
       </header>
 
-      {/* Menu block below header */}
       <div className="header-menu-block">
         <HeaderMenu
           menu={menu}
@@ -92,7 +91,7 @@ export function Header({
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 1rem 2rem;
+          padding: 1rem 0;
           border-bottom: 1px solid #eaeaea;
           background: white;
           position: sticky;
@@ -111,6 +110,7 @@ export function Header({
           padding: 0 0.75rem;
           background: #fff;
           height: 32px;
+          margin-left: 1rem;
         }
         .search-input {
           flex-grow: 1;
@@ -135,7 +135,6 @@ export function Header({
         }
         .logo-link {
           flex-shrink: 0;
-          margin: 0 2rem;
           margin-left: -10em; /* Shift logo left */
           display: flex;
           justify-content: center;
@@ -153,7 +152,7 @@ export function Header({
           display: flex;
           align-items: center;
           gap: 1.5rem;
-          margin-left: auto;
+          margin-right: 1rem;
           font-weight: 500;
           color: #333;
         }
@@ -163,7 +162,7 @@ export function Header({
           font-weight: 500;
           padding: 0.5rem 1rem;
           text-transform: uppercase;
-          font-size: 0.85rem; /* Adjust this value as needed */
+          font-size: 0.85rem;
         }
         .account-link:hover {
           text-decoration: none !important;
@@ -176,7 +175,7 @@ export function Header({
         .header-menu-block {
           border-top: 1px solid #eaeaea;
           background: white;
-          padding: 0.75rem 2rem;
+          padding: 0.75rem 0;
           display: flex;
           justify-content: center;
           box-shadow: 0 2px 5px rgb(0 0 0 / 0.05);
