@@ -67,7 +67,7 @@ function MainSection() {
       <div className="absolute bottom-20 right-20 z-10">
         <Link
           to="/collections/all"
-          className="px-10 py-5 text-base font-semibold tracking-wide border border-white text-white bg-transparent hover:bg-white hover:text-black hover:shadow-lg transition-all duration-300 rounded-xl backdrop-blur-lg no-underline hover:no-underline"
+          className="mainsection-btn px-10 py-5 text-base font-semibold tracking-wide border border-white bg-transparent hover:bg-white hover:shadow-lg transition-all duration-300 rounded-xl backdrop-blur-lg"
         >
           Discover the Collection
         </Link>
