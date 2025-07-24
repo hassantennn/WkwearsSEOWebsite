@@ -107,9 +107,9 @@ function ReviewSection() {
   return (
     <section
       ref={ref}
-      className={`w-full bg-gradient-to-b from-white via-gray-100 to-white py-60 sm:py-72 px-6 sm:px-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+      className={`w-full bg-gradient-to-b from-white via-gray-100 to-white py-60 sm:py-72 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
     >
-      <div className="flex flex-col items-center justify-center text-center mb-20 px-4">
+      <div className="flex flex-col items-center justify-center text-center mb-20">
         <h2 className="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-4 tracking-tight leading-tight uppercase font-['Playfair_Display']">
           Our Clients Speak
         </h2>
@@ -118,7 +118,7 @@ function ReviewSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full">
         {reviews.map((review, index) => (
           <div
             key={index}
@@ -210,7 +210,7 @@ function BrandStatement() {
   return (
     <section
       ref={ref}
-      className={`w-full flex justify-center pt-[12rem] pb-[24rem] px-4 bg-gradient-to-b from-[#fefefe] to-[#fbfaf7] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+      className={`w-full flex justify-center pt-[12rem] pb-[24rem] bg-gradient-to-b from-[#fefefe] to-[#fbfaf7] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
     >
       <div className="text-center max-w-6xl">
         <h1 className="text-[8rem] sm:text-[10rem] font-['Playfair_Display'] text-gray-900 mb-16 leading-none">
@@ -240,7 +240,7 @@ function CategoryShowcase() {
             alt="Women"
             className="w-full aspect-[3/4] object-cover mb-4 rounded-xl"
           />
-          <div className="px-4 md:px-8">
+          <div>
             <h3 className="text-xl font-semibold uppercase mb-2 text-gray-900 tracking-wider font-['Playfair_Display'] text-[#d4af37]">
               Heritage Grace
             </h3>
@@ -255,7 +255,7 @@ function CategoryShowcase() {
             alt="Men"
             className="w-full aspect-[3/4] object-cover mb-4 rounded-xl"
           />
-          <div className="px-4 md:px-8">
+          <div>
             <h3 className="text-xl font-semibold uppercase mb-2 text-gray-900 tracking-wider font-['Playfair_Display'] text-[#d4af37]">
               Noble Form
             </h3>
