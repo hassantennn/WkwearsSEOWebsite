@@ -1,6 +1,7 @@
 import { type LoaderFunctionArgs } from '@shopify/remix-oxygen';
 import { useLoaderData, type MetaFunction, Link } from 'react-router';
 import { useEffect, useState } from 'react';
+import {useInView} from '~/lib/useInView';
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Hydrogen | Home' }];
@@ -19,7 +20,7 @@ export default function Homepage() {
   useLoaderData<typeof loader>();
 
   return (
-    <div className="w-full overflow-x-hidden m-0 p-0 bg-gradient-to-b from-[#fefefe] to-[#f8f8f5] font-serif">
+    <div className="w-full overflow-x-hidden m-0 p-0 bg-gradient-to-b from-[#fefefe] to-[#f8f8f5] font-sans">
       <MainSection />
       <ReviewSection />
       <GridShowcase />
@@ -67,7 +68,7 @@ function MainSection() {
       <div className="absolute bottom-20 right-20 z-10">
         <Link
           to="/collections/all"
-          className="px-10 py-5 text-base font-semibold tracking-wide border border-white text-white bg-transparent hover:bg-white hover:text-black hover:shadow-lg transition-all duration-300 rounded-xl backdrop-blur-lg no-underline hover:no-underline"
+          className="px-10 py-5 text-base font-semibold tracking-wide border border-[#d4af37] text-white bg-black/40 hover:bg-[#d4af37] hover:text-white hover:shadow-lg transition-all duration-300 rounded-xl backdrop-blur-lg no-underline"
         >
           Discover the Collection
         </Link>
@@ -100,10 +101,15 @@ function ReviewSection() {
     },
   ];
 
+  const {ref, isVisible} = useInView<HTMLElement>();
+
   return (
-    <section className="w-full bg-gradient-to-b from-white via-gray-100 to-white py-60 sm:py-72 px-6 sm:px-12">
+    <section
+      ref={ref}
+      className={`w-full bg-gradient-to-b from-white via-gray-100 to-white py-60 sm:py-72 px-6 sm:px-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+    >
       <div className="flex flex-col items-center justify-center text-center mb-20 px-4">
-        <h2 className="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-4 tracking-tight leading-tight uppercase">
+        <h2 className="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-4 tracking-tight leading-tight uppercase font-['Playfair_Display']">
           Our Clients Speak
         </h2>
         <p className="text-lg sm:text-xl text-gray-600 max-w-2xl italic">
@@ -120,7 +126,7 @@ function ReviewSection() {
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
 
             <div className="mb-5 text-center">
-              <p className="text-2xl font-semibold text-gray-800 group-hover:text-[#d4af37] transition-colors duration-300 tracking-wide">
+              <p className="text-2xl font-semibold text-gray-800 group-hover:text-[#d4af37] transition-colors duration-300 tracking-wide font-['Playfair_Display']">
                 {review.name}
               </p>
               <p className="text-sm text-gray-500 italic tracking-wider">{review.title}</p>
@@ -169,8 +175,13 @@ function GridShowcase() {
     },
   ];
 
+  const {ref, isVisible} = useInView<HTMLDivElement>();
+
   return (
-    <section className="w-full grid grid-cols-1 sm:grid-cols-2 gap-0">
+    <section
+      ref={ref}
+      className={`w-full grid grid-cols-1 sm:grid-cols-2 gap-0 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+    >
       {categories.map((category, index) => (
         <div key={index} className="relative group h-[400px] sm:h-[500px] overflow-hidden">
           <img
@@ -179,10 +190,10 @@ function GridShowcase() {
             className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute bottom-4 left-4 text-white drop-shadow-lg">
-            <p className="text-sm uppercase opacity-80 tracking-wide">
+            <p className="text-sm uppercase opacity-80 tracking-wide font-['Playfair_Display']">
               {category.title.split(' ')[0]}
             </p>
-            <p className="text-lg sm:text-xl font-semibold tracking-wider">
+            <p className="text-lg sm:text-xl font-semibold tracking-wider font-['Playfair_Display']">
               {category.title.split(' ').slice(1).join(' ')}
             </p>
           </div>
@@ -193,13 +204,18 @@ function GridShowcase() {
 }
 
 function BrandStatement() {
+  const {ref, isVisible} = useInView<HTMLDivElement>();
+
   return (
-    <section className="w-full flex justify-center pt-[12rem] pb-[24rem] px-4 bg-gradient-to-b from-[#fefefe] to-[#fbfaf7]">
+    <section
+      ref={ref}
+      className={`w-full flex justify-center pt-[12rem] pb-[24rem] px-4 bg-gradient-to-b from-[#fefefe] to-[#fbfaf7] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+    >
       <div className="text-center max-w-6xl">
-        <h1 className="text-[8rem] sm:text-[10rem] font-[cursive] text-gray-900 mb-16 leading-none">
+        <h1 className="text-[8rem] sm:text-[10rem] font-['Playfair_Display'] text-gray-900 mb-16 leading-none">
           WK WEARS
         </h1>
-        <p className="text-[3rem] sm:text-[3.5rem] text-gray-700 leading-snug font-serif">
+        <p className="text-[3rem] sm:text-[3.5rem] text-gray-700 leading-snug">
           Crafting identity through elegance and grace. <br />
           Our collection redefines modest fashion with timeless silhouettes and refined detailing.
         </p>
@@ -209,8 +225,13 @@ function BrandStatement() {
 }
 
 function CategoryShowcase() {
+  const {ref, isVisible} = useInView<HTMLDivElement>();
+
   return (
-    <section className="w-full py-24 bg-white">
+    <section
+      ref={ref}
+      className={`w-full py-24 bg-white ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
         <div className="w-full">
           <img
@@ -219,7 +240,7 @@ function CategoryShowcase() {
             className="w-full aspect-[3/4] object-cover mb-4 rounded-xl"
           />
           <div className="px-4 md:px-8">
-            <h3 className="text-xl font-semibold uppercase mb-2 text-gray-900 tracking-wider">
+            <h3 className="text-xl font-semibold uppercase mb-2 text-gray-900 tracking-wider font-['Playfair_Display'] text-[#d4af37]">
               Heritage Grace
             </h3>
             <p className="text-gray-700 text-base leading-relaxed">
@@ -234,7 +255,7 @@ function CategoryShowcase() {
             className="w-full aspect-[3/4] object-cover mb-4 rounded-xl"
           />
           <div className="px-4 md:px-8">
-            <h3 className="text-xl font-semibold uppercase mb-2 text-gray-900 tracking-wider">
+            <h3 className="text-xl font-semibold uppercase mb-2 text-gray-900 tracking-wider font-['Playfair_Display'] text-[#d4af37]">
               Noble Form
             </h3>
             <p className="text-gray-700 text-base leading-relaxed">
