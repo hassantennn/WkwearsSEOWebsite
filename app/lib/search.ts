@@ -68,7 +68,8 @@ export function urlWithTrackingParams({
 }: UrlWithTrackingParams) {
   let search = new URLSearchParams({
     ...extraParams,
-    q: encodeURIComponent(term),
+     // URLSearchParams will handle encoding automatically
+     q: term,
   }).toString();
 
   if (trackingParams) {

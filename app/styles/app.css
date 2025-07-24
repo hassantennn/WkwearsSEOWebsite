@@ -539,3 +539,20 @@ button.reset:hover:not(:has(> *)) {
 .account-logout {
   display: inline-block;
 }
+
+
+
+/*
+* --------------------------------------------------
+* custom styles for MainSection button
+* --------------------------------------------------
+*/
+.mainsection-btn {
+  text-decoration: none !important;
+  color: #fff !important;
+}
+
+.mainsection-btn:hover {
+  text-decoration: none !important;
+  color: #000 !important;
+}
