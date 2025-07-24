@@ -1,6 +1,7 @@
+import {useState} from 'react';
 import {type LoaderFunctionArgs} from '@shopify/remix-oxygen';
 import {useLoaderData, type MetaFunction} from 'react-router';
-import {getPaginationVariables, Image, Money} from '@shopify/hydrogen';
+import {getPaginationVariables} from '@shopify/hydrogen';
 import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
 import {ProductItem} from '~/components/ProductItem';
 
@@ -48,23 +49,88 @@ function loadDeferredData({context}: LoaderFunctionArgs) {
 
 export default function Collection() {
   const {products} = useLoaderData<typeof loader>();
+  const [activeFilter, setActiveFilter] = useState('All');
+  const [sortOption, setSortOption] = useState('featured');
+
+  const sortedNodes = [...products.nodes].sort((a, b) => {
+    const aPrice = parseFloat(a.priceRange.minVariantPrice.amount);
+    const bPrice = parseFloat(b.priceRange.minVariantPrice.amount);
+    if (sortOption === 'price-asc') return aPrice - bPrice;
+    if (sortOption === 'price-desc') return bPrice - aPrice;
+    return 0;
+  });
+
+  let filteredNodes = sortedNodes;
+  if (activeFilter === 'New Arrivals') {
+    filteredNodes = sortedNodes.slice(0, 8);
+  } else if (activeFilter === 'Sale') {
+    filteredNodes = sortedNodes.slice(-8);
+  }
+
+  const connection = {...products, nodes: filteredNodes};
 
   return (
-    <div className="collection">
-      <h1>Products</h1>
-      <PaginatedResourceSection
-        connection={products}
-        resourcesClassName="products-grid"
-      >
-        {({node: product, index}) => (
-          <ProductItem
-            key={product.id}
-            product={product}
-            loading={index < 8 ? 'eager' : undefined}
-          />
-        )}
-      </PaginatedResourceSection>
-    </div>
+    <section className="collection-page w-full">
+      <div className="relative h-[25vh] flex flex-col items-center justify-center bg-[#1a1a1a] text-center px-4">
+        <h1
+          className="text-5xl md:text-7xl font-bold drop-shadow-xl"
+          style={{
+            color: '#d4af37',
+            fontSize: '3rem',
+            fontFamily: "'Great Vibes', cursive",
+            lineHeight: 1.1,
+          }}
+        >
+          All Products
+        </h1>
+      </div>
+
+      <div className="bg-white py-6 border-b border-gray-200">
+        <div className="container mx-auto px-4 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex gap-2 flex-wrap">
+            {['All', 'New Arrivals', 'Sale'].map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`px-4 py-2 rounded-md border transition ${
+                  activeFilter === filter
+                    ? 'bg-gray-900 text-white border-gray-900'
+                    : 'bg-gray-100 text-black hover:bg-gray-200 border-transparent'
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+          <div>
+            <select
+              className="border border-gray-300 rounded px-3 py-2 text-black"
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value)}
+            >
+              <option value="featured">Sort: Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="products" className="container mx-auto px-4 py-10">
+        <PaginatedResourceSection
+          connection={connection}
+          resourcesClassName="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        >
+          {({node: product, index}) => (
+            <ProductItem
+              key={product.id}
+              product={product}
+              loading={index < 8 ? 'eager' : undefined}
+            />
+          )}
+        </PaginatedResourceSection>
+      </div>
+    </section>
   );
 }
 
