@@ -70,6 +70,7 @@ export default function Collection() {
       {/* Hero Section */}
       <div className="relative h-[25vh] flex flex-col items-center justify-center bg-gradient-to-b from-[#e7d8c7] to-[#f8e8e4] text-center px-4">
         <h1 className="text-5xl md:text-7xl font-['Cinzel'] dark-brown-text drop-shadow-lg">
+
           {collection.title}
         </h1>
       </div>
