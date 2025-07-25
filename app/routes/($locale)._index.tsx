@@ -114,7 +114,7 @@ function ReviewSection() {
   return (
     <section
       ref={ref}
-      className={`relative w-full m-0 bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7] py-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+      className={`relative w-full m-0 bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
     >
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDEwIDEwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiUyM2VhZDljNiIgc3Ryb2tlLXdpZHRoPSIwLjUiIGQ9Ik0wIDBMMTAgMTBNMTAgMEwwIDEwIi8+PC9zdmc+')] opacity-20 mix-blend-overlay pointer-events-none"></div>
       <svg className="absolute top-0 right-0 w-64 h-64 opacity-10 pointer-events-none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
