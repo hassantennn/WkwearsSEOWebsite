@@ -52,12 +52,12 @@
 
   .dark-brown-text {
     color: #4b3621;
+  }
 
   .dark-gold-gradient-text {
     background-image: linear-gradient(to bottom, #b9925e, #d2b174);
     -webkit-background-clip: text;
     color: transparent;
-
   }
 
   .quote-mark::before {
