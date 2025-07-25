@@ -282,7 +282,7 @@ function CategoryShowcase() {
       className={`w-full m-0 py-0 bg-white ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-        <div className="w-full">
+        <div className="w-full pl-4">
           <motion.img
             src="https://cdn.shopify.com/s/files/1/0704/7908/5731/files/bluedress.webp?v=1753221040"
             alt="Women"
