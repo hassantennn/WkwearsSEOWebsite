@@ -13,17 +13,31 @@ export async function loader(args: LoaderFunctionArgs) {
 
 export default function ContactPage() {
   useLoaderData<typeof loader>();
+  const {ref: heroRef, isVisible: heroVisible} = useInView<HTMLDivElement>();
   const {ref: leftRef, isVisible: leftVisible} = useInView<HTMLDivElement>();
   const {ref: rightRef, isVisible: rightVisible} = useInView<HTMLDivElement>();
+  const {ref: mapRef, isVisible: mapVisible} = useInView<HTMLDivElement>();
+  const {ref: iconsRef, isVisible: iconsVisible} = useInView<HTMLDivElement>();
   return (
-    <div className="w-full overflow-x-hidden font-sans bg-gradient-to-b from-[#fefefe] to-[#f8f8f5]">
-      <section
+    <div className="w-full overflow-x-hidden font-['Playfair_Display'] bg-gradient-to-b from-[#fefefe] to-[#f8f8f5]">
+      <motion.section
+        ref={heroRef}
+        initial={{opacity: 0}}
+        animate={heroVisible ? {opacity: 1} : {}}
+        transition={{duration: 1}}
         className="relative h-[60vh] flex items-center justify-center bg-cover bg-center"
         style={{backgroundImage: "url('https://cdn.shopify.com/s/files/1/0704/7908/5731/files/contact-hero.jpg?v=1753226835')"}}
       >
-        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
-        <h1 className="relative text-5xl sm:text-7xl font-['Great_Vibes'] tracking-wider text-white">Connect With Us</h1>
-      </section>
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
+        <motion.h1
+          initial={{opacity: 0, y: -20}}
+          animate={heroVisible ? {opacity: 1, y: 0} : {}}
+          transition={{duration: 0.8, delay: 0.2}}
+          className="relative text-5xl sm:text-8xl font-['Great_Vibes'] tracking-wider text-white"
+        >
+          Connect With Us
+        </motion.h1>
+      </motion.section>
 
 
 
@@ -66,55 +80,57 @@ export default function ContactPage() {
             animate={rightVisible ? {opacity: 1, y: 0} : {}}
             transition={{duration: 0.8, delay: 0.1}}
           >
-            <form className="bg-white/70 backdrop-blur-lg p-8 rounded-xl shadow-2xl ring-1 ring-white/60 space-y-4">
-              <h3 className="text-3xl font-['Playfair_Display'] mb-6 text-center">Send us a Message</h3>
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  placeholder="Your Name"
-                  className="mt-1 w-full border border-gray-300 rounded-md p-2"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="you@example.com"
-                  className="mt-1 w-full border border-gray-300 rounded-md p-2"
-                />
-              </div>
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                  Phone
-                </label>
-                <input
-                  id="phone"
-                  type="tel"
-                  placeholder="+92 123 4567890"
-                  className="mt-1 w-full border border-gray-300 rounded-md p-2"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  placeholder="How can we help you?"
-                  className="mt-1 w-full border border-gray-300 rounded-md p-2"
-                />
+            <form className="bg-white/60 backdrop-blur-lg p-10 rounded-3xl shadow-2xl ring-1 ring-white/60 space-y-6">
+              <h3 className="text-3xl font-['Playfair_Display'] mb-8 text-center tracking-wider">Send us a Message</h3>
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div className="space-y-1">
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    placeholder="Your Name"
+                    className="w-full rounded-full px-4 py-3 border-2 border-transparent bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    className="w-full rounded-full px-4 py-3 border-2 border-transparent bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
+                  />
+                </div>
+                <div className="space-y-1 sm:col-span-2">
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                    Phone
+                  </label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    placeholder="+92 123 4567890"
+                    className="w-full rounded-full px-4 py-3 border-2 border-transparent bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
+                  />
+                </div>
+                <div className="space-y-1 sm:col-span-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    rows={5}
+                    placeholder="How can we help you?"
+                    className="w-full rounded-3xl px-4 py-3 border-2 border-transparent bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
+                  />
+                </div>
               </div>
               <button
                 type="submit"
-                className="w-full py-3 px-6 text-white rounded-md shadow-lg bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] hover:opacity-90"
+                className="w-full py-3 px-6 text-white rounded-full shadow-lg bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] hover:opacity-90"
               >
                 Send
               </button>
@@ -123,7 +139,13 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="h-[400px] w-full">
+      <motion.section
+        ref={mapRef}
+        initial={{opacity: 0, y: 20}}
+        animate={mapVisible ? {opacity: 1, y: 0} : {}}
+        transition={{duration: 0.8}}
+        className="h-[400px] w-full"
+      >
         <iframe
           title="WK Wears Map"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d217770.68256179918!2d74.1149412!3d31.5203696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39190483f5c266c3%3A0x45a3f8d1e1e6d2f2!2sLahore%2C%20Punjab!5e0!3m2!1sen!2s!4v1710100000000"
@@ -134,9 +156,15 @@ export default function ContactPage() {
           referrerPolicy="no-referrer-when-downgrade"
           className="border-0 w-full h-full"
         />
-      </section>
+      </motion.section>
 
-      <section className="py-10 flex justify-center gap-8 bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7]">
+      <motion.section
+        ref={iconsRef}
+        initial={{opacity: 0, y: 20}}
+        animate={iconsVisible ? {opacity: 1, y: 0} : {}}
+        transition={{duration: 0.8, delay: 0.1}}
+        className="py-10 flex justify-center gap-8 bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7]"
+      >
         <a
           href="https://instagram.com"
           target="_blank"
@@ -183,7 +211,7 @@ export default function ContactPage() {
             <path d="M3.75 4.5h16.5A2.25 2.25 0 0 1 22.5 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 17.25V6.75A2.25 2.25 0 0 1 3.75 4.5Zm0 1.5A.75.75 0 0 0 3 6.75v.38l9 5.25l9-5.25v-.38a.75.75 0 0 0-.75-.75H3.75Zm16.5 3.02l-7.8 4.55a.75.75 0 0 1-.75 0L3 9.02v8.23c0 .414.336.75.75.75h16.5a.75.75 0 0 0 .75-.75V9.02Z" />
           </svg>
         </a>
-      </section>
+      </motion.section>
 
     </div>
   );
