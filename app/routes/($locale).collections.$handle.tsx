@@ -69,7 +69,8 @@ export default function Collection() {
     <section className="collection-page w-full font-['Playfair_Display'] bg-gradient-to-b from-[#fefefe] to-[#f8f8f5]">
       {/* Hero Section */}
       <div className="relative h-[25vh] flex flex-col items-center justify-center bg-gradient-to-b from-[#e7d8c7] to-[#f8e8e4] text-center px-4">
-        <h1 className="text-5xl md:text-7xl font-['Cinzel'] dark-gold-gradient-text drop-shadow-lg">
+        <h1 className="text-5xl md:text-7xl font-['Cinzel'] gold-gradient-text drop-shadow-lg">
+
           {collection.title}
         </h1>
       </div>
