@@ -5,7 +5,14 @@ import {motion} from 'framer-motion';
 import {useInView} from '~/lib/useInView';
 
 export const meta: MetaFunction = () => {
-  return [{ title: 'Hydrogen | Home' }];
+  return [
+    { title: 'Hydrogen | Home' },
+    {
+      name: 'description',
+      content:
+        'Discover WK WEARS – modest fashion refined with timeless silhouettes and elegant detailing.',
+    },
+  ];
 };
 
 export async function loader(args: LoaderFunctionArgs) {
@@ -27,42 +34,57 @@ export default function Homepage() {
       <GridShowcase />
       <BrandStatement />
       <CategoryShowcase />
+      <NewsletterSignup />
     </div>
   );
 }
 
-
 function BannerCarousel() {
-  const images = [
-    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/Vihaan_Kumar_photographs_your_most_special_day_with_style_and_finesse.-3.png?v=1753231620',
-    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/Vihaan_Kumar_photographs_your_most_special_day_with_style_and_finesse.-2.png?v=1753231621',
-    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/upscalemedia-transformed_1ecf8b5e-7812-4640-aed0-e384d50e5e94.png?v=1753231622',
-    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/Vihaan_Kumar_photographs_your_most_special_day_with_style_and_finesse.-4-2.png?v=1753231623',
-    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/upscalemedia-transformed-2.png?v=1752944229',
+  const slides = [
+    {
+      src: 'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/Vihaan_Kumar_photographs_your_most_special_day_with_style_and_finesse.-3.png?v=1753231620',
+      alt: 'Model showcasing elegant WK WEARS attire',
+    },
+    {
+      src: 'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/Vihaan_Kumar_photographs_your_most_special_day_with_style_and_finesse.-2.png?v=1753231621',
+      alt: 'Refined evening wear from WK WEARS',
+    },
+    {
+      src: 'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/upscalemedia-transformed_1ecf8b5e-7812-4640-aed0-e384d50e5e94.png?v=1753231622',
+      alt: 'Close up of intricate embroidery',
+    },
+    {
+      src: 'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/Vihaan_Kumar_photographs_your_most_special_day_with_style_and_finesse.-4-2.png?v=1753231623',
+      alt: 'Flowing silhouette captured outdoors',
+    },
+    {
+      src: 'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/upscalemedia-transformed-2.png?v=1752944229',
+      alt: 'Graceful formal design from WK WEARS',
+    },
   ];
 
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setIndex((i) => (i + 1) % images.length);
+      setIndex((i) => (i + 1) % slides.length);
     }, 5000);
     return () => clearInterval(timer);
   }, [index]);
 
-  const prev = () => setIndex((index - 1 + images.length) % images.length);
-  const next = () => setIndex((index + 1) % images.length);
+  const prev = () => setIndex((index - 1 + slides.length) % slides.length);
+  const next = () => setIndex((index + 1) % slides.length);
 
   return (
     <section
       className="relative w-full m-0 overflow-hidden"
       style={{minHeight: '90vh'}}
     >
-      {images.map((src, i) => (
+      {slides.map((slide, i) => (
         <img
           key={i}
-          src={src}
-          alt={`Slide ${i + 1}`}
+          src={slide.src}
+          alt={slide.alt}
           className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${i === index ? 'opacity-100' : 'opacity-0'}`}
         />
       ))}
@@ -366,6 +388,41 @@ function CategoryShowcase() {
             </p>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+function NewsletterSignup() {
+  const { ref, isVisible } = useInView<HTMLDivElement>();
+
+  return (
+    <section
+      ref={ref}
+      className={`w-full bg-gradient-to-b from-[#e7d8c7] to-[#f8e8e4] py-16 px-4 ${
+        isVisible ? 'animate-fade-in-up' : 'opacity-0'
+      }`}
+    >
+      <div className="max-w-xl mx-auto text-center">
+        <h3 className="text-2xl font-bold mb-4 font-['Playfair_Display'] text-gray-900">
+          Join Our Newsletter
+        </h3>
+        <p className="text-gray-700 mb-6">
+          Be the first to know about new collections and exclusive offers.
+        </p>
+        <form className="flex flex-col sm:flex-row gap-4 justify-center">
+          <input
+            type="email"
+            required
+            placeholder="Your email address"
+            className="flex-grow px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
+          />
+          <button
+            type="submit"
+            className="px-6 py-3 rounded-md text-white shadow-lg bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] hover:opacity-90"
+          >
+            Subscribe
+          </button>
+        </form>
       </div>
     </section>
   );
