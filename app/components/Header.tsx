@@ -91,13 +91,14 @@ export function Header({
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 1rem 0;
-          border-bottom: 1px solid #eaeaea;
-          background: white;
+          padding: 1.5rem 0;
+          border-bottom: 1px solid #d9c5b2;
+          background: linear-gradient(to right, #faf9f5, #fff);
           position: sticky;
           top: 0;
           z-index: 100;
-          box-shadow: 0 2px 5px rgb(0 0 0 / 0.05);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          font-family: 'Playfair Display', serif;
         }
         .search-form {
           display: flex;
@@ -105,11 +106,11 @@ export function Header({
           max-width: 320px;
           flex-grow: 1;
           margin-right: auto;
-          border: 1px solid #ccc;
+          border: 1px solid #d9c5b2;
           border-radius: 40px;
           padding: 0 0.75rem;
           background: #fff;
-          height: 32px;
+          height: 36px;
           margin-left: 1rem;
         }
         .search-input {
@@ -135,15 +136,17 @@ export function Header({
         }
         .logo-link {
           flex-shrink: 0;
-          margin-left: -10em; /* Shift logo left */
           display: flex;
           justify-content: center;
           flex-grow: 0;
-          flex-basis: 15%;
+          margin: 0 auto;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
         }
         .logo {
           max-width: 100%;
-          max-height: 60px;
+          max-height: 80px;
           height: auto;
           width: auto;
           cursor: pointer;
@@ -170,15 +173,15 @@ export function Header({
         }
         .account-link.active {
           font-weight: 700;
-          border-bottom: 2px solid #855f3f;
+          border-bottom: 2px solid #d4af37;
         }
         .header-menu-block {
-          border-top: 1px solid #eaeaea;
-          background: white;
+          border-top: 1px solid #d9c5b2;
+          background: linear-gradient(to right, #faf9f5, #fff);
           padding: 0.75rem 0;
           display: flex;
           justify-content: center;
-          box-shadow: 0 2px 5px rgb(0 0 0 / 0.05);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         .header-menu-desktop {
           display: flex;
@@ -203,7 +206,7 @@ export function Header({
           border-bottom-color: transparent !important;
         }
         .header-menu-item.active {
-          border-bottom-color: #855f3f;
+          border-bottom-color: #d4af37;
           font-weight: 700;
         }
         a {
