@@ -176,7 +176,7 @@ function ReviewSection() {
   return (
     <section
       ref={ref}
-      className={`relative w-full m-0 bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7] py-12 sm:py-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+      className={`relative w-full m-0 bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
     >
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDEwIDEwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiUyM2VhZDljNiIgc3Ryb2tlLXdpZHRoPSIwLjUiIGQ9Ik0wIDBMMTAgMTBNMTAgMEwwIDEwIi8+PC9zdmc+')] opacity-20 mix-blend-overlay pointer-events-none"></div>
       <svg className="absolute top-0 right-0 w-64 h-64 opacity-10 pointer-events-none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -201,7 +201,7 @@ function ReviewSection() {
           {reviews.map((review, index) => (
             <motion.div
               key={index}
-              className="relative flex-shrink-0 w-[320px] sm:w-[380px] md:w-[440px] snap-center group bg-[#f8e8e4] border border-[#d4af37]/40 rounded-[12px] p-10 shadow-lg transition-all duration-500 hover:shadow-2xl"
+              className="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] snap-center group bg-[#f8e8e4] border border-[#d4af37]/40 rounded-[12px] p-8 shadow-lg transition-all duration-500 hover:shadow-2xl"
               whileHover={{scale:1.05}}
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
