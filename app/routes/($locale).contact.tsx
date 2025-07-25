@@ -13,16 +13,8 @@ export default function ContactPage() {
   useLoaderData<typeof loader>();
   return (
     <div className="w-full overflow-x-hidden font-sans bg-gradient-to-b from-[#fefefe] to-[#f8f8f5]">
-      <section className="relative flex items-center justify-center h-[60vh]">
-        <img
-          src="https://cdn.shopify.com/s/files/1/0704/7908/5731/files/upscalemedia-transformed-2.png?v=1752944229"
-          alt="Contact"
-          className="absolute inset-0 object-cover w-full h-full"
-        />
-        <div className="absolute inset-0 bg-black/40" />
-        <h1 className="relative z-10 text-6xl sm:text-7xl font-['Great_Vibes'] gold-gradient-text tracking-wider">
-          Connect With Us
-        </h1>
+      <section className="py-20 flex items-center justify-center bg-gradient-to-r from-[#f8f8f5] to-[#f5e9d7]">
+        <h1 className="text-5xl sm:text-6xl font-['Great_Vibes'] gold-gradient-text tracking-wider">Connect With Us</h1>
       </section>
 
       <section className="py-20 px-4 bg-gradient-to-b from-[#f8f8f5] to-[#f5e9d7]">
@@ -110,14 +102,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="h-[50vh] relative">
-        <img
-          src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1280&q=80"
-          alt="Map"
-          className="absolute inset-0 object-cover w-full h-full"
-        />
-        <div className="absolute inset-0 bg-black/30" />
-      </section>
     </div>
   );
 }
