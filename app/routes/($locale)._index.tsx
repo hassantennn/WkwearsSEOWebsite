@@ -175,7 +175,7 @@ function ReviewSection() {
   return (
     <section
       ref={ref}
-      className={`relative w-full bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7] px-8 ${
+      className={`relative w-full bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7] px-8 pt-[16rem] pb-[32rem] ${
         isVisible ? 'animate-fade-in-up' : 'opacity-0'
       }`}
     >
@@ -184,9 +184,9 @@ function ReviewSection() {
         <path d="M50 0C65 20 80 20 95 50C80 80 65 80 50 100C35 80 20 80 5 50C20 20 35 20 50 0Z" fill="#d4af37" />
       </svg>
 
-      {/* Inner content with spacing */}
+      {/* Inner content */}
       <div className="max-w-7xl mx-auto px-4">
-        <div className="pt-40 pb-32">
+        <div>
           <div className="flex flex-col items-center justify-center text-center mb-20">
             <h2 className="text-6xl sm:text-7xl font-extrabold mb-6 tracking-[0.2em] leading-tight uppercase font-['Great_Vibes'] gold-gradient-text">
               Our Clients Speak
