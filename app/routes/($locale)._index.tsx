@@ -48,13 +48,16 @@ function BannerCarousel() {
       setIndex((i) => (i + 1) % images.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [index]);
 
   const prev = () => setIndex((index - 1 + images.length) % images.length);
   const next = () => setIndex((index + 1) % images.length);
 
   return (
-    <section className="relative w-full m-0 overflow-hidden min-h-[90vh]">
+    <section
+      className="relative w-full m-0 overflow-hidden"
+      style={{minHeight: '90vh'}}
+    >
       {images.map((src, i) => (
         <img
           key={i}
@@ -83,7 +86,7 @@ function BannerCarousel() {
         </button>
       </div>
 
-      <div className="absolute bottom-16 left-1/2 -translate-x-1/2">
+      <div className="absolute bottom-16 right-1 -translate-x-1/2">
         <Link
           to="/collections/all"
           className="px-12 py-6 text-white rounded-full shadow-lg bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] hover:opacity-90"
@@ -128,7 +131,7 @@ function ReviewSection() {
   return (
     <section
       ref={ref}
-      className={`relative w-full bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7] px-8 pt-[16rem] pb-[32rem] ${
+      className={`relative w-full bg-gradient-to-b from-[#f8f8f5] to-[#f5e9d7] px-8 pt-[8rem] pb-[16rem] ${
         isVisible ? 'animate-fade-in-up' : 'opacity-0'
       }`}
     >
@@ -224,9 +227,6 @@ function ReviewSection() {
   );
 }
 
-
-
-
 function GridShowcase() {
   const categories = [
     {
@@ -247,55 +247,63 @@ function GridShowcase() {
     },
   ];
 
-  const {ref, isVisible} = useInView<HTMLDivElement>();
+  const { ref, isVisible } = useInView<HTMLDivElement>();
 
   return (
     <section
       ref={ref}
-      className={`w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+      className={`w-full bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7] px-4 py-24 ${
+        isVisible ? 'animate-fade-in-up' : 'opacity-0'
+      }`}
     >
-      {categories.map((category, index) => (
-        <div
-          key={index}
-          style={{backgroundImage: `url(${category.image})`}}
-          className="relative group rounded-xl overflow-hidden aspect-[3/4] bg-center bg-cover"
-        >
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent transition-opacity duration-500 group-hover:from-black/60" />
-          <div className="absolute bottom-4 left-4 drop-shadow-lg">
-            <p className="text-sm uppercase tracking-wide font-['Playfair_Display'] gold-gradient-text">
-              {category.title.split(' ')[0]}
-            </p>
-            <p className="text-lg sm:text-xl font-semibold tracking-wider font-['Playfair_Display'] text-white">
-              {category.title.split(' ').slice(1).join(' ')}
-            </p>
-          </div>
-        </div>
-      ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        {categories.map((category, index) => (
+          <motion.div
+            key={index}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+            className="relative group rounded-xl overflow-hidden aspect-[3/4] bg-center bg-cover"
+            style={{ backgroundImage: `url(${category.image})` }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent transition-opacity duration-500 group-hover:from-black/60" />
+            <div className="absolute bottom-4 left-4 drop-shadow-lg">
+              <p className="text-sm uppercase tracking-wide font-['Playfair_Display'] gold-gradient-text">
+                {category.title.split(' ')[0]}
+              </p>
+              <p className="text-lg sm:text-xl font-semibold tracking-wider font-['Playfair_Display'] text-white">
+                {category.title.split(' ').slice(1).join(' ')}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </section>
   );
 }
 
 function BrandStatement() {
-  const {ref, isVisible} = useInView<HTMLDivElement>();
+  const { ref, isVisible } = useInView<HTMLDivElement>();
 
   return (
     <section
       ref={ref}
-      className={`w-full m-0 flex justify-center pt-[16rem] pb-[32rem] bg-gradient-to-b from-[#fefefe] to-[#fbfaf7] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+      className={`w-full m-0 flex justify-center pt-[16rem] pb-[16rem] bg-gradient-to-b from-[#e7d8c7] to-[#f8e8e4] ${
+        isVisible ? 'animate-fade-in-up' : 'opacity-0'
+      }`}
     >
       <div className="text-center max-w-6xl px-4">
-        <h1 className="text-[10rem] sm:text-[13rem] font-['Cinzel'] gold-gradient-text mb-8 leading-none">
+        <h1 className="text-[11rem] sm:text-[14rem] font-['Cinzel'] gold-gradient-text mb-10 leading-none">
           WK WEARS
         </h1>
-        <h2 className="text-[4rem] sm:text-[5rem] font-['Alex_Brush'] text-[#bfae80] mb-8">
+        <h2 className="text-[5rem] sm:text-[6rem] font-['Alex_Brush'] text-[#bfae80] mb-10">
           Elegance in Every Stitch
         </h2>
-        <p className="text-[2rem] sm:text-[2.5rem] text-gray-700 leading-snug font-['Playfair_Display']">
+        <p className="text-[2.4rem] sm:text-[2.8rem] text-gray-700 leading-snug font-['Playfair_Display']">
           Crafting identity through elegance and grace. <br />
           Our collection redefines modest fashion with timeless silhouettes and refined detailing.
         </p>
         <svg
-          className="mx-auto mt-12 w-32 h-auto"
+          className="mx-auto mt-16 w-32 h-auto"
           viewBox="0 0 200 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -318,7 +326,9 @@ function CategoryShowcase() {
   return (
     <section
       ref={ref}
-      className={`w-full m-0 py-0 bg-white ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+      className={`w-full m-0 py-0 bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7] ${
+        isVisible ? 'animate-fade-in-up' : 'opacity-0'
+      }`}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
         {/* Left side - Heritage Grace */}
