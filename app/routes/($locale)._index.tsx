@@ -22,7 +22,6 @@ export default function Homepage() {
 
   return (
     <div className="w-full overflow-x-hidden m-0 p-0 bg-gradient-to-b from-[#fefefe] to-[#f8f8f5] font-sans">
-      <MainSection />
       <BannerCarousel />
       <ReviewSection />
       <GridShowcase />
@@ -73,6 +72,9 @@ function MainSection() {
     </section>
   );
 }
+
+
+
 
 function BannerCarousel() {
   const images = [
@@ -334,7 +336,7 @@ function BrandStatement() {
 }
 
 function CategoryShowcase() {
-  const {ref, isVisible} = useInView<HTMLDivElement>();
+  const { ref, isVisible } = useInView<HTMLDivElement>();
 
   return (
     <section
@@ -342,38 +344,37 @@ function CategoryShowcase() {
       className={`w-full m-0 py-0 bg-white ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-        <div className="w-full pl-4">
-          <motion.img
+        {/* Left side - Heritage Grace */}
+        <div className="w-full flex flex-col items-center text-center pb-12">
+          <img
             src="https://cdn.shopify.com/s/files/1/0704/7908/5731/files/bluedress.webp?v=1753221040"
             alt="Women"
             loading="lazy"
             className="w-full aspect-[3/4] object-cover mb-4 rounded-xl"
-            whileHover={{scale:1.05}}
-            transition={{duration:0.3}}
           />
-          <div className="ml-4">
+          <div>
             <h3 className="text-xl font-semibold uppercase mb-2 text-gray-900 tracking-wider font-['Playfair_Display'] text-[#d4af37]">
               Heritage Grace
             </h3>
-            <p className="text-gray-700 text-base leading-relaxed pl-4">
+            <p className="text-gray-700 text-base leading-relaxed">
               Embrace our signature womenswear steeped in tradition and tailored for modern elegance. From flowing silhouettes to artisanal details, each piece tells a story of grace, strength, and refined femininity.
             </p>
           </div>
         </div>
-        <div className="w-full">
-          <motion.img
+
+        {/* Right side - Noble Form */}
+        <div className="w-full flex flex-col items-center text-center pb-12">
+          <img
             src="https://cdn.shopify.com/s/files/1/0704/7908/5731/files/white_dress.png?v=1753222198"
             alt="Men"
             loading="lazy"
             className="w-full aspect-[3/4] object-cover mb-4 rounded-xl"
-            whileHover={{scale:1.05}}
-            transition={{duration:0.3}}
           />
           <div>
             <h3 className="text-xl font-semibold uppercase mb-2 text-gray-900 tracking-wider font-['Playfair_Display'] text-[#d4af37]">
               Noble Form
             </h3>
-            <p className="text-gray-700 text-base leading-relaxed pl-4">
+            <p className="text-gray-700 text-base leading-relaxed">
               Discover menswear that redefines everyday sophistication. Thoughtfully designed with structure, comfort, and intention, our garments speak to the man who values presence over pretence.
             </p>
           </div>

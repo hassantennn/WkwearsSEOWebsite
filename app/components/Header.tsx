@@ -25,7 +25,7 @@ export function Header({
 }: HeaderProps) {
   const { shop, menu } = header;
 
-  const logoUrl = 'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/logo.png?v=1752934162';
+  const logoUrl = 'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/logo-removebg-preview-2.png?v=1753421784';
 
   return (
     <>
