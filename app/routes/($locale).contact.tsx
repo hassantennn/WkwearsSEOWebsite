@@ -41,6 +41,9 @@ export default function ContactPage() {
 
 
 
+
+
+
       <section className="py-20 px-4 bg-gradient-to-b from-[#f8f8f5] to-[#f5e9d7]">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
           <motion.div
@@ -80,6 +83,7 @@ export default function ContactPage() {
             animate={rightVisible ? {opacity: 1, y: 0} : {}}
             transition={{duration: 0.8, delay: 0.1}}
           >
+
             <form className="bg-white/60 backdrop-blur-lg p-10 rounded-3xl shadow-2xl ring-1 ring-white/60 space-y-6">
               <h3 className="text-3xl font-['Playfair_Display'] mb-8 text-center tracking-wider">Send us a Message</h3>
               <div className="grid sm:grid-cols-2 gap-6">
@@ -127,6 +131,7 @@ export default function ContactPage() {
                     className="w-full rounded-3xl px-4 py-3 border-2 border-transparent bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
                   />
                 </div>
+
               </div>
               <button
                 type="submit"
@@ -156,6 +161,7 @@ export default function ContactPage() {
           referrerPolicy="no-referrer-when-downgrade"
           className="border-0 w-full h-full"
         />
+
       </motion.section>
 
       <motion.section
@@ -212,6 +218,7 @@ export default function ContactPage() {
           </svg>
         </a>
       </motion.section>
+
 
     </div>
   );
