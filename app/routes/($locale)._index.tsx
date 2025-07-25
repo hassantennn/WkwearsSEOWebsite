@@ -255,21 +255,20 @@ function GridShowcase() {
   return (
     <section
       ref={ref}
-      className={`w-full m-0 grid grid-cols-1 sm:grid-cols-2 gap-0 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+      className={`w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
     >
       {categories.map((category, index) => (
-        <div key={index} className="relative group h-[400px] sm:h-[500px] overflow-hidden">
-          <img
-            src={category.image}
-            alt={category.title}
-            loading="lazy"
-            className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
-          />
-          <div className="absolute bottom-4 left-4 text-white drop-shadow-lg">
-            <p className="text-sm uppercase opacity-80 tracking-wide font-['Playfair_Display']">
+        <div
+          key={index}
+          style={{backgroundImage: `url(${category.image})`}}
+          className="relative group rounded-xl overflow-hidden aspect-[3/4] bg-center bg-cover"
+        >
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent transition-opacity duration-500 group-hover:from-black/60" />
+          <div className="absolute bottom-4 left-4 drop-shadow-lg">
+            <p className="text-sm uppercase tracking-wide font-['Playfair_Display'] gold-gradient-text">
               {category.title.split(' ')[0]}
             </p>
-            <p className="text-lg sm:text-xl font-semibold tracking-wider font-['Playfair_Display']">
+            <p className="text-lg sm:text-xl font-semibold tracking-wider font-['Playfair_Display'] text-white">
               {category.title.split(' ').slice(1).join(' ')}
             </p>
           </div>
