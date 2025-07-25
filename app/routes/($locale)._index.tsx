@@ -23,6 +23,7 @@ export default function Homepage() {
   return (
     <div className="w-full overflow-x-hidden m-0 p-0 bg-gradient-to-b from-[#fefefe] to-[#f8f8f5] font-sans">
       <MainSection />
+      <BannerCarousel />
       <ReviewSection />
       <GridShowcase />
       <BrandStatement />
@@ -69,6 +70,72 @@ function MainSection() {
       ))}
 
       {/* Overlay Button removed as per new design */}
+    </section>
+  );
+}
+
+function BannerCarousel() {
+  const images = [
+    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/Vihaan_Kumar_photographs_your_most_special_day_with_style_and_finesse.-3.png?v=1753231620',
+    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/Vihaan_Kumar_photographs_your_most_special_day_with_style_and_finesse.-2.png?v=1753231621',
+    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/upscalemedia-transformed_1ecf8b5e-7812-4640-aed0-e384d50e5e94.png?v=1753231622',
+    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/Vihaan_Kumar_photographs_your_most_special_day_with_style_and_finesse.-4-2.png?v=1753231623',
+    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/upscalemedia-transformed-2.png?v=1752944229',
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((i) => (i + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [index]);
+
+  const prev = () => setIndex((index - 1 + images.length) % images.length);
+  const next = () => setIndex((index + 1) % images.length);
+
+  return (
+    <section
+      className="relative w-full m-0 overflow-hidden"
+      style={{minHeight: '60vh'}}
+    >
+      {images.map((src, i) => (
+        <img
+          key={i}
+          src={src}
+          alt={`Slide ${i + 1}`}
+          className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${i === index ? 'opacity-100' : 'opacity-0'}`}
+        />
+      ))}
+
+      <div className="absolute inset-0 flex items-center justify-between px-4">
+        <button
+          onClick={prev}
+          className="bg-black/30 hover:bg-black/50 text-white p-2 rounded-full"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          onClick={next}
+          className="bg-black/30 hover:bg-black/50 text-white p-2 rounded-full"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
+        <Link
+          to="/collections/all"
+          className="px-8 py-3 text-white rounded-full shadow-lg bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] hover:opacity-90"
+        >
+          Explore Collection
+        </Link>
+      </div>
     </section>
   );
 }
