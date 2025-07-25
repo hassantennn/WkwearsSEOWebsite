@@ -48,16 +48,13 @@ function BannerCarousel() {
       setIndex((i) => (i + 1) % images.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [index]);
+  }, []);
 
   const prev = () => setIndex((index - 1 + images.length) % images.length);
   const next = () => setIndex((index + 1) % images.length);
 
   return (
-    <section
-      className="relative w-full m-0 overflow-hidden"
-      style={{minHeight: '90vh'}}
-    >
+    <section className="relative w-full m-0 overflow-hidden min-h-[90vh]">
       {images.map((src, i) => (
         <img
           key={i}
@@ -86,7 +83,7 @@ function BannerCarousel() {
         </button>
       </div>
 
-      <div className="absolute bottom-16 right-1 -translate-x-1/2">
+      <div className="absolute bottom-16 left-1/2 -translate-x-1/2">
         <Link
           to="/collections/all"
           className="px-12 py-6 text-white rounded-full shadow-lg bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] hover:opacity-90"
