@@ -114,17 +114,17 @@ function ReviewSection() {
   return (
     <section
       ref={ref}
-      className={`relative w-full bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7] py-0 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+      className={`relative w-full m-0 bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7] py-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
     >
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDEwIDEwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiUyM2VhZDljNiIgc3Ryb2tlLXdpZHRoPSIwLjUiIGQ9Ik0wIDBMMTAgMTBNMTAgMEwwIDEwIi8+PC9zdmc+')] opacity-20 mix-blend-overlay pointer-events-none"></div>
       <svg className="absolute top-0 right-0 w-64 h-64 opacity-10 pointer-events-none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M50 0C65 20 80 20 95 50C80 80 65 80 50 100C35 80 20 80 5 50C20 20 35 20 50 0Z" fill="#d4af37" />
       </svg>
       <div className="flex flex-col items-center justify-center text-center mb-24">
-        <h2 className="text-5xl sm:text-6xl font-extrabold mb-4 tracking-[0.2em] leading-tight uppercase font-['Playfair_Display'] gold-gradient-text">
+        <h2 className="text-6xl sm:text-7xl font-extrabold mb-4 tracking-[0.2em] leading-tight uppercase font-['Great_Vibes'] gold-gradient-text">
           Our Clients Speak
         </h2>
-        <p className="text-lg sm:text-xl text-gray-700 max-w-2xl italic">
+        <p className="text-xl sm:text-2xl text-gray-700 max-w-2xl italic font-['Great_Vibes']">
           Words from the women who wear WK with pride, elegance, and grace.
         </p>
       </div>
@@ -228,7 +228,7 @@ function GridShowcase() {
   return (
     <section
       ref={ref}
-      className={`w-full grid grid-cols-1 sm:grid-cols-2 gap-0 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+      className={`w-full m-0 grid grid-cols-1 sm:grid-cols-2 gap-0 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
     >
       {categories.map((category, index) => (
         <div key={index} className="relative group h-[400px] sm:h-[500px] overflow-hidden">
@@ -258,13 +258,13 @@ function BrandStatement() {
   return (
     <section
       ref={ref}
-      className={`w-full flex justify-center pt-[12rem] pb-[24rem] bg-gradient-to-b from-[#fefefe] to-[#fbfaf7] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+      className={`w-full m-0 flex justify-center pt-[16rem] pb-[32rem] bg-gradient-to-b from-[#fefefe] to-[#fbfaf7] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
     >
       <div className="text-center max-w-6xl">
-        <h1 className="text-[8rem] sm:text-[10rem] font-['Playfair_Display'] text-gray-900 mb-16 leading-none">
+        <h1 className="text-[9rem] sm:text-[12rem] font-['Great_Vibes'] text-gray-900 mb-16 leading-none">
           WK WEARS
         </h1>
-        <p className="text-[3rem] sm:text-[3.5rem] text-gray-700 leading-snug">
+        <p className="text-[3.5rem] sm:text-[4rem] text-gray-700 leading-snug font-['Great_Vibes']">
           Crafting identity through elegance and grace. <br />
           Our collection redefines modest fashion with timeless silhouettes and refined detailing.
         </p>
@@ -279,7 +279,7 @@ function CategoryShowcase() {
   return (
     <section
       ref={ref}
-      className={`w-full py-24 bg-white ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+      className={`w-full m-0 py-24 bg-white ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
         <div className="w-full">
