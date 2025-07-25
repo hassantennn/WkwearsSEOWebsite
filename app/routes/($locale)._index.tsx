@@ -31,50 +31,6 @@ export default function Homepage() {
   );
 }
 
-function MainSection() {
-  const images = [
-    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/Vihaan_Kumar_photographs_your_most_special_day_with_style_and_finesse.-4-2.png?v=1753231623',
-    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/upscalemedia-transformed_1ecf8b5e-7812-4640-aed0-e384d50e5e94.png?v=1753231622',
-    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/Vihaan_Kumar_photographs_your_most_special_day_with_style_and_finesse.-2.png?v=1753231621',
-    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/Vihaan_Kumar_photographs_your_most_special_day_with_style_and_finesse.-3.png?v=1753231620',
-    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/upscalemedia-transformed-2.png?v=1752944229',
-    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/upscalemedia-transformed_1.png?v=1752944229',
-    'https://cdn.shopify.com/s/files/1/0704/7908/5731/files/upscalemedia-transformed.png?v=1752944228',
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [images.length]);
-
-  return (
-    <section
-      style={{minHeight: 'calc(100vh - var(--header-height) - 48px)'}}
-      className="w-full relative overflow-hidden m-0 p-0"
-    >
-      {/* Background Slideshow */}
-      {images.map((src, index) => (
-        <img
-          key={index}
-          src={src}
-          alt={`Slide ${index + 1}`}
-          className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-            index === currentIndex ? 'opacity-100' : 'opacity-0'
-          }`}
-        />
-      ))}
-
-      {/* Overlay Button removed as per new design */}
-    </section>
-  );
-}
-
-
-
 
 function BannerCarousel() {
   const images = [
@@ -100,7 +56,7 @@ function BannerCarousel() {
   return (
     <section
       className="relative w-full m-0 overflow-hidden"
-      style={{minHeight: '60vh'}}
+      style={{minHeight: '90vh'}}
     >
       {images.map((src, i) => (
         <img
@@ -130,10 +86,10 @@ function BannerCarousel() {
         </button>
       </div>
 
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
+      <div className="absolute bottom-16 right-1 -translate-x-1/2">
         <Link
           to="/collections/all"
-          className="px-8 py-3 text-white rounded-full shadow-lg bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] hover:opacity-90"
+          className="px-12 py-6 text-white rounded-full shadow-lg bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] hover:opacity-90"
         >
           Explore Collection
         </Link>
