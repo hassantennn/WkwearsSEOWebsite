@@ -90,7 +90,7 @@ function BannerCarousel() {
       setIndex((i) => (i + 1) % images.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [index]);
+  }, []);
 
   const prev = () => setIndex((index - 1 + images.length) % images.length);
   const next = () => setIndex((index + 1) % images.length);
