@@ -65,17 +65,7 @@ function MainSection() {
         />
       ))}
 
-      {/* Overlay Button */}
-      <div className="absolute bottom-20 right-20 z-10">
-        <motion.div whileHover={{scale:1.05}} whileTap={{scale:0.95}}>
-          <Link
-            to="/collections/all"
-            className="mainsection-btn px-10 py-5 text-base font-semibold tracking-wide border border-white bg-white/20 hover:bg-gradient-to-r hover:from-[#d4af37] hover:to-[#f5e18a] hover:text-black hover:shadow-xl transition-colors duration-300 rounded-xl backdrop-blur-lg"
-          >
-            Discover the Collection
-          </Link>
-        </motion.div>
-      </div>
+      {/* Overlay Button removed as per new design */}
     </section>
   );
 }
