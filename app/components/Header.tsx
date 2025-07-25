@@ -268,12 +268,17 @@ export function HeaderMenu({
       {menu?.items.map((item) => {
         if (!item.url) return null;
 
-        const url =
+        let url =
           item.url.includes('myshopify.com') ||
           item.url.includes(publicStoreDomain) ||
           item.url.includes(primaryDomainUrl)
             ? new URL(item.url).pathname
             : item.url;
+
+        // Rewrite the Shopify contact page to the custom contact route
+        if (/\/pages\/contact\/?$/.test(url)) {
+          url = url.replace(/\/pages\/contact\/?$/, '/contact');
+        }
 
         return (
           <NavLink
