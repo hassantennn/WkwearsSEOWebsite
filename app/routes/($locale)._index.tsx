@@ -104,17 +104,19 @@ function ReviewSection() {
   const {ref, isVisible} = useInView<HTMLElement>();
   return (
     <section
-    ref={ref}
-    className={`w-full bg-gradient-to-b from-white via-gray-100 to-white py-60 sm:py-72 px-6 sm:px-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
-  >      <div className="flex flex-col items-center justify-center text-center mb-20 px-4">
-        <h2 className="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-4 tracking-tight leading-tight uppercase font-['Playfair_Display']">          Our Clients Speak
+      ref={ref}
+      className={`w-full flex flex-col items-center justify-center bg-gradient-to-b from-white via-gray-100 to-white py-0 px-6 sm:px-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+    >
+      <div className="flex flex-col items-center justify-center text-center mb-20 px-4">
+        <h2 className="text-6xl sm:text-7xl font-extrabold text-gray-900 mb-4 tracking-tight leading-tight uppercase font-['Playfair_Display']">
+          Our Clients Speak
         </h2>
-        <p className="text-lg sm:text-xl text-gray-600 max-w-2xl italic">
+        <p className="text-xl sm:text-2xl text-gray-600 max-w-2xl italic">
           Words from the women who wear WK with pride, elegance, and grace.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
         {reviews.map((review, index) => (
           <div
             key={index}
@@ -123,12 +125,13 @@ function ReviewSection() {
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
 
             <div className="mb-5 text-center">
-            <p className="text-2xl font-semibold text-gray-800 group-hover:text-[#d4af37] transition-colors duration-300 tracking-wide font-['Playfair_Display']">                {review.name}
+            <p className="text-3xl font-semibold text-gray-800 group-hover:text-[#d4af37] transition-colors duration-300 tracking-wide font-['Playfair_Display']">
+                {review.name}
               </p>
               <p className="text-sm text-gray-500 italic tracking-wider">{review.title}</p>
             </div>
 
-            <p className="text-gray-700 text-lg leading-relaxed mb-6 italic text-center">
+            <p className="text-gray-700 text-xl leading-relaxed mb-6 italic text-center">
               “{review.review}”
             </p>
 
@@ -136,7 +139,7 @@ function ReviewSection() {
               {[...Array(5)].map((_, starIdx) => (
                 <svg
                   key={starIdx}
-                  className="w-6 h-6 text-[#f5c542] group-hover:text-[#d4af37] transition-colors duration-300"
+                  className="w-8 h-8 text-[#f5c542] group-hover:text-[#d4af37] transition-colors duration-300"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
