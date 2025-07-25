@@ -120,7 +120,7 @@ function ReviewSection() {
       <svg className="absolute top-0 right-0 w-64 h-64 opacity-10 pointer-events-none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M50 0C65 20 80 20 95 50C80 80 65 80 50 100C35 80 20 80 5 50C20 20 35 20 50 0Z" fill="#d4af37" />
       </svg>
-      <div className="flex flex-col items-center justify-center text-center mb-24">
+      <div className="flex flex-col items-center justify-center text-center mb-0">
         <h2 className="text-6xl sm:text-7xl font-extrabold mb-4 tracking-[0.2em] leading-tight uppercase font-['Great_Vibes'] gold-gradient-text">
           Our Clients Speak
         </h2>
@@ -279,7 +279,7 @@ function CategoryShowcase() {
   return (
     <section
       ref={ref}
-      className={`w-full m-0 py-24 bg-white ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+      className={`w-full m-0 py-0 bg-white ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
         <div className="w-full">
