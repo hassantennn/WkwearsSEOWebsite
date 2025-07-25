@@ -114,7 +114,7 @@ function ReviewSection() {
   return (
     <section
       ref={ref}
-      className={`relative w-full bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7] py-60 sm:py-72 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+      className={`relative w-full bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7] py-0 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
     >
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDEwIDEwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiUyM2VhZDljNiIgc3Ryb2tlLXdpZHRoPSIwLjUiIGQ9Ik0wIDBMMTAgMTBNMTAgMEwwIDEwIi8+PC9zdmc+')] opacity-20 mix-blend-overlay pointer-events-none"></div>
       <svg className="absolute top-0 right-0 w-64 h-64 opacity-10 pointer-events-none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -131,7 +131,7 @@ function ReviewSection() {
 
       <div className="overflow-x-auto px-4">
         <motion.div
-          className="flex gap-6 sm:gap-8 md:gap-10 snap-x snap-mandatory"
+          className="flex justify-center gap-6 sm:gap-8 md:gap-10 snap-x snap-mandatory"
           initial={{opacity:0, x:50}}
           whileInView={{opacity:1, x:0}}
           viewport={{once:true}}
