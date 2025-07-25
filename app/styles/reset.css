@@ -70,15 +70,6 @@ pre {
   white-space: pre-wrap;
 }
 
-section {
-  padding: 0;
-}
-
-@media (min-width: 768px) {
-  section {
-    padding: 0;
-  }
-}
 
 fieldset {
   display: flex;
