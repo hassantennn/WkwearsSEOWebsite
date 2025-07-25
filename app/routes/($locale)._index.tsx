@@ -1,6 +1,7 @@
 import { type LoaderFunctionArgs } from '@shopify/remix-oxygen';
 import { useLoaderData, type MetaFunction, Link } from 'react-router';
 import { useEffect, useState } from 'react';
+import {motion} from 'framer-motion';
 import {useInView} from '~/lib/useInView';
 
 export const meta: MetaFunction = () => {
@@ -85,18 +86,24 @@ function ReviewSection() {
     {
       name: 'Ayxsha Parveen',
       title: 'Verified Buyer',
+      city: 'Lahore, PK',
+      image: 'https://placehold.co/80x80.png?text=AP',
       review:
         'Absolutely in love with the stitching and detail. It fits like a dream and the fabric feels premium!',
     },
     {
       name: 'Fatima Khan',
       title: 'Loyal Customer',
+      city: 'Karachi, PK',
+      image: '',
       review:
         'WKwears never disappoints. Classy, modest, and stylish — every piece is a gem.',
     },
     {
       name: 'Sarah Nawaaz',
       title: 'First Time Buyer',
+      city: 'Islamabad, PK',
+      image: 'https://placehold.co/80x80.png?text=SN',
       review:
         'Received so many compliments. Fast delivery, luxurious feel — definitely shopping again!',
     },
@@ -107,50 +114,90 @@ function ReviewSection() {
   return (
     <section
       ref={ref}
-      className={`w-full bg-gradient-to-b from-white via-gray-100 to-white py-60 sm:py-72 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+      className={`relative w-full bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7] py-60 sm:py-72 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
     >
-      <div className="flex flex-col items-center justify-center text-center mb-20">
-        <h2 className="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-4 tracking-tight leading-tight uppercase font-['Playfair_Display']">
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDEwIDEwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiUyM2VhZDljNiIgc3Ryb2tlLXdpZHRoPSIwLjUiIGQ9Ik0wIDBMMTAgMTBNMTAgMEwwIDEwIi8+PC9zdmc+')] opacity-20 mix-blend-overlay pointer-events-none"></div>
+      <svg className="absolute top-0 right-0 w-64 h-64 opacity-10 pointer-events-none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 0C65 20 80 20 95 50C80 80 65 80 50 100C35 80 20 80 5 50C20 20 35 20 50 0Z" fill="#d4af37" />
+      </svg>
+      <div className="flex flex-col items-center justify-center text-center mb-24">
+        <h2 className="text-5xl sm:text-6xl font-extrabold mb-4 tracking-[0.2em] leading-tight uppercase font-['Playfair_Display'] gold-gradient-text">
           Our Clients Speak
         </h2>
-        <p className="text-lg sm:text-xl text-gray-600 max-w-2xl italic">
+        <p className="text-lg sm:text-xl text-gray-700 max-w-2xl italic">
           Words from the women who wear WK with pride, elegance, and grace.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full">
-        {reviews.map((review, index) => (
-          <div
-            key={index}
-            className="group relative bg-white/40 backdrop-blur-md border border-white/50 rounded-xl p-10 shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
-          >
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
+      <div className="overflow-x-auto px-4">
+        <motion.div
+          className="flex gap-6 sm:gap-8 md:gap-10 snap-x snap-mandatory"
+          initial={{opacity:0, x:50}}
+          whileInView={{opacity:1, x:0}}
+          viewport={{once:true}}
+        >
+          {reviews.map((review, index) => (
+            <motion.div
+              key={index}
+              className="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[360px] snap-center group bg-[#f8e8e4] border border-[#d4af37]/40 rounded-[12px] p-8 shadow-lg transition-all duration-500 hover:shadow-2xl"
+              whileHover={{scale:1.05}}
+            >
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
 
-            <div className="mb-5 text-center">
-              <p className="text-2xl font-semibold text-gray-800 group-hover:text-[#d4af37] transition-colors duration-300 tracking-wide font-['Playfair_Display']">
-                {review.name}
-              </p>
-              <p className="text-sm text-gray-500 italic tracking-wider">{review.title}</p>
-            </div>
+              <div className="flex justify-center mb-5">
+                {review.image ? (
+                  <img
+                    src={review.image}
+                    alt={review.name}
+                    className="w-16 h-16 rounded-full object-cover border border-[#d4af37] shadow"
+                  />
+                ) : (
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center bg-pink-50 border border-[#d4af37] text-[#d4af37] font-semibold shadow">
+                    {review.name
+                      .split(' ')
+                      .map((n) => n[0])
+                      .join('')}
+                  </div>
+                )}
+              </div>
 
-            <p className="text-gray-700 text-lg leading-relaxed mb-6 italic text-center">
-              “{review.review}”
-            </p>
+              <div className="mb-3 text-center">
+                <p className="text-xl tracking-widest uppercase font-['Playfair_Display'] text-gray-800">
+                  {review.name}
+                </p>
+                <p className="text-sm italic text-[#bfae80] font-['Playfair_Display']">
+                  {review.title}
+                </p>
+              </div>
 
-            <div className="flex justify-center gap-1">
-              {[...Array(5)].map((_, starIdx) => (
-                <svg
-                  key={starIdx}
-                  className="w-6 h-6 text-[#f5c542] group-hover:text-[#d4af37] transition-colors duration-300"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.036 3.19a1 1 0 00.95.69h3.356c.969 0 1.371 1.24.588 1.81l-2.716 1.974a1 1 0 00-.364 1.118l1.036 3.19c.3.921-.755 1.688-1.538 1.118L10 13.347l-2.716 1.974c-.783.57-1.838-.197-1.538-1.118l1.036-3.19a1 1 0 00-.364-1.118L3.702 8.617c-.783-.57-.38-1.81.588-1.81h3.356a1 1 0 00.95-.69l1.036-3.19z" />
-                </svg>
-              ))}
-            </div>
-          </div>
+              <div className="relative quote-mark mb-6">
+                <p className="relative text-gray-700 text-lg leading-relaxed italic text-center">
+                  {review.review}
+                </p>
+              </div>
+
+              <div className="flex justify-center gap-1 hover:animate-shimmer">
+                {[...Array(5)].map((_, starIdx) => (
+                  <svg
+                    key={starIdx}
+                    className="w-6 h-6"
+                    fill={`url(#gold-gradient-${index}-${starIdx})`}
+                    viewBox="0 0 20 20"
+                  >
+                    <defs>
+                      <linearGradient id={`gold-gradient-${index}-${starIdx}`} x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stopColor="#d4af37" />
+                        <stop offset="100%" stopColor="#f5e18a" />
+                      </linearGradient>
+                    </defs>
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.036 3.19a1 1 0 00.95.69h3.356c.969 0 1.371 1.24.588 1.81l-2.716 1.974a1 1 0 00-.364 1.118l1.036 3.19c.3.921-.755 1.688-1.538 1.118L10 13.347l-2.716 1.974c-.783.57-1.838-.197-1.538-1.118l1.036-3.19a1 1 0 00-.364-1.118L3.702 8.617c-.783-.57-.38-1.81.588-1.81h3.356a1 1 0 00.95-.69l1.036-3.19z" />
+                  </svg>
+                ))}
+              </div>
+            <p className="text-sm text-gray-500 italic font-['Playfair_Display'] mt-2">{review.city}</p>
+          </motion.div>
         ))}
+        </motion.div>
       </div>
     </section>
   );
