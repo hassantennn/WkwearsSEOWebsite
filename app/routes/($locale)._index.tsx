@@ -322,14 +322,30 @@ function BrandStatement() {
       ref={ref}
       className={`w-full m-0 flex justify-center pt-[16rem] pb-[32rem] bg-gradient-to-b from-[#fefefe] to-[#fbfaf7] ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
     >
-      <div className="text-center max-w-6xl">
-        <h1 className="text-[9rem] sm:text-[12rem] font-['Great_Vibes'] text-gray-900 mb-16 leading-none">
+      <div className="text-center max-w-6xl px-4">
+        <h1 className="text-[10rem] sm:text-[13rem] font-['Cinzel'] gold-gradient-text mb-8 leading-none">
           WK WEARS
         </h1>
-        <p className="text-[3.5rem] sm:text-[4rem] text-gray-700 leading-snug font-['Great_Vibes']">
+        <h2 className="text-[4rem] sm:text-[5rem] font-['Alex_Brush'] text-[#bfae80] mb-8">
+          Elegance in Every Stitch
+        </h2>
+        <p className="text-[2rem] sm:text-[2.5rem] text-gray-700 leading-snug font-['Playfair_Display']">
           Crafting identity through elegance and grace. <br />
           Our collection redefines modest fashion with timeless silhouettes and refined detailing.
         </p>
+        <svg
+          className="mx-auto mt-12 w-32 h-auto"
+          viewBox="0 0 200 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 10 C40 0 60 20 100 10 S160 0 200 10"
+            stroke="#d4af37"
+            strokeWidth="2"
+            fill="none"
+          />
+        </svg>
       </div>
     </section>
   );
