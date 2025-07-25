@@ -29,4 +29,35 @@
   .animate-fade-in-up {
     animation: fadeInUp 0.8s ease-out both;
   }
+
+  @keyframes shimmer {
+    0%, 100% {
+      filter: brightness(1);
+    }
+    50% {
+      filter: brightness(1.4);
+    }
+  }
+
+  .hover\:animate-shimmer:hover {
+    animation: shimmer 1s ease-in-out infinite;
+  }
+
+  .gold-gradient-text {
+    background-image: linear-gradient(to bottom, #d4af37, #f5e18a);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .quote-mark::before {
+    content: '“';
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 8rem;
+    line-height: 1;
+    opacity: 0.1;
+    pointer-events: none;
+  }
 }
