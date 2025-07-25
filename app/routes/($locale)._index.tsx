@@ -52,7 +52,10 @@ function MainSection() {
   }, [images.length]);
 
   return (
-    <section className="w-full min-h-screen relative overflow-hidden m-0 p-0">
+    <section
+      style={{minHeight: 'calc(100vh - var(--header-height) - 48px)'}}
+      className="w-full relative overflow-hidden m-0 p-0"
+    >
       {/* Background Slideshow */}
       {images.map((src, index) => (
         <img
