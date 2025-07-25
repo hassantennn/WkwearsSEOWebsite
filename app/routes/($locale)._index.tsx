@@ -291,7 +291,7 @@ function CategoryShowcase() {
             whileHover={{scale:1.05}}
             transition={{duration:0.3}}
           />
-          <div>
+          <div className="ml-4">
             <h3 className="text-xl font-semibold uppercase mb-2 text-gray-900 tracking-wider font-['Playfair_Display'] text-[#d4af37]">
               Heritage Grace
             </h3>
