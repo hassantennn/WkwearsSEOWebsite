@@ -22,7 +22,7 @@ export default function ContactPage() {
   const {ref: iconsRef, isVisible: iconsVisible} = useInView<HTMLDivElement>();
 
   return (
-    <div className="w-full overflow-x-hidden font-['Playfair_Display'] bg-gradient-to-b from-[#fefefe] to-[#f8f8f5] contact-bg">
+    <div className="w-full overflow-x-hidden m-0 p-0 bg-gradient-to-b from-[#fefefe] to-[#f8f8f5] font-sans contact-bg">
 
       {/* Hero */}
       <motion.section
@@ -99,49 +99,61 @@ export default function ContactPage() {
                 Send us a Message
               </h3>
               <div className="grid sm:grid-cols-2 gap-6">
-                <div className="space-y-1">
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                    Name
-                  </label>
+                <div className="relative">
                   <input
                     id="name"
                     type="text"
-                    placeholder="Your Name"
-                    className="w-full rounded-full px-4 py-3 border-2 border-[#d4af37]/20 bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
+                    placeholder=" "
+                    className="peer w-full rounded-full px-6 py-4 border border-[#d4af37]/30 bg-white/70 backdrop-blur-md placeholder-transparent focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
                   />
-                </div>
-                <div className="space-y-1">
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                    Email
+                  <label
+                    htmlFor="name"
+                    className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-500 transition-all pointer-events-none peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-focus:-top-3 peer-focus:text-xs peer-focus:text-[#d4af37] bg-white/70 px-2 rounded-full"
+                  >
+                    Name
                   </label>
+                </div>
+                <div className="relative">
                   <input
                     id="email"
                     type="email"
-                    placeholder="you@example.com"
-                    className="w-full rounded-full px-4 py-3 border-2 border-[#d4af37]/20 bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
+                    placeholder=" "
+                    className="peer w-full rounded-full px-6 py-4 border border-[#d4af37]/30 bg-white/70 backdrop-blur-md placeholder-transparent focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
                   />
-                </div>
-                <div className="space-y-1 sm:col-span-2">
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                    Phone
+                  <label
+                    htmlFor="email"
+                    className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-500 transition-all pointer-events-none peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-focus:-top-3 peer-focus:text-xs peer-focus:text-[#d4af37] bg-white/70 px-2 rounded-full"
+                  >
+                    Email
                   </label>
+                </div>
+                <div className="relative sm:col-span-2">
                   <input
                     id="phone"
                     type="tel"
-                    placeholder="+92 123 4567890"
-                    className="w-full rounded-full px-4 py-3 border-2 border-[#d4af37]/20 bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
+                    placeholder=" "
+                    className="peer w-full rounded-full px-6 py-4 border border-[#d4af37]/30 bg-white/70 backdrop-blur-md placeholder-transparent focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
                   />
-                </div>
-                <div className="space-y-1 sm:col-span-2">
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                    Message
+                  <label
+                    htmlFor="phone"
+                    className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-500 transition-all pointer-events-none peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-focus:-top-3 peer-focus:text-xs peer-focus:text-[#d4af37] bg-white/70 px-2 rounded-full"
+                  >
+                    Phone
                   </label>
+                </div>
+                <div className="relative sm:col-span-2">
                   <textarea
                     id="message"
                     rows={5}
-                    placeholder="How can we help you?"
-                    className="w-full rounded-3xl px-4 py-3 border-2 border-[#d4af37]/20 bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
+                    placeholder=" "
+                    className="peer w-full rounded-3xl px-6 py-4 border border-[#d4af37]/30 bg-white/70 backdrop-blur-md placeholder-transparent focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
                   />
+                  <label
+                    htmlFor="message"
+                    className="absolute left-6 top-4 text-gray-500 transition-all pointer-events-none peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:-top-2 peer-focus:text-xs peer-focus:text-[#d4af37] bg-white/70 px-2 rounded-full"
+                  >
+                    Message
+                  </label>
                 </div>
               </div>
               <button
