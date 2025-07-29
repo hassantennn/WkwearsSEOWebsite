@@ -24,14 +24,14 @@ export default function ContactPage() {
     <div className="w-full overflow-x-hidden m-0 bg-gradient-to-b from-[#fefefe] to-[#f8f8f5] font-sans contact-bg px-6 sm:px-12">
       {/* Form then Info */}
       <section className="py-20 px-6 sm:px-12 bg-gradient-to-b from-[#f8f8f5] to-[#f5e9d7]">
-        <div className="max-w-4xl mx-auto space-y-12">
+        <div className="w-full space-y-12">
           {/* Form (now larger and full width) */}
           <motion.div
             ref={rightRef}
             initial={{opacity: 0, y: 20}}
             animate={rightVisible ? {opacity: 1, y: 0} : {}}
             transition={{duration: 0.8, delay: 0.1}}
-            className="bg-white/80 backdrop-blur-lg p-16 rounded-3xl shadow-2xl ring-1 ring-[#d4af37]/30"
+            className="max-w-4xl mx-auto bg-white/80 backdrop-blur-lg p-16 rounded-3xl shadow-2xl ring-1 ring-[#d4af37]/30"
           >
             <form className="space-y-8">
               <h3 className="text-4xl font-['Playfair_Display'] mb-10 text-center tracking-wider">
@@ -110,12 +110,12 @@ export default function ContactPage() {
             initial={{opacity: 0, y: 20}}
             animate={leftVisible ? {opacity: 1, y: 0} : {}}
             transition={{duration: 0.8}}
-            className="space-y-6"
+            className="max-w-4xl mx-auto space-y-6 text-center font-['Playfair_Display'] dark-brown-text"
           >
             <h2 className="text-4xl sm:text-5xl font-['Cinzel'] gold-gradient-text border-l-4 border-[#d4af37] pl-4">
               We're here to help
             </h2>
-            <p className="text-gray-700 leading-relaxed">
+            <p className="leading-relaxed">
               Have a question about our collections, sizing, or a custom order? Reach out
               and our team will respond as soon as possible.
             </p>
