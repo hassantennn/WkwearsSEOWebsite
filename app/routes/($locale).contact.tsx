@@ -19,7 +19,7 @@ export default function ContactPage() {
   const {ref: mapRef, isVisible: mapVisible} = useInView<HTMLDivElement>();
   const {ref: iconsRef, isVisible: iconsVisible} = useInView<HTMLDivElement>();
   return (
-    <div className="w-full overflow-x-hidden font-['Playfair_Display'] bg-gradient-to-b from-[#fefefe] to-[#f8f8f5]">
+    <div className="w-full overflow-x-hidden font-['Playfair_Display'] bg-gradient-to-b from-[#faf7f2] to-[#f5ede8]">
       <motion.section
         ref={heroRef}
         initial={{opacity: 0}}
@@ -28,7 +28,7 @@ export default function ContactPage() {
         className="relative h-[60vh] flex items-center justify-center bg-cover bg-center"
         style={{backgroundImage: "url('https://cdn.shopify.com/s/files/1/0704/7908/5731/files/contact-hero.jpg?v=1753226835')"}}
       >
-        <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
         <motion.h1
           initial={{opacity: 0, y: -20}}
           animate={heroVisible ? {opacity: 1, y: 0} : {}}
@@ -44,7 +44,7 @@ export default function ContactPage() {
 
 
 
-      <section className="py-20 px-4 bg-gradient-to-b from-[#f8f8f5] to-[#f5e9d7]">
+      <section className="py-20 px-4 bg-gradient-to-b from-[#f8f6f1] to-[#efe7dc]">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
           <motion.div
             ref={leftRef}
@@ -95,7 +95,7 @@ export default function ContactPage() {
                     id="name"
                     type="text"
                     placeholder="Your Name"
-                    className="w-full rounded-full px-4 py-3 border-2 border-transparent bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
+                    className="w-full px-6 py-4 rounded-xl bg-gray-100 placeholder-gray-500 shadow-sm focus:ring-2 focus:ring-[#d4af37] focus:outline-none"
                   />
                 </div>
                 <div className="space-y-1">
@@ -106,7 +106,7 @@ export default function ContactPage() {
                     id="email"
                     type="email"
                     placeholder="you@example.com"
-                    className="w-full rounded-full px-4 py-3 border-2 border-transparent bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
+                    className="w-full px-6 py-4 rounded-xl bg-gray-100 placeholder-gray-500 shadow-sm focus:ring-2 focus:ring-[#d4af37] focus:outline-none"
                   />
                 </div>
                 <div className="space-y-1 sm:col-span-2">
@@ -117,7 +117,7 @@ export default function ContactPage() {
                     id="phone"
                     type="tel"
                     placeholder="+92 123 4567890"
-                    className="w-full rounded-full px-4 py-3 border-2 border-transparent bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
+                    className="w-full px-6 py-4 rounded-xl bg-gray-100 placeholder-gray-500 shadow-sm focus:ring-2 focus:ring-[#d4af37] focus:outline-none"
                   />
                 </div>
                 <div className="space-y-1 sm:col-span-2">
@@ -128,7 +128,7 @@ export default function ContactPage() {
                     id="message"
                     rows={5}
                     placeholder="How can we help you?"
-                    className="w-full rounded-3xl px-4 py-3 border-2 border-transparent bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
+                    className="w-full px-6 py-4 rounded-xl bg-gray-100 placeholder-gray-500 shadow-sm focus:ring-2 focus:ring-[#d4af37] focus:outline-none"
                   />
                 </div>
 
@@ -169,7 +169,7 @@ export default function ContactPage() {
         initial={{opacity: 0, y: 20}}
         animate={iconsVisible ? {opacity: 1, y: 0} : {}}
         transition={{duration: 0.8, delay: 0.1}}
-        className="py-10 flex justify-center gap-8 bg-gradient-to-b from-[#f5e9d7] to-[#e7d8c7]"
+        className="py-10 flex justify-center gap-8 bg-gradient-to-b from-[#efe7dc] to-[#e6d8c9]"
       >
         <a
           href="https://instagram.com"
