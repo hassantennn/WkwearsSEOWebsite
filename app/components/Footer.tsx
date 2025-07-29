@@ -21,7 +21,7 @@ export function Footer({
           return (
             <footer className="footer">
               <div className="footer-inner">
-                <div className="footer-col">
+                <div className="footer-col footer-quote-block">
                   {logoUrl && (
                     <img src={logoUrl} alt={header.shop.name} className="footer-logo" />
                   )}

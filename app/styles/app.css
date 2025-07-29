@@ -248,13 +248,19 @@ button.reset:hover:not(:has(> *)) {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .footer-col {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-quote-block {
+  justify-content: center;
 }
 
 .footer-col h3 {
@@ -294,6 +300,7 @@ button.reset:hover:not(:has(> *)) {
 .footer-description {
   margin-bottom: 1rem;
   font-size: 0.95rem;
+  font-family: 'Brush Script MT', cursive;
 }
 
 .footer-bottom {
