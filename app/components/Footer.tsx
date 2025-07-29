@@ -39,6 +39,9 @@ export function Footer({
                       </NavLink>
                     </li>
                     <li>
+                      <a href="#header-search">Search</a>
+                    </li>
+                    <li>
                       <NavLink prefetch="intent" to="/collections/all">
                         Shop
                       </NavLink>

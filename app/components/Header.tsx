@@ -30,7 +30,7 @@ export function Header({
   return (
     <>
       <header className="header">
-        <form className="search-form" role="search" aria-label="Search entire store">
+        <form id="header-search" className="search-form" role="search" aria-label="Search entire store">
           <input
             type="search"
             placeholder="Search entire store here..."
