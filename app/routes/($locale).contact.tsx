@@ -14,22 +14,22 @@ export default function ContactPage() {
   useLoaderData<typeof loader>();
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-20">
+    <div className="min-h-screen flex items-center justify-center px-4 py-20 bg-gradient-to-b from-[#fefefe] to-[#f8f8f5]">
       {/* Decorative outer frame */}
-      <div className="p-1 rounded-3xl bg-gradient-to-r from-gray-200 via-white to-gray-200">
+      <div className="p-1 rounded-3xl bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] shadow-xl">
         {/* Actual card */}
         <motion.div
-          className="w-full max-w-lg bg-white rounded-2xl shadow-lg p-10 border border-gray-200 mx-auto"
+          className="w-full max-w-lg bg-[#fffef9] rounded-2xl shadow-xl p-10 border border-[#d9c5b2] mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
         >
-          <h1 className="text-3xl font-bold uppercase text-center text-gray-900 mb-2 tracking-wide">
-            Contact Us
-          </h1>
-          <p className="text-sm text-center text-gray-600 mb-8 leading-relaxed tracking-wide">
-            Send us a message and we’ll get back to you as quickly as possible.
-          </p>
+        <h1 className="text-3xl font-bold uppercase text-center mb-2 tracking-wide gold-gradient-text">
+          Contact Us
+        </h1>
+        <p className="text-sm text-center text-gray-700 mb-8 leading-relaxed tracking-wide">
+          Send us a message and we’ll get back to you as quickly as possible.
+        </p>
 
           <form className="space-y-6">
             {/* Name */}
@@ -45,7 +45,7 @@ export default function ContactPage() {
                 type="text"
                 required
                 placeholder="Your full name"
-                className="w-full px-5 py-4 text-base border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/60 focus:shadow-lg transition tracking-wide"
+                className="w-full px-5 py-4 text-base border border-[#d9c5b2] rounded-lg bg-[#fffef9] focus:outline-none focus:ring-2 focus:ring-[#d4af37]/60 focus:shadow-lg transition tracking-wide"
               />
             </div>
 
@@ -62,7 +62,7 @@ export default function ContactPage() {
                 type="email"
                 required
                 placeholder="you@example.com"
-                className="w-full px-5 py-4 text-base border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/60 focus:shadow-lg transition tracking-wide"
+                className="w-full px-5 py-4 text-base border border-[#d9c5b2] rounded-lg bg-[#fffef9] focus:outline-none focus:ring-2 focus:ring-[#d4af37]/60 focus:shadow-lg transition tracking-wide"
               />
             </div>
 
@@ -75,7 +75,7 @@ export default function ContactPage() {
                 id="phone"
                 type="tel"
                 placeholder="+92 123 4567890"
-                className="w-full px-5 py-4 text-base border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/60 focus:shadow-lg transition tracking-wide"
+                className="w-full px-5 py-4 text-base border border-[#d9c5b2] rounded-lg bg-[#fffef9] focus:outline-none focus:ring-2 focus:ring-[#d4af37]/60 focus:shadow-lg transition tracking-wide"
               />
             </div>
 
@@ -92,14 +92,14 @@ export default function ContactPage() {
                 rows={4}
                 required
                 placeholder="Type your message here..."
-                className="w-full px-5 py-4 text-base border border-gray-300 rounded-lg bg-gray-50 resize-none focus:outline-none focus:ring-2 focus:ring-[#d4af37]/60 focus:shadow-lg transition tracking-wide"
+                className="w-full px-5 py-4 text-base border border-[#d9c5b2] rounded-lg bg-[#fffef9] resize-none focus:outline-none focus:ring-2 focus:ring-[#d4af37]/60 focus:shadow-lg transition tracking-wide"
               />
             </div>
 
             {/* Submit */}
             <button
               type="submit"
-              className="w-full py-4 text-base font-semibold bg-black text-white rounded-lg hover:bg-gray-800 hover:shadow-md hover:scale-[1.01] transition tracking-wide"
+              className="w-full py-4 text-base font-semibold text-white rounded-lg bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] hover:opacity-90 hover:shadow-lg transition tracking-wide"
             >
               Submit
             </button>
