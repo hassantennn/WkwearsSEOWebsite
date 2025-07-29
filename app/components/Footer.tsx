@@ -1,6 +1,7 @@
-import {Suspense} from 'react';
-import {Await, NavLink} from 'react-router';
-import type {FooterQuery, HeaderQuery} from 'storefrontapi.generated';
+// app/components/Footer.tsx
+import { Suspense } from 'react';
+import { Await, NavLink } from 'react-router';
+import type { FooterQuery, HeaderQuery } from 'storefrontapi.generated';
 
 interface FooterProps {
   footer: Promise<FooterQuery | null>;
@@ -19,52 +20,38 @@ export function Footer({
         {(footer) => {
           const logoUrl = header.shop.brand?.logo?.image?.url;
           return (
-            <footer className="footer">
-              <div className="footer-inner">
-                <div className="footer-col footer-quote-block">
+            <footer className="footer bg-[#f5e9d7] py-10">
+              <div className="footer-inner max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-16 px-6">
+                {/* Column 1 */}
+                <div className="footer-col border border-[#D3C0B0]/30 p-6 rounded-lg text-center">
                   {logoUrl && (
-                    <img src={logoUrl} alt={header.shop.name} className="footer-logo" />
+                    <img
+                      src={logoUrl}
+                      alt={header.shop.name}
+                      className="footer-logo mb-4 mx-auto"
+                    />
                   )}
-                  <p className="footer-description">
-                    Premium modest wear crafted with care. Discover elegant designs
-                    that celebrate your style.
+                  <p className="footer-description text-[#4b3621] leading-relaxed">
+                    Premium modest wear crafted with care. Discover elegant designs that celebrate your style.
                   </p>
                 </div>
-                <div className="footer-col">
-                  <h3>Quick Links</h3>
-                  <ul className="footer-links">
-                    <li>
-                      <NavLink prefetch="intent" to="/">
-                        Home
-                      </NavLink>
-                    </li>
-                    <li>
-                      <a href="#header-search">Search</a>
-                    </li>
-                    <li>
-                      <NavLink prefetch="intent" to="/collections/all">
-                        Shop
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink prefetch="intent" to="/blogs">
-                        Blog
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink prefetch="intent" to="/contact">
-                        Contact
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink prefetch="intent" to="/account">
-                        Account
-                      </NavLink>
-                    </li>
+
+                {/* Column 2 */}
+                <div className="footer-col border border-[#D3C0B0]/30 p-6 rounded-lg text-center">
+                  <h3 className="text-lg font-semibold mb-6 text-[#4b3621]">Quick Links</h3>
+                  <ul className="footer-links space-y-2 text-[#4b3621]">
+                    <li><NavLink to="/">Home</NavLink></li>
+                    <li><a href="#header-search">Search</a></li>
+                    <li><NavLink to="/collections/all">Shop</NavLink></li>
+                    <li><NavLink to="/blogs">Blog</NavLink></li>
+                    <li><NavLink to="/contact">Contact</NavLink></li>
+                    <li><NavLink to="/account">Account</NavLink></li>
                   </ul>
                 </div>
-                <div className="footer-col">
-                  <h3>Customer Service</h3>
+
+                {/* Column 3 */}
+                <div className="footer-col border border-[#D3C0B0]/30 p-6 rounded-lg text-center">
+                  <h3 className="text-lg font-semibold mb-6 text-[#4b3621]">Customer Service</h3>
                   {footer?.menu && header.shop.primaryDomain?.url && (
                     <FooterMenu
                       menu={footer.menu}
@@ -73,9 +60,11 @@ export function Footer({
                     />
                   )}
                 </div>
-                <div className="footer-col">
-                  <h3>Connect</h3>
-                  <ul className="footer-links">
+
+                {/* Column 4 */}
+                <div className="footer-col border border-[#D3C0B0]/30 p-6 rounded-lg text-center">
+                  <h3 className="text-lg font-semibold mb-6 text-[#4b3621]">Connect</h3>
+                  <ul className="footer-links space-y-2 text-[#4b3621]">
                     <li>
                       <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
                         Facebook
@@ -92,7 +81,8 @@ export function Footer({
                   </ul>
                 </div>
               </div>
-              <div className="footer-bottom">
+
+              <div className="footer-bottom text-center mt-8 text-[#4b3621]">
                 © {new Date().getFullYear()} {header.shop.name}. All rights reserved.
               </div>
             </footer>
@@ -112,9 +102,10 @@ function FooterMenu({
   primaryDomainUrl: FooterProps['header']['shop']['primaryDomain']['url'];
   publicStoreDomain: string;
 }) {
+  const items = menu?.items ?? FALLBACK_FOOTER_MENU.items;
   return (
-    <ul className="footer-menu" role="navigation">
-      {(menu || FALLBACK_FOOTER_MENU).items.map((item) => {
+    <ul className="footer-menu space-y-2" role="navigation">
+      {items.map((item) => {
         if (!item.url) return null;
         const url =
           item.url.includes('myshopify.com') ||
@@ -126,16 +117,11 @@ function FooterMenu({
         return (
           <li key={item.id}>
             {isExternal ? (
-              <a href={url} rel="noopener noreferrer" target="_blank">
+              <a href={url} target="_blank" rel="noopener noreferrer">
                 {item.title}
               </a>
             ) : (
-              <NavLink
-                end
-                prefetch="intent"
-                style={activeLinkStyle}
-                to={url}
-              >
+              <NavLink to={url} style={activeLinkStyle}>
                 {item.title}
               </NavLink>
             )}
@@ -149,42 +135,10 @@ function FooterMenu({
 const FALLBACK_FOOTER_MENU = {
   id: 'gid://shopify/Menu/199655620664',
   items: [
-    {
-      id: 'gid://shopify/MenuItem/461633060920',
-      resourceId: 'gid://shopify/ShopPolicy/23358046264',
-      tags: [],
-      title: 'Privacy Policy',
-      type: 'SHOP_POLICY',
-      url: '/policies/privacy-policy',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461633093688',
-      resourceId: 'gid://shopify/ShopPolicy/23358013496',
-      tags: [],
-      title: 'Refund Policy',
-      type: 'SHOP_POLICY',
-      url: '/policies/refund-policy',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461633126456',
-      resourceId: 'gid://shopify/ShopPolicy/23358111800',
-      tags: [],
-      title: 'Shipping Policy',
-      type: 'SHOP_POLICY',
-      url: '/policies/shipping-policy',
-      items: [],
-    },
-    {
-      id: 'gid://shopify/MenuItem/461633159224',
-      resourceId: 'gid://shopify/ShopPolicy/23358079032',
-      tags: [],
-      title: 'Terms of Service',
-      type: 'SHOP_POLICY',
-      url: '/policies/terms-of-service',
-      items: [],
-    },
+    { id: '1', title: 'Privacy Policy', url: '/policies/privacy-policy' },
+    { id: '2', title: 'Refund Policy', url: '/policies/refund-policy' },
+    { id: '3', title: 'Shipping Policy', url: '/policies/shipping-policy' },
+    { id: '4', title: 'Terms of Service', url: '/policies/terms-of-service' },
   ],
 };
 
