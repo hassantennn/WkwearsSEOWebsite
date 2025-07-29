@@ -71,4 +71,20 @@
     opacity: 0.1;
     pointer-events: none;
   }
+
+  .contact-bg {
+    position: relative;
+  }
+
+  .contact-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDEwIDEwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiUyM2VhZDljNiIgc3Ryb2tlLXdpZHRoPSIwLjUiIGQ9Ik0wIDBMMTAgMTBNMTAgMEwwIDEwIi8+PC9zdmc+');
+    background-size: 20px 20px;
+    opacity: 0.2;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: -1;
+  }
 }
