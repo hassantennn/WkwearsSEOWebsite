@@ -1,7 +1,7 @@
 import type {LoaderFunctionArgs} from '@shopify/remix-oxygen';
 import {useLoaderData, type MetaFunction, Link} from 'react-router';
 import {motion} from 'framer-motion';
-import { useInView } from '~/lib/useInView';
+import {useInView} from '~/lib/useInView';
 
 export const meta: MetaFunction = () => {
   return [{ title: 'Hydrogen | Contact' }];
@@ -13,6 +13,8 @@ export async function loader(args: LoaderFunctionArgs) {
 
 export default function ContactPage() {
   useLoaderData<typeof loader>();
+
+  const {ref: infoRef, isVisible: infoVisible} = useInView<HTMLDivElement>();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#fefefe] to-[#f8f8f5] flex items-center justify-center p-6 font-sans">
@@ -94,6 +96,29 @@ export default function ContactPage() {
             Submit
           </button>
         </form>
+      </motion.div>
+
+      <motion.div
+        ref={infoRef}
+        initial={{opacity: 0, y: 20}}
+        animate={infoVisible ? {opacity: 1, y: 0} : {}}
+        transition={{duration: 0.5, ease: 'easeOut', delay: 0.2}}
+        className="w-full max-w-4xl mt-12 mx-auto text-center space-y-4 animate-fade-in-scale"
+      >
+        <h3 className="text-2xl font-semibold gold-gradient-text">Get in touch</h3>
+        <p className="text-gray-700">
+          Phone:{' '}
+          <a href="tel:+921234567890" className="underline hover:no-underline">
+            +92 123 4567890
+          </a>
+        </p>
+        <p className="text-gray-700">
+          Email:{' '}
+          <a href="mailto:info@wkwears.com" className="underline hover:no-underline">
+            info@wkwears.com
+          </a>
+        </p>
+        <p className="text-gray-700">123 Fashion Avenue, Lahore, Pakistan</p>
       </motion.div>
     </div>
   );
