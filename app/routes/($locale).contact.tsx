@@ -22,7 +22,7 @@ export default function ContactPage() {
   const {ref: iconsRef, isVisible: iconsVisible} = useInView<HTMLDivElement>();
 
   return (
-    <div className="w-full overflow-x-hidden font-['Playfair_Display'] bg-gradient-to-b from-[#fefefe] to-[#f8f8f5]">
+    <div className="w-full overflow-x-hidden font-['Playfair_Display'] bg-gradient-to-b from-[#fefefe] to-[#f8f8f5] contact-bg">
 
       {/* Hero */}
       <motion.section
@@ -41,14 +41,14 @@ export default function ContactPage() {
           initial={{opacity: 0, y: -20}}
           animate={heroVisible ? {opacity: 1, y: 0} : {}}
           transition={{duration: 0.8, delay: 0.2}}
-          className="relative text-5xl sm:text-8xl font-['Great_Vibes'] tracking-wider text-white"
+          className="relative text-5xl sm:text-8xl font-['Great_Vibes'] tracking-wider gold-gradient-text drop-shadow-lg"
         >
           Connect With Us
         </motion.h1>
       </motion.section>
 
       {/* Info + Form */}
-      <section className="py-20 px-4 bg-gradient-to-b from-[#f8f8f5] to-[#f5e9d7]">
+      <section className="py-20 px-4 bg-gradient-to-b from-[#f8f8f5] to-[#f5e9d7] contact-bg">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
           {/* Left Info */}
           <motion.div
@@ -58,7 +58,7 @@ export default function ContactPage() {
             transition={{duration: 0.8}}
             className="space-y-6"
           >
-            <h2 className="text-4xl font-['Cinzel'] gold-gradient-text">We're here to help</h2>
+            <h2 className="text-4xl sm:text-5xl font-['Cinzel'] gold-gradient-text border-l-4 border-[#d4af37] pl-4">We're here to help</h2>
             <p className="text-gray-700 leading-relaxed">
               Have a question about our collections, sizing, or a custom order? Reach out
               and our team will respond as soon as possible.
@@ -94,7 +94,7 @@ export default function ContactPage() {
             animate={rightVisible ? {opacity: 1, y: 0} : {}}
             transition={{duration: 0.8, delay: 0.1}}
           >
-            <form className="bg-white/60 backdrop-blur-lg p-10 rounded-3xl shadow-2xl ring-1 ring-white/60 space-y-6">
+            <form className="bg-white/70 backdrop-blur-lg p-10 rounded-3xl shadow-2xl ring-1 ring-[#d4af37]/30 space-y-6">
               <h3 className="text-3xl font-['Playfair_Display'] mb-8 text-center tracking-wider">
                 Send us a Message
               </h3>
@@ -107,7 +107,7 @@ export default function ContactPage() {
                     id="name"
                     type="text"
                     placeholder="Your Name"
-                    className="w-full rounded-full px-4 py-3 border-2 border-transparent bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
+                    className="w-full rounded-full px-4 py-3 border-2 border-[#d4af37]/20 bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
                   />
                 </div>
                 <div className="space-y-1">
@@ -118,7 +118,7 @@ export default function ContactPage() {
                     id="email"
                     type="email"
                     placeholder="you@example.com"
-                    className="w-full rounded-full px-4 py-3 border-2 border-transparent bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
+                    className="w-full rounded-full px-4 py-3 border-2 border-[#d4af37]/20 bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
                   />
                 </div>
                 <div className="space-y-1 sm:col-span-2">
@@ -129,7 +129,7 @@ export default function ContactPage() {
                     id="phone"
                     type="tel"
                     placeholder="+92 123 4567890"
-                    className="w-full rounded-full px-4 py-3 border-2 border-transparent bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
+                    className="w-full rounded-full px-4 py-3 border-2 border-[#d4af37]/20 bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
                   />
                 </div>
                 <div className="space-y-1 sm:col-span-2">
@@ -140,13 +140,13 @@ export default function ContactPage() {
                     id="message"
                     rows={5}
                     placeholder="How can we help you?"
-                    className="w-full rounded-3xl px-4 py-3 border-2 border-transparent bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
+                    className="w-full rounded-3xl px-4 py-3 border-2 border-[#d4af37]/20 bg-white/70 placeholder-gray-400 focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]"
                   />
                 </div>
               </div>
               <button
                 type="submit"
-                className="w-full py-3 px-6 text-white rounded-full shadow-lg bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] hover:opacity-90"
+                className="w-full py-3 px-6 text-white rounded-full shadow-lg bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] hover:opacity-90 hover:animate-shimmer"
               >
                 Send
               </button>
@@ -188,7 +188,7 @@ export default function ContactPage() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Instagram"
-          className="text-gray-700 hover:text-[#d4af37] transition-colors"
+          className="text-gray-700 hover:text-[#d4af37] transition-colors hover:animate-shimmer"
         >
           {/* Instagram SVG */}
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6">
@@ -200,7 +200,7 @@ export default function ContactPage() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="WhatsApp"
-          className="text-gray-700 hover:text-[#d4af37] transition-colors"
+          className="text-gray-700 hover:text-[#d4af37] transition-colors hover:animate-shimmer"
         >
           {/* WhatsApp SVG */}
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6">
@@ -210,7 +210,7 @@ export default function ContactPage() {
         <a
           href="mailto:info@wkwears.com"
           aria-label="Email"
-          className="text-gray-700 hover:text-[#d4af37] transition-colors"
+          className="text-gray-700 hover:text-[#d4af37] transition-colors hover:animate-shimmer"
         >
           {/* Email SVG */}
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6">
