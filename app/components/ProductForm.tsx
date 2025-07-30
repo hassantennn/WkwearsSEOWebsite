@@ -46,7 +46,7 @@ export function ProductForm({
                   // as an anchor tag
                   return (
                     <Link
-                      className="product-options-item"
+                      className={`product-options-item${selected ? ' selected' : ''}`}
                       key={option.name + name}
                       prefetch="intent"
                       preventScrollReset
@@ -73,11 +73,11 @@ export function ProductForm({
                       type="button"
                       className={`product-options-item${
                         exists && !selected ? ' link' : ''
-                      }`}
+                      }${selected ? ' selected' : ''}`}
                       key={option.name + name}
                       style={{
                         border: selected
-                          ? '1px solid black'
+                          ? '1px solid #d4af37'
                           : '1px solid transparent',
                         opacity: available ? 1 : 0.3,
                       }}

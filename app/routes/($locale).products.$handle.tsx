@@ -105,7 +105,7 @@ export default function Product() {
 
   return (
     <motion.div
-      className="product px-4 py-8 bg-gradient-to-b from-white to-[#f8f8f5] rounded-lg shadow-lg animate-fade-in-scale"
+      className="product product-page-bg rounded-lg shadow-lg animate-fade-in-scale"
       initial={{opacity: 0, y: 20}}
       animate={{opacity: 1, y: 0}}
     >
@@ -115,26 +115,30 @@ export default function Product() {
       />
       <div className="product-main">
         <h1>{title}</h1>
+        <div className="text-yellow-500 text-[18px]" aria-label="4.8 out of 5 stars">
+          ★ ★ ★ ★ ☆ <a href="#reviews" className="underline ml-2">Read 27 Reviews</a>
+        </div>
         <ProductPrice
           price={selectedVariant?.price}
           compareAtPrice={selectedVariant?.compareAtPrice}
         />
-        <br />
-        <ProductForm
-          productOptions={productOptions}
-          selectedVariant={selectedVariant}
-        />
+        <div className="sticky-atc">
+          <ProductForm
+            productOptions={productOptions}
+            selectedVariant={selectedVariant}
+          />
+        </div>
         <p className="mt-2">
           <a href="#size-modal" className="underline text-sm">View Size Guide</a>
         </p>
-        <br />
-        <br />
-        <p>
-          <strong>Description</strong>
-        </p>
-        <br />
-        <div dangerouslySetInnerHTML={{__html: descriptionHtml}} />
-        <br />
+        <details>
+          <summary className="text-lg font-bold">Description</summary>
+          <div className="mt-2" dangerouslySetInnerHTML={{__html: descriptionHtml}} />
+        </details>
+        <details className="mt-4">
+          <summary className="text-lg font-bold">Care Instructions</summary>
+          <p className="mt-2 text-sm">Hand wash cold, lay flat to dry. Do not bleach.</p>
+        </details>
       </div>
       <Analytics.ProductView
         data={{
