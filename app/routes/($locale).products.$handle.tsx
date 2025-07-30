@@ -8,6 +8,7 @@ import {
   getAdjacentAndFirstAvailableVariants,
   useSelectedOptionInUrlParam,
 } from '@shopify/hydrogen';
+import {motion} from 'framer-motion';
 import {ProductPrice} from '~/components/ProductPrice';
 import {ProductGallery} from '~/components/ProductGallery';
 import {ProductForm} from '~/components/ProductForm';
@@ -102,7 +103,11 @@ export default function Product() {
   const {title, descriptionHtml} = product;
 
   return (
-    <div className="product">
+    <motion.div
+      className="product px-4 py-8 bg-gradient-to-b from-white to-[#f8f8f5] rounded-lg shadow-lg animate-fade-in-scale"
+      initial={{opacity: 0, y: 20}}
+      animate={{opacity: 1, y: 0}}
+    >
       <ProductGallery
         images={product.images?.nodes || []}
         selectedVariantImage={selectedVariant?.image}
@@ -142,7 +147,7 @@ export default function Product() {
           ],
         }}
       />
-    </div>
+    </motion.div>
   );
 }
 
