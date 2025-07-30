@@ -1,5 +1,6 @@
 import {Image} from '@shopify/hydrogen';
 import {useEffect, useState} from 'react';
+import {motion, AnimatePresence} from 'framer-motion';
 import type {ProductVariantFragment, ProductFragment} from 'storefrontapi.generated';
 
 export function ProductGallery({
@@ -61,18 +62,29 @@ export function ProductGallery({
   return (
     <div className="product-gallery">
       {mainImage && (
-        <Image
-          data={mainImage}
-          className="gallery-main-image"
-          loading="eager"
-          width={800}
-          height={800}
-          sizes="(min-width: 1024px) 600px, (min-width: 640px) 60vw, 100vw"
-          loaderOptions={{format: 'webp'}}
-          fetchpriority="high"
-          onClick={() => setLightboxOpen(true)}
-          style={{cursor: 'zoom-in'}}
-        />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={mainImage.url}
+            initial={{opacity: 0}}
+            animate={{opacity: 1}}
+            exit={{opacity: 0}}
+            transition={{duration: 0.3}}
+            className="w-full"
+          >
+            <Image
+              data={mainImage}
+              className="gallery-main-image"
+              loading="eager"
+              width={800}
+              height={800}
+              sizes="(min-width: 1024px) 600px, (min-width: 640px) 60vw, 100vw"
+              loaderOptions={{format: 'webp'}}
+              fetchpriority="high"
+              onClick={() => setLightboxOpen(true)}
+              style={{cursor: 'zoom-in'}}
+            />
+          </motion.div>
+        </AnimatePresence>
       )}
       <div className="gallery-thumbnails">
         {gallery.map((img, idx) => (

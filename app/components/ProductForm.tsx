@@ -106,6 +106,7 @@ export function ProductForm({
         onClick={() => {
           open('cart');
         }}
+        className="w-full mt-4 bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] text-white font-semibold py-3 rounded-lg shadow-lg"
         lines={
           selectedVariant
             ? [
