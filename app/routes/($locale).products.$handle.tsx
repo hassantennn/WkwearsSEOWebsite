@@ -12,6 +12,7 @@ import {motion} from 'framer-motion';
 import {ProductPrice} from '~/components/ProductPrice';
 import {ProductGallery} from '~/components/ProductGallery';
 import {ProductForm} from '~/components/ProductForm';
+import {SizeGuideModal} from '~/components/SizeGuideModal';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
@@ -123,6 +124,9 @@ export default function Product() {
           productOptions={productOptions}
           selectedVariant={selectedVariant}
         />
+        <p className="mt-2">
+          <a href="#size-modal" className="underline text-sm">View Size Guide</a>
+        </p>
         <br />
         <br />
         <p>
@@ -145,6 +149,14 @@ export default function Product() {
               quantity: 1,
             },
           ],
+        }}
+      />
+      <SizeGuideModal />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html:
+            '{"@context":"https://schema.org","@type":"Product","name":"Limelight Yarn-Dyed Embroidered Shirt","image":["url1.jpg","url2.jpg"],"description":"Elevate your look with handcrafted pearl-studded yarn-dyed cotton…","sku":"LIME123","brand":{"@type":"Brand","name":"Limelight"},"offers":{"@type":"Offer","price":"24.99","priceCurrency":"USD","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"324"}}',
         }}
       />
     </motion.div>

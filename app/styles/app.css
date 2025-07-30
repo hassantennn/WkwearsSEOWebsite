@@ -689,3 +689,25 @@ button.reset:hover:not(:has(> *)) {
 .lightbox-next {
   right: 0.5rem;
 }
+#size-modal {
+  border: none;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  max-width: 500px;
+}
+#size-modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+#size-modal h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+}
+#size-modal .close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
