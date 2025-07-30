@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="font-lato">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Page</title>
+</head>
+<body class="text-base leading-relaxed">
+  <!-- Hero Section -->
+  <section id="product-hero" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start py-16">
+    <div class="hero-slider">
+      <img src="/path/to/main.jpg" alt="Product image" class="w-full rounded-lg" />
+      <!-- Thumbnails -->
+      <div class="flex gap-2 mt-4">
+        <img src="/path/to/thumb1.jpg" alt="Thumbnail 1" class="w-20 h-20 object-cover rounded" />
+        <img src="/path/to/thumb2.jpg" alt="Thumbnail 2" class="w-20 h-20 object-cover rounded" />
+        <img src="/path/to/thumb3.jpg" alt="Thumbnail 3" class="w-20 h-20 object-cover rounded" />
+      </div>
+      <!-- JS: init Slick.js or Splide.js -->
+    </div>
+    <div class="product-info bg-white p-8 rounded-xl shadow-lg text-center md:text-left">
+      <h1 class="text-4xl font-playfair mb-4">Product Title</h1>
+      <div class="rating flex items-center justify-center md:justify-start mb-4">
+        <!-- rating stars -->
+      </div>
+      <div class="price text-2xl font-semibold mb-6">$64.99</div>
+      <label class="block mb-4">
+        <span class="sr-only">Select size</span>
+        <select class="mt-1 block w-full border-gray-300 rounded-md">
+          <option>XS</option>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+          <option>XL</option>
+        </select>
+      </label>
+      <button class="btn-primary w-full py-3 rounded-lg text-white bg-gradient-to-r from-yellow-500 to-yellow-400">Add to Cart</button>
+    </div>
+  </section>
+
+  <!-- Features & Benefits -->
+  <section id="features" class="max-w-7xl mx-auto py-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition" aria-labelledby="feat1">
+        <img src="/icons/icon1.svg" alt="" class="w-8 h-8 mb-4" />
+        <h3 id="feat1" class="text-xl font-semibold mb-2">100% Yarn‑Dyed Cotton</h3>
+        <p class="text-base text-gray-600">Soft, breathable fabric that lasts.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition" aria-labelledby="feat2">
+        <img src="/icons/icon2.svg" alt="" class="w-8 h-8 mb-4" />
+        <h3 id="feat2" class="text-xl font-semibold mb-2">Hand‑Embroidered Pearls</h3>
+        <p class="text-base text-gray-600">Elegant detailing for special occasions.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition" aria-labelledby="feat3">
+        <img src="/icons/icon3.svg" alt="" class="w-8 h-8 mb-4" />
+        <h3 id="feat3" class="text-xl font-semibold mb-2">Scalloped Bell Sleeves</h3>
+        <p class="text-base text-gray-600">Adds graceful movement to every gesture.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition" aria-labelledby="feat4">
+        <img src="/icons/icon4.svg" alt="" class="w-8 h-8 mb-4" />
+        <h3 id="feat4" class="text-xl font-semibold mb-2">Tailored Fit</h3>
+        <p class="text-base text-gray-600">Flattering silhouette for all body types.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition" aria-labelledby="feat5">
+        <img src="/icons/icon5.svg" alt="" class="w-8 h-8 mb-4" />
+        <h3 id="feat5" class="text-xl font-semibold mb-2">Natural Dyes</h3>
+        <p class="text-base text-gray-600">Eco-friendly colors that stay vibrant.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition" aria-labelledby="feat6">
+        <img src="/icons/icon6.svg" alt="" class="w-8 h-8 mb-4" />
+        <h3 id="feat6" class="text-xl font-semibold mb-2">Limited Edition</h3>
+        <p class="text-base text-gray-600">A unique piece you won't find elsewhere.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Size & Care Tabs -->
+  <section id="size-care" x-data="{ active: 'size' }" class="max-w-3xl mx-auto py-16">
+    <div class="flex space-x-4 border-b mb-6">
+      <button @click="active='size'" :class="{'border-b-2 border-yellow-500': active==='size'}" class="px-4 py-2 font-lato">Size Guide</button>
+      <button @click="active='care'" :class="{'border-b-2 border-yellow-500': active==='care'}" class="px-4 py-2 font-lato">Care Instructions</button>
+    </div>
+    <div>
+      <div x-show="active==='size'">
+        <table class="w-full text-left">
+          <thead>
+            <tr><th class="p-2">Size</th><th class="p-2">Bust</th><th class="p-2">Waist</th><th class="p-2">Hips</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="p-2">XS</td><td class="p-2">32"</td><td class="p-2">24"</td><td class="p-2">34"</td></tr>
+            <tr><td class="p-2">S</td><td class="p-2">34"</td><td class="p-2">26"</td><td class="p-2">36"</td></tr>
+            <tr><td class="p-2">M</td><td class="p-2">36"</td><td class="p-2">28"</td><td class="p-2">38"</td></tr>
+            <tr><td class="p-2">L</td><td class="p-2">38"</td><td class="p-2">30"</td><td class="p-2">40"</td></tr>
+            <tr><td class="p-2">XL</td><td class="p-2">40"</td><td class="p-2">32"</td><td class="p-2">42"</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="active==='care'">
+        <ul class="list-disc pl-5 space-y-2">
+          <li>Hand wash in cold water</li>
+          <li>Do not bleach</li>
+          <li>Lay flat to dry</li>
+          <li>Cool iron if needed</li>
+        </ul>
+      </div>
+    </div>
+    <!-- On mobile, transform into <details> elements when JS disabled -->
+  </section>
+
+  <!-- Customer Reviews Carousel -->
+  <section id="reviews" class="max-w-7xl mx-auto py-16">
+    <h2 class="text-3xl font-playfair text-center mb-8">What Shoppers Say</h2>
+    <div class="swiper reviews-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide p-6 bg-white rounded-lg shadow">
+          <!-- star icons -->
+          <p class="mt-4">&ldquo;Amazing quality!&rdquo;</p>
+          <p class="mt-2 text-sm text-gray-500">Jane D., May 2024</p>
+        </div>
+        <div class="swiper-slide p-6 bg-white rounded-lg shadow">
+          <!-- star icons -->
+          <p class="mt-4">&ldquo;Fits perfectly.&rdquo;</p>
+          <p class="mt-2 text-sm text-gray-500">Alex K., Apr 2024</p>
+        </div>
+        <!-- more slides -->
+      </div>
+      <!-- navigation buttons can be added -->
+    </div>
+  </section>
+
+  <!-- Related Products Carousel -->
+  <section id="related" class="max-w-7xl mx-auto py-16">
+    <h2 class="text-3xl font-playfair text-center mb-8">You Might Also Like</h2>
+    <div class="swiper related-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="/path/to/product1.jpg" alt="Product 1" class="w-full rounded" />
+          <p class="mt-2 font-semibold">Product 1</p>
+          <span class="text-sm">$59.99</span>
+        </div>
+        <div class="swiper-slide">
+          <img src="/path/to/product2.jpg" alt="Product 2" class="w-full rounded" />
+          <p class="mt-2 font-semibold">Product 2</p>
+          <span class="text-sm">$49.99</span>
+        </div>
+        <!-- more slides -->
+      </div>
+      <!-- navigation buttons can be added -->
+    </div>
+  </section>
+
+  <!-- Swiper.js Initialization -->
+  <script type="module">
+    import Swiper, { Navigation } from 'https://unpkg.com/swiper@11/swiper-bundle.esm.browser.min.js';
+
+    new Swiper('.reviews-swiper', {
+      modules: [Navigation],
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 16,
+      navigation: true,
+      breakpoints: {
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      }
+    });
+
+    new Swiper('.related-swiper', {
+      modules: [Navigation],
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 16,
+      navigation: true,
+      breakpoints: {
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      }
+    });
+  </script>
+</body>
+</html>
