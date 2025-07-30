@@ -292,7 +292,7 @@ function BrandStatement() {
       }`}
     >
       <div className="text-center max-w-6xl px-4">
-        <h1 className="text-[11rem] sm:text-[14rem] font-['Cinzel'] gold-gradient-text mb-10 leading-none">
+        <h1 className="text-[11rem] sm:text-[14rem] font-['Cinzel'] dark-brown-text mb-10 leading-none">
           WK WEARS
         </h1>
         <h2 className="text-[5rem] sm:text-[6rem] font-['Alex_Brush'] text-[#bfae80] mb-10">
