@@ -1,0 +1,40 @@
+<!-- PhotoSwipe Gallery -->
+<div class="pswp-gallery" id="my-gallery">
+  <figure>
+    <a href="large1.jpg" data-pswp-width="1200" data-pswp-height="800">
+      <img src="thumb1.jpg" alt="Limelight shirt front view 1" />
+    </a>
+  </figure>
+  <figure>
+    <a href="large2.jpg" data-pswp-width="1200" data-pswp-height="800">
+      <img src="thumb2.jpg" alt="Limelight shirt front view 2" />
+    </a>
+  </figure>
+  <figure>
+    <a href="large3.jpg" data-pswp-width="1200" data-pswp-height="800">
+      <img src="thumb3.jpg" alt="Limelight shirt front view 3" />
+    </a>
+  </figure>
+  <figure>
+    <a href="large4.jpg" data-pswp-width="1200" data-pswp-height="800">
+      <img src="thumb4.jpg" alt="Limelight shirt front view 4" />
+    </a>
+  </figure>
+  <figure>
+    <a href="large5.jpg" data-pswp-width="1200" data-pswp-height="800">
+      <img src="thumb5.jpg" alt="Limelight shirt front view 5" />
+    </a>
+  </figure>
+</div>
+
+<script type="module">
+  import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.js';
+
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '#my-gallery',
+    children: 'a',
+    pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.js')
+  });
+
+  lightbox.init();
+</script>
