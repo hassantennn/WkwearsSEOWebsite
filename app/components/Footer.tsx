@@ -23,7 +23,7 @@ export function Footer({
             <footer className="footer bg-[#f5e9d7] py-10">
               <div className="footer-inner max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-16 px-6">
                 {/* Column 1 */}
-                <div className="footer-col border border-[#D3C0B0]/30 p-6 rounded-lg text-center">
+                <div className="footer-col footer-quote-block p-6 rounded-lg text-center">
                   {logoUrl && (
                     <img
                       src={logoUrl}
@@ -37,7 +37,7 @@ export function Footer({
                 </div>
 
                 {/* Column 2 */}
-                <div className="footer-col border border-[#D3C0B0]/30 p-6 rounded-lg text-center">
+                <div className="footer-col p-6 rounded-lg text-center">
                   <h3 className="text-lg font-semibold mb-6 text-[#4b3621]">Quick Links</h3>
                   <ul className="footer-links space-y-2 text-[#4b3621]">
                     <li><NavLink to="/">Home</NavLink></li>
@@ -50,7 +50,7 @@ export function Footer({
                 </div>
 
                 {/* Column 3 */}
-                <div className="footer-col border border-[#D3C0B0]/30 p-6 rounded-lg text-center">
+                <div className="footer-col p-6 rounded-lg text-center">
                   <h3 className="text-lg font-semibold mb-6 text-[#4b3621]">Customer Service</h3>
                   {footer?.menu && header.shop.primaryDomain?.url && (
                     <FooterMenu
@@ -62,7 +62,7 @@ export function Footer({
                 </div>
 
                 {/* Column 4 */}
-                <div className="footer-col border border-[#D3C0B0]/30 p-6 rounded-lg text-center">
+                <div className="footer-col p-6 rounded-lg text-center">
                   <h3 className="text-lg font-semibold mb-6 text-[#4b3621]">Connect</h3>
                   <ul className="footer-links space-y-2 text-[#4b3621]">
                     <li>
