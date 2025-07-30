@@ -16,6 +16,7 @@ import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
 import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
 import tailwindCss from './styles/tailwind.css?url';
+import '~/styles/cart.css';
 import {PageLayout} from './components/PageLayout';
 
 export type RootLoader = typeof loader;

@@ -1,6 +1,7 @@
 import type {CartLineUpdateInput} from '@shopify/hydrogen/storefront-api-types';
 import type {CartLayout} from '~/components/CartMain';
 import {CartForm, Image, type OptimisticCartLine} from '@shopify/hydrogen';
+import {useState} from 'react';
 import {useVariantUrl} from '~/lib/variants';
 import {Link} from 'react-router';
 import {ProductPrice} from './ProductPrice';
@@ -21,24 +22,41 @@ export function CartLineItem({
   line: CartLine;
 }) {
   const {id, merchandise} = line;
-  const {product, title, image, selectedOptions} = merchandise;
+  const {product, title, image: variantImage, selectedOptions} = merchandise;
   const lineItemUrl = useVariantUrl(product.handle, selectedOptions);
   const {close} = useAside();
 
+  let gallery = product.images?.nodes ?? [];
+  if (!gallery.length && variantImage) {
+    gallery = [{url: variantImage.url, altText: variantImage.altText}];
+  }
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const mainImage = gallery[selectedIndex];
+
   return (
     <li key={id} className="cart-line">
-      {image && (
-        <Image
-          alt={title}
-          aspectRatio="1/1"
-          data={image}
-          height={100}
-          loading="lazy"
-          width={100}
-        />
-      )}
+      <div className="cart-line-gallery">
+        {mainImage && (
+          <Image
+            data={mainImage}
+            className="gallery-main-image"
+            loading="lazy"
+          />
+        )}
+        <div className="gallery-thumbnails">
+          {gallery.map((img, idx) => (
+            <button
+              key={img.url}
+              className={`gallery-thumbnail ${idx === selectedIndex ? 'active' : ''}`}
+              onClick={() => setSelectedIndex(idx)}
+            >
+              <Image data={img} width={60} height={60} loading="lazy" />
+            </button>
+          ))}
+        </div>
+      </div>
 
-      <div>
+      <div className="cart-line-details">
         <Link
           prefetch="intent"
           to={lineItemUrl}
