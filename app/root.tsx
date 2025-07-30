@@ -16,6 +16,7 @@ import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
 import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
 import tailwindCss from './styles/tailwind.css?url';
+import breadcrumbCss from './styles/breadcrumb.css?url';
 import '~/styles/cart.css';
 import {PageLayout} from './components/PageLayout';
 
@@ -169,6 +170,7 @@ export function Layout({children}: {children?: React.ReactNode}) {
         <link rel="stylesheet" href={tailwindCss}></link>
         <link rel="stylesheet" href={resetStyles}></link>
         <link rel="stylesheet" href={appStyles}></link>
+        <link rel="stylesheet" href={breadcrumbCss}></link>
         <Meta />
         <Links />
       </head>
