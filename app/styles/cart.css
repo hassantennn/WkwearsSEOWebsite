@@ -1,0 +1,67 @@
+/* 4.1 Two-column grid for cart details */
+.cart-details {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+}
+@media (max-width: 768px) {
+  .cart-details {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 4.2 Each line item as grid */
+.cart-line {
+  display: grid;
+  grid-template-columns: minmax(200px,1fr) 1fr;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* 4.3 Gallery styles */
+.cart-line-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.gallery-main-image {
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+.gallery-thumbnails {
+  display: flex;
+  gap: 0.5rem;
+}
+.gallery-thumbnail {
+  border: 2px solid transparent;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.gallery-thumbnail.active {
+  border-color: #000;
+}
+.gallery-thumbnail img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* 4.4 Details & quantity layout */
+.cart-line-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cart-line-quantity {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
