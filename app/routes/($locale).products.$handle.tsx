@@ -9,7 +9,7 @@ import {
   useSelectedOptionInUrlParam,
 } from '@shopify/hydrogen';
 import {ProductPrice} from '~/components/ProductPrice';
-import {ProductImage} from '~/components/ProductImage';
+import {ProductGallery} from '~/components/ProductGallery';
 import {ProductForm} from '~/components/ProductForm';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 
@@ -103,7 +103,10 @@ export default function Product() {
 
   return (
     <div className="product">
-      <ProductImage image={selectedVariant?.image} />
+      <ProductGallery
+        images={product.images?.nodes || []}
+        selectedVariantImage={selectedVariant?.image}
+      />
       <div className="product-main">
         <h1>{title}</h1>
         <ProductPrice
@@ -190,6 +193,12 @@ const PRODUCT_FRAGMENT = `#graphql
     description
     encodedVariantExistence
     encodedVariantAvailability
+    images(first: 10) {
+      nodes {
+        url
+        altText
+      }
+    }
     options {
       name
       optionValues {

@@ -699,6 +699,7 @@ export type ProductFragment = Pick<
   | 'encodedVariantExistence'
   | 'encodedVariantAvailability'
 > & {
+  images: {nodes: Array<Pick<StorefrontAPI.Image, 'url' | 'altText'>>};
   options: Array<
     Pick<StorefrontAPI.ProductOption, 'name'> & {
       optionValues: Array<
@@ -813,6 +814,7 @@ export type ProductQuery = {
       | 'encodedVariantExistence'
       | 'encodedVariantAvailability'
     > & {
+      images: {nodes: Array<Pick<StorefrontAPI.Image, 'url' | 'altText'>>};
       options: Array<
         Pick<StorefrontAPI.ProductOption, 'name'> & {
           optionValues: Array<
