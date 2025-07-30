@@ -516,6 +516,44 @@ button.reset:hover:not(:has(> *)) {
   width: 100%;
 }
 
+.product-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-main-image {
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  margin-bottom: 0.75rem;
+}
+
+.gallery-thumbnails {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.gallery-thumbnail {
+  border: 2px solid transparent;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.gallery-thumbnail.active {
+  border-color: #000;
+}
+
+.gallery-thumbnail img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
 .product-main {
   align-self: start;
   position: sticky;
