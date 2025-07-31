@@ -1,2 +1,349 @@
-{% render 'product-page-tailwind' %}
+<!-- Product Hero -->
+<main>
+  <section id="product-hero" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Left: initialize Slick.js slider for main image + thumbnails -->
+    <div>
+      <!-- Slick.js main image slider -->
+      <div class="product-slider-main">
+        <img src="/path/to/product-image.jpg" alt="Product image" class="w-full h-auto" />
+      </div>
+      <!-- Slick.js thumbnails -->
+      <div class="product-slider-thumbnails flex space-x-2 mt-4">
+        <img src="/path/to/thumbnail1.jpg" alt="Thumbnail 1" class="w-20 h-20 object-cover" />
+        <img src="/path/to/thumbnail2.jpg" alt="Thumbnail 2" class="w-20 h-20 object-cover" />
+        <img src="/path/to/thumbnail3.jpg" alt="Thumbnail 3" class="w-20 h-20 object-cover" />
+      </div>
+    </div>
+
+    <!-- Right: insert placeholder for title (H1.Playfair), price, size selector, CTA (.btn-primary) -->
+    <div class="flex flex-col justify-center space-y-4">
+      <h1 class="font-playfair text-3xl">Product Title</h1>
+      <p class="text-xl font-semibold">$99.99</p>
+      <label class="block">
+        <span class="sr-only">Select size</span>
+        <select class="mt-1 block w-full border-gray-300 rounded-md">
+          <option>Small</option>
+          <option>Medium</option>
+          <option>Large</option>
+        </select>
+      </label>
+      <button class="btn-primary mt-4">Add to Cart</button>
+    </div>
+  </section>
+</main>
+
+<!-- Features & Benefits -->
+<section id="features" class="max-w-7xl mx-auto py-16">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition" aria-labelledby="feat1">
+      <img src="/icons/icon1.svg" alt="" class="w-8 h-8 mb-4" />
+      <h3 id="feat1" class="text-xl font-semibold mb-2">100% Yarn‑Dyed Cotton</h3>
+      <p class="text-base text-gray-600">Soft, breathable fabric that lasts.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition" aria-labelledby="feat2">
+      <img src="/icons/icon2.svg" alt="" class="w-8 h-8 mb-4" />
+      <h3 id="feat2" class="text-xl font-semibold mb-2">Hand‑Embroidered Pearls</h3>
+      <p class="text-base text-gray-600">Elegant detailing for special occasions.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition" aria-labelledby="feat3">
+      <img src="/icons/icon3.svg" alt="" class="w-8 h-8 mb-4" />
+      <h3 id="feat3" class="text-xl font-semibold mb-2">Scalloped Bell Sleeves</h3>
+      <p class="text-base text-gray-600">Adds graceful movement to every gesture.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition" aria-labelledby="feat4">
+      <img src="/icons/icon4.svg" alt="" class="w-8 h-8 mb-4" />
+      <h3 id="feat4" class="text-xl font-semibold mb-2">Tailored Fit</h3>
+      <p class="text-base text-gray-600">Flattering silhouette for all body types.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition" aria-labelledby="feat5">
+      <img src="/icons/icon5.svg" alt="" class="w-8 h-8 mb-4" />
+      <h3 id="feat5" class="text-xl font-semibold mb-2">Natural Dyes</h3>
+      <p class="text-base text-gray-600">Eco-friendly colors that stay vibrant.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition" aria-labelledby="feat6">
+      <img src="/icons/icon6.svg" alt="" class="w-8 h-8 mb-4" />
+      <h3 id="feat6" class="text-xl font-semibold mb-2">Limited Edition</h3>
+      <p class="text-base text-gray-600">A unique piece you won't find elsewhere.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Tabs -->
+<div class="tabs">
+  <ul class="tablist" role="tablist">
+    <li role="tab" id="tab-label-desc" aria-controls="tab-desc" aria-selected="true" tabindex="0">Description</li>
+    <li role="tab" id="tab-label-details" aria-controls="tab-details" aria-selected="false" tabindex="-1">Details</li>
+    <li role="tab" id="tab-label-reviews" aria-controls="tab-reviews" aria-selected="false" tabindex="-1">Reviews</li>
+    <li role="tab" id="tab-label-shipping" aria-controls="tab-shipping" aria-selected="false" tabindex="-1">Shipping</li>
+  </ul>
+  <div id="tab-desc" role="tabpanel" aria-labelledby="tab-label-desc">
+    <p>Product description content goes here.</p>
+  </div>
+  <div id="tab-details" role="tabpanel" aria-labelledby="tab-label-details" hidden>
+    <p>Product details content goes here.</p>
+  </div>
+  <div id="tab-reviews" role="tabpanel" aria-labelledby="tab-label-reviews" hidden>
+    <p>Product reviews content goes here.</p>
+  </div>
+  <div id="tab-shipping" role="tabpanel" aria-labelledby="tab-label-shipping" hidden>
+    <p>Shipping information content goes here.</p>
+  </div>
+</div>
+
+<style>
+.tabs .tablist {
+  display: flex;
+  list-style: none;
+  margin: 0 0 1rem 0;
+  padding: 0;
+  border-bottom: 1px solid #ccc;
+}
+.tabs [role="tab"] {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+.tabs [role="tab"][aria-selected="true"] {
+  font-weight: bold;
+  border-bottom: 2px solid #000;
+}
+.tabs [role="tabpanel"] {
+  padding: 1rem 0;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var tabs = document.querySelectorAll('.tabs [role="tab"]');
+  var panels = document.querySelectorAll('.tabs [role="tabpanel"]');
+
+  function activateTab(tab) {
+    tabs.forEach(function (t) {
+      var selected = t === tab;
+      t.setAttribute('aria-selected', selected);
+      t.tabIndex = selected ? 0 : -1;
+    });
+    panels.forEach(function (p) {
+      p.hidden = p.id !== tab.getAttribute('aria-controls');
+    });
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      activateTab(tab);
+    });
+  });
+
+  activateTab(tabs[0]);
+});
+</script>
+
+<!-- Accessible FAQ Accordion -->
+<div class="faq-accordion">
+  <details>
+    <summary>Question 1?</summary>
+    <p>Answer to question 1.</p>
+  </details>
+  <details>
+    <summary>Question 2?</summary>
+    <p>Answer to question 2.</p>
+  </details>
+  <details>
+    <summary>Question 3?</summary>
+    <p>Answer to question 3.</p>
+  </details>
+  <details>
+    <summary>Question 4?</summary>
+    <p>Answer to question 4.</p>
+  </details>
+</div>
+
+<style>
+.faq-accordion summary {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: #000;
+  cursor: pointer;
+}
+.faq-accordion p {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  color: #333;
+  margin: 0 0 1rem 0;
+}
+.faq-accordion details + details {
+  margin-top: 1rem;
+}
+</style>
+
+<!-- PhotoSwipe Gallery -->
+<div class="pswp-gallery" id="my-gallery">
+  <figure>
+    <a href="large1.jpg" data-pswp-width="1200" data-pswp-height="800">
+      <img src="thumb1.jpg" alt="Limelight shirt front view 1" />
+    </a>
+  </figure>
+  <figure>
+    <a href="large2.jpg" data-pswp-width="1200" data-pswp-height="800">
+      <img src="thumb2.jpg" alt="Limelight shirt front view 2" />
+    </a>
+  </figure>
+  <figure>
+    <a href="large3.jpg" data-pswp-width="1200" data-pswp-height="800">
+      <img src="thumb3.jpg" alt="Limelight shirt front view 3" />
+    </a>
+  </figure>
+  <figure>
+    <a href="large4.jpg" data-pswp-width="1200" data-pswp-height="800">
+      <img src="thumb4.jpg" alt="Limelight shirt front view 4" />
+    </a>
+  </figure>
+  <figure>
+    <a href="large5.jpg" data-pswp-width="1200" data-pswp-height="800">
+      <img src="thumb5.jpg" alt="Limelight shirt front view 5" />
+    </a>
+  </figure>
+</div>
+
+<script type="module">
+import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5/dist/photoswipe-lightbox.esm.js';
+
+const lightbox = new PhotoSwipeLightbox({
+  gallery: '#my-gallery',
+  children: 'a',
+  pswpModule: () => import('https://unpkg.com/photoswipe@5/dist/photoswipe.esm.js')
+});
+
+lightbox.init();
+</script>
+
+<!-- Sticky CTA Bar -->
+<div class="sticky-cta" aria-hidden="true">
+  <img class="cta-thumbnail" src="/path/to/thumbnail.jpg" alt="Product thumbnail" />
+  <div class="cta-info">
+    <span class="cta-name">Product Name</span>
+    <span class="cta-price">$99.99</span>
+  </div>
+  <button class="btn-primary">Add to Cart</button>
+</div>
+
+<style>
+.sticky-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  z-index: 10;
+}
+.sticky-cta.visible {
+  transform: translateY(0);
+}
+.sticky-cta img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.sticky-cta .cta-info {
+  flex: 1;
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.btn-primary {
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  color: #4b3621;
+  border-radius: 4px;
+  background-image: linear-gradient(to bottom, #d4af37, #f5e18a);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var hero = document.getElementById('product-hero');
+  var cta = document.querySelector('.sticky-cta');
+  if (!hero || !cta) return;
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        cta.classList.remove('visible');
+        cta.setAttribute('aria-hidden', 'true');
+      } else {
+        cta.classList.add('visible');
+        cta.setAttribute('aria-hidden', 'false');
+      }
+    });
+  });
+
+  observer.observe(hero);
+});
+</script>
+
+<!-- Related Products Carousel -->
+<section class="related-products">
+  <h2 class="playfair text-2xl mb-4">You Might Also Like</h2>
+  <div class="swiper-container related-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <a href="#" class="block text-center">
+          <img src="/path/to/product1.jpg" alt="Product 1" class="w-full h-auto" />
+          <p class="mt-2 font-medium">Product 1</p>
+          <span class="text-sm">$99.99</span>
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <a href="#" class="block text-center">
+          <img src="/path/to/product2.jpg" alt="Product 2" class="w-full h-auto" />
+          <p class="mt-2 font-medium">Product 2</p>
+          <span class="text-sm">$89.99</span>
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <a href="#" class="block text-center">
+          <img src="/path/to/product3.jpg" alt="Product 3" class="w-full h-auto" />
+          <p class="mt-2 font-medium">Product 3</p>
+          <span class="text-sm">$79.99</span>
+        </a>
+      </div>
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
+<script type="module">
+import Swiper, {Navigation} from 'https://unpkg.com/swiper@11/swiper-bundle.esm.browser.min.js';
+
+const swiper = new Swiper('.related-swiper', {
+  modules: [Navigation],
+  loop: true,
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  slidesPerView: 1,
+  spaceBetween: 8,
+  breakpoints: {
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 16,
+    },
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 24,
+    },
+  },
+});
+</script>
 
