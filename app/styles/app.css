@@ -500,12 +500,12 @@ button.reset:hover:not(:has(> *)) {
 * --------------------------------------------------
 */
 .product {
-  display: grid;
-  @media (min-width: 45em) {
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 4rem;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
 }
+
 
 .product-page-bg {
   background-color: #f5f0ec;

@@ -115,7 +115,7 @@ export default function Product() {
       />
       <div className="product-main">
         <h1>{title}</h1>
-        <div className="text-yellow-500 text-[18px]" aria-label="4.8 out of 5 stars">
+        <div className="text-theme text-[18px]" aria-label="4.8 out of 5 stars">
           ★ ★ ★ ★ ☆ <a href="#reviews" className="underline ml-2">Read 27 Reviews</a>
         </div>
         <ProductPrice
