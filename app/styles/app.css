@@ -769,6 +769,10 @@ button.reset:hover:not(:has(> *)) {
   border-radius: 0.5rem;
   max-width: 500px;
   background-color: #f5f0ec;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 #size-modal::backdrop {
   background: rgba(0, 0, 0, 0.5);
