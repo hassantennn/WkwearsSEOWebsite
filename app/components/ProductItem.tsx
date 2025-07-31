@@ -34,7 +34,7 @@ export function ProductItem({
               data={primaryImage}
               loading={loading}
               sizes="(min-width: 45em) 400px, 100vw"
-              className={`object-cover w-full h-full transition-all duration-300 ${
+              className={`block object-cover w-full h-full transition-all duration-300 ${
                 hoverImage ? 'group-hover:opacity-0' : 'group-hover:scale-105'
               }`}
             />
@@ -45,7 +45,7 @@ export function ProductItem({
                 data={hoverImage}
                 loading={loading}
                 sizes="(min-width: 45em) 400px, 100vw"
-                className="object-cover w-full h-full absolute inset-0 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105"
+                className="block object-cover w-full h-full absolute inset-0 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105"
               />
             )}
           </div>
