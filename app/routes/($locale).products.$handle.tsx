@@ -128,7 +128,7 @@ export default function Product() {
         selectedVariantImage={selectedVariant?.image}
       />
       <div className="product-main">
-      <div className="space-y-2">
+        <div className="space-y-2">
           <h1 className="tracking-wide">{title}</h1>
           <ReviewStars initialRating={4.8} reviewCount={27} />
         </div>
@@ -179,16 +179,7 @@ export default function Product() {
                   : []
               }
             >
-              {added ? (
-                '✓ Added'
-              ) : (
-                <>
-                  <span role="img" aria-label="cart">
-                    🛒
-                  </span>{' '}
-                  Add to Cart
-                </>
-              )}
+              {added ? 'Added' : 'Add to Cart'}
             </AddToCartButton>
           </div>
           <p className="mt-2">
@@ -200,9 +191,6 @@ export default function Product() {
         <div className="mt-8 space-y-4">
           <details open className="border-t pt-4">
             <summary className="font-bold flex items-center gap-2 cursor-pointer">
-              <span role="img" aria-label="Description">
-                📄
-              </span>{' '}
               Description
             </summary>
             <div
@@ -210,35 +198,13 @@ export default function Product() {
               dangerouslySetInnerHTML={{__html: descriptionHtml}}
             />
           </details>
-          <details className="border-t pt-4">
-            <summary className="font-bold flex items-center gap-2 cursor-pointer">
-              <span role="img" aria-label="Care">
-                🧼
-              </span>{' '}
-              Care instructions
-            </summary>
-            <p className="mt-2 text-sm leading-relaxed tracking-wide">
-              Hand wash cold, lay flat to dry. Do not bleach.
-            </p>
-          </details>
-          <details className="border-t pt-4">
-            <summary className="font-bold flex items-center gap-2 cursor-pointer">
-              <span role="img" aria-label="Shipping">
-                🚚
-              </span>{' '}
-              Shipping info
-            </summary>
-            <p className="mt-2 text-sm leading-relaxed tracking-wide">
-              Ships worldwide in 3-5 business days.
-            </p>
-          </details>
         </div>
-        </div>
-        <Analytics.ProductView
-          data={{
-            products: [
-              {
-                id: product.id,
+      </div>
+      <Analytics.ProductView
+        data={{
+          products: [
+            {
+              id: product.id,
               title: product.title,
               price: selectedVariant?.price.amount || '0',
               vendor: product.vendor,
