@@ -9,7 +9,7 @@ export function StickyCartBar({
   selectedVariant: ProductFragment['selectedOrFirstAvailableVariant'];
 }) {
   const {open} = useAside();
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
 
   const size = selectedVariant?.selectedOptions?.find(
