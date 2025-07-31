@@ -15,6 +15,7 @@ import {ProductForm} from '~/components/ProductForm';
 import {SizeGuideModal} from '~/components/SizeGuideModal';
 import {ReviewStars} from '~/components/ReviewStars';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
+import {StickyCartBar} from '~/components/StickyCartBar';
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
   return [
@@ -121,12 +122,10 @@ export default function Product() {
           price={selectedVariant?.price}
           compareAtPrice={selectedVariant?.compareAtPrice}
         />
-        <div className="sticky-atc">
-          <ProductForm
-            productOptions={productOptions}
-            selectedVariant={selectedVariant}
-          />
-        </div>
+        <ProductForm
+          productOptions={productOptions}
+          selectedVariant={selectedVariant}
+        />
         <p className="mt-2">
           <a href="#size-modal" className="underline text-sm">View Size Guide</a>
         </p>
@@ -137,6 +136,7 @@ export default function Product() {
           <p className="mt-2 text-sm">Hand wash cold, lay flat to dry. Do not bleach.</p>
         </details>
       </div>
+      <StickyCartBar selectedVariant={selectedVariant} />
       <Analytics.ProductView
         data={{
           products: [
