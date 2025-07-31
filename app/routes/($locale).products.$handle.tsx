@@ -130,7 +130,7 @@ export default function Product() {
       <div className="product-main">
         <div className="space-y-2">
           <h1 className="tracking-wide">{title}</h1>
-          <ReviewStars initialRating={4.8} reviewCount={27} />
+          <ReviewStars initialRating={4.8} />
         </div>
         <div className="mt-4 space-y-4">
           <ProductPrice
