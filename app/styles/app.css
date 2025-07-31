@@ -528,6 +528,9 @@ button.reset:hover:not(:has(> *)) {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .gallery-main-image {
@@ -541,6 +544,7 @@ button.reset:hover:not(:has(> *)) {
 .gallery-thumbnails {
   display: flex;
   gap: 0.5rem;
+  justify-content: center;
 }
 
 .gallery-thumbnail {
