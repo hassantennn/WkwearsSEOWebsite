@@ -307,7 +307,7 @@ button.reset:hover:not(:has(> *)) {
 
 .footer-description {
   margin-bottom: 1rem;
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   font-family: 'Brush Script MT', cursive;
 }
 
