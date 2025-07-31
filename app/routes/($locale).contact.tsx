@@ -34,7 +34,7 @@ export default function ContactPage() {
 
   return (
     <div
-      className="min-h-screen bg-gradient-to-b from-[#fefefe] to-[#f8f8f5] flex items-center justify-center p-6"
+      className="min-h-screen bg-[#f5e9d7] flex items-center justify-center p-6 mb-10"
       style={{ fontFamily: 'Arial, sans-serif', fontSize: '1.125rem' }}
     >
       {/* Card wrapper at 80% width */}
@@ -67,7 +67,7 @@ export default function ContactPage() {
           className="relative z-10 text-center text-gray-600 mb-10"
           variants={itemVariants}
         >
-          Send us a message and we'll get back to you shortly.
+          Send us a message and we&apos;ll get back to you shortly.
         </motion.p>
 
         {/* Form */}
@@ -158,7 +158,7 @@ export default function ContactPage() {
             📍 123 Fashion Avenue, Lahore, Pakistan
           </p>
           <p className="mt-2 text-sm text-gray-500">
-            We’re here Monday–Saturday, 10 am–8 pm.
+            We&apos;re here Monday&ndash;Saturday, 10 am&ndash;8 pm.
           </p>
         </motion.div>
       </motion.div>
