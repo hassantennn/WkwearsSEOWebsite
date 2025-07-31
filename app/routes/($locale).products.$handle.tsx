@@ -128,7 +128,7 @@ export default function Product() {
         selectedVariantImage={selectedVariant?.image}
       />
       <div className="product-main">
-        <div className="space-y-2">
+      <div className="space-y-2">
           <h1 className="tracking-wide">{title}</h1>
           <ReviewStars initialRating={4.8} reviewCount={27} />
         </div>
