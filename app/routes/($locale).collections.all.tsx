@@ -51,23 +51,24 @@ export default function Collection() {
   const { products } = useLoaderData<typeof loader>();
   const [activeFilter, setActiveFilter] = useState('All');
   const [sortOption, setSortOption] = useState('featured');
+  const connection = products;
 
-  const sortedNodes = [...products.nodes].sort((a, b) => {
-    const aPrice = parseFloat(a.priceRange.minVariantPrice.amount);
-    const bPrice = parseFloat(b.priceRange.minVariantPrice.amount);
-    if (sortOption === 'price-asc') return aPrice - bPrice;
-    if (sortOption === 'price-desc') return bPrice - aPrice;
-    return 0;
-  });
+  const transform = (nodes: typeof products.nodes) => {
+    let processed = [...nodes].sort((a, b) => {
+      const aPrice = parseFloat(a.priceRange.minVariantPrice.amount);
+      const bPrice = parseFloat(b.priceRange.minVariantPrice.amount);
+      if (sortOption === 'price-asc') return aPrice - bPrice;
+      if (sortOption === 'price-desc') return bPrice - aPrice;
+      return 0;
+    });
 
-  let filteredNodes = sortedNodes;
-  if (activeFilter === 'New Arrivals') {
-    filteredNodes = sortedNodes.slice(0, 8);
-  } else if (activeFilter === 'Sale') {
-    filteredNodes = sortedNodes.slice(-8);
-  }
-
-  const connection = { ...products, nodes: filteredNodes };
+    if (activeFilter === 'New Arrivals') {
+      processed = processed.slice(0, 8);
+    } else if (activeFilter === 'Sale') {
+      processed = processed.slice(-8);
+    }
+    return processed;
+  };
 
   return (
     <section className="collection-page w-full font-['Playfair_Display'] bg-gradient-to-b from-[#f5f0e6] to-[#e0d5c3]">
@@ -111,6 +112,7 @@ export default function Collection() {
       <div id="products" className="container mx-auto px-4 py-10">
         <PaginatedResourceSection
           connection={connection}
+          transform={transform}
           resourcesClassName="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
         >
           {({ node: product, index }) => (
