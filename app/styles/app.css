@@ -528,15 +528,13 @@ button.reset:hover:not(:has(> *)) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  max-width: 600px;
+  width: 500px;
   margin: 0 auto;
 }
 
 .gallery-main-image {
-  width: 100%;
-  max-width: 600px;
-  aspect-ratio: 1/1;
+  width: 500px;
+  height: 500px;
   object-fit: cover;
   margin-bottom: 0.75rem;
 }
@@ -574,6 +572,7 @@ button.reset:hover:not(:has(> *)) {
   flex-direction: column;
   gap: 1.25rem;
   text-align: center;
+  width: 65%;
 }
 
 .product-price-on-sale {

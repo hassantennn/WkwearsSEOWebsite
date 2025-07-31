@@ -131,10 +131,8 @@ export default function Product() {
         <p className="mt-2">
           <a href="#size-modal" className="underline text-sm">View Size Guide</a>
         </p>
-        <details>
-          <summary className="text-lg font-bold">Description</summary>
-          <div className="mt-2" dangerouslySetInnerHTML={{__html: descriptionHtml}} />
-        </details>
+        <h2 className="text-lg font-bold">Description</h2>
+        <div className="mt-2" dangerouslySetInnerHTML={{__html: descriptionHtml}} />
         <details className="mt-4">
           <summary className="text-lg font-bold">Care Instructions</summary>
           <p className="mt-2 text-sm">Hand wash cold, lay flat to dry. Do not bleach.</p>
