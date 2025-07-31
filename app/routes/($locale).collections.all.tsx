@@ -6,7 +6,7 @@ import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
 import {ProductItem} from '~/components/ProductItem';
 
 export const meta: MetaFunction<typeof loader> = () => {
-  return [{title: `Hydrogen | Products`}];
+  return [{ title: `Hydrogen | Products` }];
 };
 
 export async function loader(args: LoaderFunctionArgs) {
@@ -16,26 +16,26 @@ export async function loader(args: LoaderFunctionArgs) {
   // Await the critical data required to render initial state of the page
   const criticalData = await loadCriticalData(args);
 
-  return {...deferredData, ...criticalData};
+  return { ...deferredData, ...criticalData };
 }
 
 /**
  * Load data necessary for rendering content above the fold. This is the critical data
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  */
-async function loadCriticalData({context, request}: LoaderFunctionArgs) {
-  const {storefront} = context;
+async function loadCriticalData({ context, request }: LoaderFunctionArgs) {
+  const { storefront } = context;
   const paginationVariables = getPaginationVariables(request, {
     pageBy: 8,
   });
 
-  const [{products}] = await Promise.all([
+  const [{ products }] = await Promise.all([
     storefront.query(CATALOG_QUERY, {
-      variables: {...paginationVariables},
+      variables: { ...paginationVariables },
     }),
     // Add other queries here, so that they are loaded in parallel
   ]);
-  return {products};
+  return { products };
 }
 
 /**
@@ -43,12 +43,12 @@ async function loadCriticalData({context, request}: LoaderFunctionArgs) {
  * fetched after the initial page load. If it's unavailable, the page should still 200.
  * Make sure to not throw any errors here, as it will cause the page to 500.
  */
-function loadDeferredData({context}: LoaderFunctionArgs) {
+function loadDeferredData({ context }: LoaderFunctionArgs) {
   return {};
 }
 
 export default function Collection() {
-  const {products} = useLoaderData<typeof loader>();
+  const { products } = useLoaderData<typeof loader>();
   const [activeFilter, setActiveFilter] = useState('All');
   const [sortOption, setSortOption] = useState('featured');
 
@@ -67,7 +67,7 @@ export default function Collection() {
     filteredNodes = sortedNodes.slice(-8);
   }
 
-  const connection = {...products, nodes: filteredNodes};
+  const connection = { ...products, nodes: filteredNodes };
 
   return (
     <section className="collection-page w-full font-['Playfair_Display'] bg-gradient-to-b from-[#f5f0e6] to-[#e0d5c3]">
@@ -86,7 +86,7 @@ export default function Collection() {
                 onClick={() => setActiveFilter(filter)}
                 className={`px-4 py-2 rounded-full border transition font-medium ${
                   activeFilter === filter
-                    ? 'bg-[#4b3621] text-white border-[#4b3621] shadow-md hover:bg-[#5e472a]'
+                    ? 'bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] text-white border-[#d4af37] shadow-md hover:opacity-90'
                     : 'bg-white/80 text-gray-800 hover:bg-white border border-[#d9c5b2]'
                 }`}
               >
@@ -113,7 +113,7 @@ export default function Collection() {
           connection={connection}
           resourcesClassName="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
         >
-          {({node: product, index}) => (
+          {({ node: product, index }) => (
             <ProductItem
               key={product.id}
               product={product}
