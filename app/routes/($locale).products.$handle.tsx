@@ -128,11 +128,11 @@ export default function Product() {
         selectedVariantImage={selectedVariant?.image}
       />
       <div className="product-main">
-        <div className="space-y-2">
+        <div className="space-y-1">
           <h1 className="tracking-wide">{title}</h1>
           <ReviewStars initialRating={4.8} />
         </div>
-        <div className="space-y-2">
+        <div className="space-y-1">
           <ProductPrice
             price={selectedVariant?.price}
             compareAtPrice={selectedVariant?.compareAtPrice}
@@ -141,7 +141,7 @@ export default function Product() {
             productOptions={productOptions}
             selectedVariant={selectedVariant}
           />
-          <div className="space-y-2">
+          <div className="space-y-1">
             <div className="flex items-center border border-[#d4af37] rounded">
               <button
                 type="button"
@@ -182,13 +182,13 @@ export default function Product() {
               {added ? 'Added' : 'Add to Cart'}
             </AddToCartButton>
           </div>
-          <p className="mt-2">
+          <p className="mt-1">
             <a href="#size-modal" className="underline text-sm">
               View Size Guide
             </a>
           </p>
         </div>
-        <div className="mt-4 space-y-2">
+        <div className="mt-2 space-y-1">
           <details open className="border-t pt-4">
             <summary className="font-bold flex items-center gap-2 cursor-pointer">
               Description
