@@ -20,35 +20,37 @@ export function ProductItem({
   const hoverImage = images?.[1];
 
   return (
-    <Link
-      to={variantUrl}
-      prefetch="intent"
-      className="group block bg-[#f9f5ee] rounded-lg shadow-sm hover:shadow-md transition overflow-hidden hover:no-underline"
-    >
-      {primaryImage && (
-        <div className="relative aspect-[3/4] bg-gray-50 overflow-hidden">
-          <Image
-            alt={primaryImage.altText || product.title}
-            aspectRatio="1/1"
-            data={primaryImage}
-            loading={loading}
-            sizes="(min-width: 45em) 400px, 100vw"
-            className={`object-cover w-full h-full transition-all duration-300 ${
-              hoverImage ? 'group-hover:opacity-0' : 'group-hover:scale-105'
-            }`}
-          />
-          {hoverImage && (
+    <div className="product-item group bg-[#f9f5ee] rounded-lg shadow-sm hover:shadow-md transition overflow-hidden">
+      <Link
+        to={variantUrl}
+        prefetch="intent"
+        className="block no-underline hover:no-underline"
+      >
+        {primaryImage && (
+          <div className="relative aspect-[3/4] bg-gray-50 overflow-hidden">
             <Image
-              alt={hoverImage.altText || product.title}
+              alt={primaryImage.altText || product.title}
               aspectRatio="1/1"
-              data={hoverImage}
+              data={primaryImage}
               loading={loading}
               sizes="(min-width: 45em) 400px, 100vw"
-              className="object-cover w-full h-full absolute inset-0 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105"
+              className={`object-cover w-full h-full transition-all duration-300 ${
+                hoverImage ? 'group-hover:opacity-0' : 'group-hover:scale-105'
+              }`}
             />
-          )}
-        </div>
-      )}
+            {hoverImage && (
+              <Image
+                alt={hoverImage.altText || product.title}
+                aspectRatio="1/1"
+                data={hoverImage}
+                loading={loading}
+                sizes="(min-width: 45em) 400px, 100vw"
+                className="object-cover w-full h-full absolute inset-0 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105"
+              />
+            )}
+          </div>
+        )}
+      </Link>
 
       <div className="p-4">
         <h4 className="text-sm font-medium text-gray-800 line-clamp-2">
@@ -58,6 +60,6 @@ export function ProductItem({
           <Money data={product.priceRange.minVariantPrice} />
         </p>
       </div>
-    </Link>
+    </div>
   );
 }
