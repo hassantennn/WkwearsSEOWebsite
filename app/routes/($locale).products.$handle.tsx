@@ -17,7 +17,6 @@ import {SizeGuideModal} from '~/components/SizeGuideModal';
 import {ReviewStars} from '~/components/ReviewStars';
 import {AddToCartButton} from '~/components/AddToCartButton';
 import {useAside} from '~/components/Aside';
-import type {ProductFragment} from 'storefrontapi.generated';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
@@ -86,88 +85,11 @@ function loadDeferredData({context, params}: LoaderFunctionArgs) {
 
   return {};
 }
-
-function StickyCartBar({
-  selectedVariant,
-}: {
-  selectedVariant: ProductFragment['selectedOrFirstAvailableVariant'];
-}) {
-  const {open} = useAside();
-  const [quantity, setQuantity] = useState(1);
-  const [added, setAdded] = useState(false);
-
-  const size = selectedVariant?.selectedOptions?.find(
-    (o) => o.name.toLowerCase() === 'size',
-  )?.value;
-
-  const disabled =
-    !selectedVariant || quantity < 1 || !selectedVariant.availableForSale;
-  const buttonText = !selectedVariant ? 'Select size' : 'Add to cart';
-
-  function handleClick() {
-    setAdded(true);
-    open('cart');
-    setTimeout(() => setAdded(false), 800);
-  }
-
-  return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 border-t bg-white p-4 flex items-center gap-4 text-base">
-      <div className="flex items-center gap-4 flex-1">
-        <span>{size ? `Size: ${size}` : 'Size: -'}</span>
-        <div className="flex items-center border rounded">
-          <button
-            type="button"
-            className="px-3"
-            onClick={() => setQuantity(Math.max(0, quantity - 1))}
-          >
-            -
-          </button>
-          <span className="px-3 w-6 text-center">{quantity}</span>
-          <button
-            type="button"
-            className="px-3"
-            onClick={() => setQuantity(quantity + 1)}
-          >
-            +
-          </button>
-        </div>
-      </div>
-      <AddToCartButton
-        disabled={disabled}
-        onClick={handleClick}
-        className={`flex-1 py-4 rounded-full text-white font-bold flex items-center justify-center gap-2 transition-colors duration-300 ${
-          added ? 'bg-green-600' : 'bg-orange-600 hover:bg-orange-700'
-        }`}
-        lines={
-          selectedVariant
-            ? [
-                {
-                  merchandiseId: selectedVariant.id,
-                  quantity,
-                  selectedVariant,
-                },
-              ]
-            : []
-        }
-      >
-        {added ? (
-          '✓ Added'
-        ) : (
-          <>
-            <span role="img" aria-label="cart">
-              🛒
-            </span>{' '}
-            Add to Cart
-          </>
-        )}
-      </AddToCartButton>
-    </div>
-  );
-}
-
 export default function Product() {
   const {product} = useLoaderData<typeof loader>();
   const {open} = useAside();
+  const [quantity, setQuantity] = useState(1);
+  const [added, setAdded] = useState(false);
 
   // Optimistically selects a variant with given available variant information
   const selectedVariant = useOptimisticVariant(
@@ -184,6 +106,14 @@ export default function Product() {
     ...product,
     selectedOrFirstAvailableVariant: selectedVariant,
   });
+  const disabled =
+    !selectedVariant || quantity < 1 || !selectedVariant.availableForSale;
+
+  function handleClick() {
+    setAdded(true);
+    open('cart');
+    setTimeout(() => setAdded(false), 800);
+  }
 
   const {title, descriptionHtml} = product;
 
@@ -211,27 +141,54 @@ export default function Product() {
             productOptions={productOptions}
             selectedVariant={selectedVariant}
           />
-          <AddToCartButton
-            disabled={!selectedVariant?.availableForSale}
-            onClick={() => open('cart')}
-            className="flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 rounded-full transition-colors"
-            lines={
-              selectedVariant
-                ? [
-                    {
-                      merchandiseId: selectedVariant.id,
-                      quantity: 1,
-                      selectedVariant,
-                    },
-                  ]
-                : []
-            }
-          >
-            <span role="img" aria-label="cart">
-              🛒
-            </span>{' '}
-            Add to Cart
-          </AddToCartButton>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center border rounded">
+              <button
+                type="button"
+                className="px-3"
+                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+              >
+                -
+              </button>
+              <span className="px-3 w-6 text-center">{quantity}</span>
+              <button
+                type="button"
+                className="px-3"
+                onClick={() => setQuantity(quantity + 1)}
+              >
+                +
+              </button>
+            </div>
+            <AddToCartButton
+              disabled={disabled}
+              onClick={handleClick}
+              className={`flex-[2] py-4 px-8 rounded-full text-white font-bold flex items-center justify-center gap-2 transition-colors duration-300 ${
+                added ? 'bg-green-600' : 'bg-orange-600 hover:bg-orange-700'
+              }`}
+              lines={
+                selectedVariant
+                  ? [
+                      {
+                        merchandiseId: selectedVariant.id,
+                        quantity,
+                        selectedVariant,
+                      },
+                    ]
+                  : []
+              }
+            >
+              {added ? (
+                '✓ Added'
+              ) : (
+                <>
+                  <span role="img" aria-label="cart">
+                    🛒
+                  </span>{' '}
+                  Add to Cart
+                </>
+              )}
+            </AddToCartButton>
+          </div>
           <p className="mt-2">
             <a href="#size-modal" className="underline text-sm">
               View Size Guide
@@ -274,13 +231,12 @@ export default function Product() {
             </p>
           </details>
         </div>
-      </div>
-      <StickyCartBar selectedVariant={selectedVariant} />
-      <Analytics.ProductView
-        data={{
-          products: [
-            {
-              id: product.id,
+        </div>
+        <Analytics.ProductView
+          data={{
+            products: [
+              {
+                id: product.id,
               title: product.title,
               price: selectedVariant?.price.amount || '0',
               vendor: product.vendor,
