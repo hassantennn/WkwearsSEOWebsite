@@ -3,9 +3,17 @@ import {motion} from 'framer-motion';
 
 interface ReviewStarsProps {
   initialRating?: number;
+  /**
+   * Total number of reviews to display alongside the rating. When omitted, the
+   * review count link is hidden.
+   */
+  reviewCount?: number;
 }
 
-export function ReviewStars({initialRating = 0}: ReviewStarsProps) {
+export function ReviewStars({
+  initialRating = 0,
+  reviewCount,
+}: ReviewStarsProps) {
   const [rating, setRating] = useState(Math.round(initialRating));
   const [hover, setHover] = useState(0);
   const stars = [1, 2, 3, 4, 5];
@@ -27,9 +35,11 @@ export function ReviewStars({initialRating = 0}: ReviewStarsProps) {
           ★
         </motion.span>
       ))}
-      <a href="#reviews" className="underline ml-2 text-sm">
-        Read 27 Reviews
-      </a>
+      {typeof reviewCount === 'number' && (
+        <a href="#reviews" className="underline ml-2 text-sm">
+          Read {reviewCount} Review{reviewCount === 1 ? '' : 's'}
+        </a>
+      )}
     </div>
   );
 }

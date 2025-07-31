@@ -123,7 +123,11 @@ function StickyCartBar({
             -
           </button>
           <span className="px-3 w-6 text-center">{quantity}</span>
-          <button type="button" className="px-3" onClick={() => setQuantity(quantity + 1)}>
+          <button
+            type="button"
+            className="px-3"
+            onClick={() => setQuantity(quantity + 1)}
+          >
             +
           </button>
         </div>
@@ -146,7 +150,16 @@ function StickyCartBar({
             : []
         }
       >
-        {added ? '✓ Added' : (<><span role="img" aria-label="cart">🛒</span> Add to Cart</>)}
+        {added ? (
+          '✓ Added'
+        ) : (
+          <>
+            <span role="img" aria-label="cart">
+              🛒
+            </span>{' '}
+            Add to Cart
+          </>
+        )}
       </AddToCartButton>
     </div>
   );
@@ -187,7 +200,7 @@ export default function Product() {
       <div className="product-main">
         <div className="space-y-2">
           <h1 className="tracking-wide">{title}</h1>
-          <ReviewStars initialRating={4.8} />
+          <ReviewStars initialRating={4.8} reviewCount={27} />
         </div>
         <div className="mt-4 space-y-4">
           <ProductPrice
@@ -201,7 +214,7 @@ export default function Product() {
           <AddToCartButton
             disabled={!selectedVariant?.availableForSale}
             onClick={() => open('cart')}
-            className="hidden lg:flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 rounded-full transition-colors"
+            className="flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 rounded-full transition-colors"
             lines={
               selectedVariant
                 ? [
@@ -214,16 +227,24 @@ export default function Product() {
                 : []
             }
           >
-            <span role="img" aria-label="cart">🛒</span> Add to Cart
+            <span role="img" aria-label="cart">
+              🛒
+            </span>{' '}
+            Add to Cart
           </AddToCartButton>
           <p className="mt-2">
-            <a href="#size-modal" className="underline text-sm">View Size Guide</a>
+            <a href="#size-modal" className="underline text-sm">
+              View Size Guide
+            </a>
           </p>
         </div>
         <div className="mt-8 space-y-4">
           <details open className="border-t pt-4">
             <summary className="font-bold flex items-center gap-2 cursor-pointer">
-              <span role="img" aria-label="Description">📄</span> Description
+              <span role="img" aria-label="Description">
+                📄
+              </span>{' '}
+              Description
             </summary>
             <div
               className="mt-2 text-sm leading-relaxed tracking-wide"
@@ -232,7 +253,10 @@ export default function Product() {
           </details>
           <details className="border-t pt-4">
             <summary className="font-bold flex items-center gap-2 cursor-pointer">
-              <span role="img" aria-label="Care">🧼</span> Care instructions
+              <span role="img" aria-label="Care">
+                🧼
+              </span>{' '}
+              Care instructions
             </summary>
             <p className="mt-2 text-sm leading-relaxed tracking-wide">
               Hand wash cold, lay flat to dry. Do not bleach.
@@ -240,7 +264,10 @@ export default function Product() {
           </details>
           <details className="border-t pt-4">
             <summary className="font-bold flex items-center gap-2 cursor-pointer">
-              <span role="img" aria-label="Shipping">🚚</span> Shipping info
+              <span role="img" aria-label="Shipping">
+                🚚
+              </span>{' '}
+              Shipping info
             </summary>
             <p className="mt-2 text-sm leading-relaxed tracking-wide">
               Ships worldwide in 3-5 business days.
