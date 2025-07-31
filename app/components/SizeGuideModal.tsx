@@ -1,3 +1,4 @@
+/* eslint-disable eslint-comments/disable-enable-pair, react/no-unescaped-entities */
 import {useEffect, useRef} from 'react';
 
 export function SizeGuideModal() {
@@ -20,10 +21,9 @@ export function SizeGuideModal() {
 
   // focus trap inside dialog
   useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
     function trap(event: KeyboardEvent) {
-      if (event.key !== 'Tab' || !dialog.open) return;
+      const dialog = dialogRef.current;
+      if (!dialog || event.key !== 'Tab' || !dialog.open) return;
       const elements = dialog.querySelectorAll<HTMLElement>(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
       );
@@ -40,8 +40,8 @@ export function SizeGuideModal() {
         first.focus();
       }
     }
-    dialog.addEventListener('keydown', trap);
-    return () => dialog.removeEventListener('keydown', trap);
+    dialogRef.current?.addEventListener('keydown', trap);
+    return () => dialogRef.current?.removeEventListener('keydown', trap);
   }, []);
 
   return (

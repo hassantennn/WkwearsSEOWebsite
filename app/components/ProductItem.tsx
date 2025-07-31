@@ -3,7 +3,6 @@ import {Image, Money} from '@shopify/hydrogen';
 import type {
   ProductItemFragment,
   CollectionItemFragment,
-  RecommendedProductFragment,
 } from 'storefrontapi.generated';
 import {useVariantUrl} from '~/lib/variants';
 
@@ -11,31 +10,43 @@ export function ProductItem({
   product,
   loading = 'lazy',
 }: {
-  product:
-    | CollectionItemFragment
-    | ProductItemFragment
-    | RecommendedProductFragment;
+  product: CollectionItemFragment | ProductItemFragment;
   loading?: 'eager' | 'lazy';
 }) {
   const variantUrl = useVariantUrl(product.handle);
-  const image = product.featuredImage;
+
+  const images = product.images?.nodes;
+  const primaryImage = images?.[0] ?? product.featuredImage;
+  const hoverImage = images?.[1];
 
   return (
     <Link
       to={variantUrl}
       prefetch="intent"
-      className="group block bg-white rounded-lg shadow-sm hover:shadow-md transition overflow-hidden"
+      className="group block bg-[#f9f5ee] rounded-lg shadow-sm hover:shadow-md transition overflow-hidden hover:no-underline"
     >
-      {image && (
-        <div className="aspect-[3/4] bg-gray-50 overflow-hidden">
+      {primaryImage && (
+        <div className="relative aspect-[3/4] bg-gray-50 overflow-hidden">
           <Image
-            alt={image.altText || product.title}
+            alt={primaryImage.altText || product.title}
             aspectRatio="1/1"
-            data={image}
+            data={primaryImage}
             loading={loading}
             sizes="(min-width: 45em) 400px, 100vw"
-            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+            className={`object-cover w-full h-full transition-all duration-300 ${
+              hoverImage ? 'group-hover:opacity-0' : 'group-hover:scale-105'
+            }`}
           />
+          {hoverImage && (
+            <Image
+              alt={hoverImage.altText || product.title}
+              aspectRatio="1/1"
+              data={hoverImage}
+              loading={loading}
+              sizes="(min-width: 45em) 400px, 100vw"
+              className="object-cover w-full h-full absolute inset-0 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-105"
+            />
+          )}
         </div>
       )}
 

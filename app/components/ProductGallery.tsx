@@ -78,8 +78,7 @@ export function ProductGallery({
               width={800}
               height={800}
               sizes="(min-width: 1024px) 600px, (min-width: 640px) 60vw, 100vw"
-              loaderOptions={{format: 'webp'}}
-              fetchpriority="high"
+              fetchPriority="high"
               onClick={() => setLightboxOpen(true)}
               style={{cursor: 'zoom-in'}}
             />
@@ -99,7 +98,15 @@ export function ProductGallery({
         ))}
       </div>
       {lightboxOpen && (
-        <div className="lightbox-overlay" onClick={() => setLightboxOpen(false)}>
+        <div
+          className="lightbox-overlay"
+          role="button"
+          tabIndex={0}
+          onClick={() => setLightboxOpen(false)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') setLightboxOpen(false);
+          }}
+        >
           <button
             className="lightbox-prev"
             type="button"

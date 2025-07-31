@@ -70,7 +70,7 @@ export default function Collection() {
   const connection = {...products, nodes: filteredNodes};
 
   return (
-    <section className="collection-page w-full font-['Playfair_Display'] bg-gradient-to-b from-[#fefefe] to-[#f8f8f5]">
+    <section className="collection-page w-full font-['Playfair_Display'] bg-gradient-to-b from-[#f5f0e6] to-[#e0d5c3]">
       <div className="relative h-[25vh] flex flex-col items-center justify-center bg-gradient-to-b from-[#e7d8c7] to-[#f8e8e4] text-center px-4">
         <h1 className="text-5xl md:text-7xl font-['Cinzel'] dark-brown-text drop-shadow-lg">
 
@@ -78,7 +78,7 @@ export default function Collection() {
         </h1>
       </div>
 
-      <div className="bg-gradient-to-b from-[#fefefe] to-[#f8f8f5] py-6 border-b border-[#d9c5b2]">
+      <div className="bg-gradient-to-b from-[#f5f0e6] to-[#e0d5c3] py-6 border-b border-[#d9c5b2]">
         <div className="container mx-auto px-4 flex flex-wrap items-center justify-between gap-4">
           <div className="flex gap-2 flex-wrap">
             {['All', 'New Arrivals', 'Sale'].map((filter) => (
@@ -142,6 +142,15 @@ const COLLECTION_ITEM_FRAGMENT = `#graphql
       url
       width
       height
+    }
+    images(first: 2) {
+      nodes {
+        id
+        altText
+        url
+        width
+        height
+      }
     }
     priceRange {
       minVariantPrice {
