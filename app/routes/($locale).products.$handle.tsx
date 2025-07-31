@@ -119,19 +119,17 @@ export default function Product() {
 
   return (
     <motion.div
-      className="product product-page-bg rounded-lg shadow-lg animate-fade-in-scale luxury-shadow"
+      className="product product-page-bg rounded-lg shadow-lg animate-fade-in-scale"
       initial={{opacity: 0, y: 20}}
       animate={{opacity: 1, y: 0}}
     >
-      <div className="animate-slide-in-left">
-        <ProductGallery
-          images={product.images?.nodes || []}
-          selectedVariantImage={selectedVariant?.image}
-        />
-      </div>
-      <div className="product-main animate-slide-in-right">
+      <ProductGallery
+        images={product.images?.nodes || []}
+        selectedVariantImage={selectedVariant?.image}
+      />
+      <div className="product-main">
         <div className="space-y-1">
-          <h1 className="tracking-wide gold-gradient-text">{title}</h1>
+          <h1 className="tracking-wide">{title}</h1>
           <ReviewStars initialRating={4.8} />
         </div>
         <div className="space-y-1">
@@ -144,7 +142,7 @@ export default function Product() {
             selectedVariant={selectedVariant}
           />
           <div className="space-y-1">
-            <div className="flex items-center border border-[#d4af37] rounded overflow-hidden">
+            <div className="flex items-center border border-[#d4af37] rounded">
               <button
                 type="button"
                 className="px-3"
@@ -153,18 +151,18 @@ export default function Product() {
                 -
               </button>
               <span className="px-3 w-6 text-center">{quantity}</span>
-                <button
-                  type="button"
-                  className="px-3"
-                  onClick={() => setQuantity(quantity + 1)}
-                >
-                  +
-                </button>
+              <button
+                type="button"
+                className="px-3"
+                onClick={() => setQuantity(quantity + 1)}
+              >
+                +
+              </button>
             </div>
             <AddToCartButton
               disabled={disabled}
               onClick={handleClick}
-              className={`w-full py-4 px-8 rounded-full font-bold flex items-center justify-center gap-2 transition-colors duration-300 hover:animate-shimmer ${
+              className={`w-full py-4 px-8 rounded-full font-bold flex items-center justify-center gap-2 transition-colors duration-300 ${
                 added
                   ? 'bg-green-600 text-white'
                   : 'bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] text-[#4b3621] hover:opacity-90'
