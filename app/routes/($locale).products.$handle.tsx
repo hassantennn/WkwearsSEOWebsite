@@ -13,6 +13,7 @@ import {ProductPrice} from '~/components/ProductPrice';
 import {ProductGallery} from '~/components/ProductGallery';
 import {ProductForm} from '~/components/ProductForm';
 import {SizeGuideModal} from '~/components/SizeGuideModal';
+import {ReviewStars} from '~/components/ReviewStars';
 import {redirectIfHandleIsLocalized} from '~/lib/redirect';
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
@@ -115,9 +116,7 @@ export default function Product() {
       />
       <div className="product-main">
         <h1>{title}</h1>
-        <div className="text-theme text-[18px]" aria-label="4.8 out of 5 stars">
-          ★ ★ ★ ★ ☆ <a href="#reviews" className="underline ml-2">Read 27 Reviews</a>
-        </div>
+        <ReviewStars initialRating={4.8} />
         <ProductPrice
           price={selectedVariant?.price}
           compareAtPrice={selectedVariant?.compareAtPrice}
