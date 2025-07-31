@@ -568,10 +568,16 @@ button.reset:hover:not(:has(> *)) {
   background: none;
   cursor: pointer;
   border-radius: 4px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.gallery-thumbnail:hover {
+  transform: scale(1.1);
+  border-color: #d4af37;
 }
 
 .gallery-thumbnail.active {
-  border-color: #000;
+  border-color: #d4af37;
 }
 
 .gallery-thumbnail img {
