@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="220">
+  <style>
+    .title { font: bold 18px 'Playfair Display', serif; }
+    .header { font-weight: bold; }
+    text { font: 14px sans-serif; }
+  </style>
+  <rect x="0" y="0" width="400" height="220" fill="white" stroke="#ccc" />
+  <text x="200" y="25" text-anchor="middle" class="title">Size Guide</text>
+  <text x="20" y="60" class="header">Size</text>
+  <text x="90" y="60" class="header">Bust</text>
+  <text x="160" y="60" class="header">Waist</text>
+  <text x="230" y="60" class="header">Hip</text>
+  <text x="20" y="85">XS</text>
+  <text x="90" y="85">32"</text>
+  <text x="160" y="85">24"</text>
+  <text x="230" y="85">34"</text>
+  <text x="20" y="105">S</text>
+  <text x="90" y="105">34"</text>
+  <text x="160" y="105">26"</text>
+  <text x="230" y="105">36"</text>
+  <text x="20" y="125">M</text>
+  <text x="90" y="125">36"</text>
+  <text x="160" y="125">28"</text>
+  <text x="230" y="125">38"</text>
+  <text x="20" y="145">L</text>
+  <text x="90" y="145">38"</text>
+  <text x="160" y="145">30"</text>
+  <text x="230" y="145">40"</text>
+  <text x="20" y="165">XL</text>
+  <text x="90" y="165">40"</text>
+  <text x="160" y="165">32"</text>
+  <text x="230" y="165">42"</text>
+  <text x="20" y="185">XXL</text>
+  <text x="90" y="185">42"</text>
+  <text x="160" y="185">34"</text>
+  <text x="230" y="185">44"</text>
+</svg>
