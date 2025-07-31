@@ -73,7 +73,7 @@ export function ProductGallery({
           >
             <Image
               data={mainImage}
-              className="gallery-main-image luxury-shadow"
+              className="gallery-main-image"
               loading="eager"
               width={800}
               height={800}
@@ -88,54 +88,44 @@ export function ProductGallery({
       )}
       <div className="gallery-thumbnails">
         {gallery.map((img, idx) => (
-          <motion.button
+          <button
             key={img.url}
             type="button"
             className={`gallery-thumbnail ${idx === index ? 'active' : ''}`}
             onClick={() => setIndex(idx)}
-            whileHover={{scale: 1.1}}
-            whileTap={{scale: 0.95}}
           >
             <Image data={img} width={60} height={60} loading="lazy" />
-          </motion.button>
+          </button>
         ))}
       </div>
-      <AnimatePresence>
-        {lightboxOpen && (
-          <motion.div
-            className="lightbox-overlay"
-            onClick={() => setLightboxOpen(false)}
-            initial={{opacity: 0}}
-            animate={{opacity: 1}}
-            exit={{opacity: 0}}
+      {lightboxOpen && (
+        <div className="lightbox-overlay" onClick={() => setLightboxOpen(false)}>
+          <button
+            className="lightbox-prev"
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIndex((i) => (i - 1 + gallery.length) % gallery.length);
+            }}
           >
-            <button
-              className="lightbox-prev"
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIndex((i) => (i - 1 + gallery.length) % gallery.length);
-              }}
-            >
-              &#10094;
-            </button>
-            <img
-              src={gallery[index].url}
-              alt={gallery[index].altText || ''}
-            />
-            <button
-              className="lightbox-next"
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIndex((i) => (i + 1) % gallery.length);
-              }}
-            >
-              &#10095;
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            &#10094;
+          </button>
+          <img
+            src={gallery[index].url}
+            alt={gallery[index].altText || ''}
+          />
+          <button
+            className="lightbox-next"
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIndex((i) => (i + 1) % gallery.length);
+            }}
+          >
+            &#10095;
+          </button>
+        </div>
+      )}
     </div>
   );
 }
