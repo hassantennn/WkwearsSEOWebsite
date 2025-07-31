@@ -567,12 +567,13 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .product-main {
-  align-self: start;
+  align-self: center;
   position: sticky;
   top: 6rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  text-align: center;
 }
 
 .product-price-on-sale {
