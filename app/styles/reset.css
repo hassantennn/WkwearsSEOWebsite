@@ -55,7 +55,7 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+a:not(.no-underline):hover {
   text-decoration: underline;
   cursor: pointer;
 }
