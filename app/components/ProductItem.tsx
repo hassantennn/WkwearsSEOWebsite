@@ -52,7 +52,7 @@ export function ProductItem({
         )}
       </Link>
 
-      <div className="p-4">
+      <div className="px-4 pt-2 pb-4">
         <h4 className="text-sm font-medium text-gray-800 line-clamp-2">
           {product.title}
         </h4>
