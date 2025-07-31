@@ -89,7 +89,7 @@ function BannerCarousel() {
       <div className="absolute bottom-16 right-1 -translate-x-1/2">
         <Link
           to="/collections/all"
-          className="px-12 py-6 text-white rounded-full shadow-lg bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] hover:opacity-90"
+          className="px-12 py-6 text-white rounded-full shadow-lg bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] hover:opacity-90 no-underline hover:no-underline"
         >
           Explore Collection
         </Link>
