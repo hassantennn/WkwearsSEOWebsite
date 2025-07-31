@@ -141,8 +141,8 @@ export default function Product() {
             productOptions={productOptions}
             selectedVariant={selectedVariant}
           />
-          <div className="flex items-center gap-4">
-            <div className="flex items-center border rounded">
+          <div className="space-y-4">
+            <div className="flex items-center border border-[#d4af37] rounded">
               <button
                 type="button"
                 className="px-3"
@@ -162,8 +162,10 @@ export default function Product() {
             <AddToCartButton
               disabled={disabled}
               onClick={handleClick}
-              className={`flex-[2] py-4 px-8 rounded-full text-white font-bold flex items-center justify-center gap-2 transition-colors duration-300 ${
-                added ? 'bg-green-600' : 'bg-orange-600 hover:bg-orange-700'
+              className={`w-full py-4 px-8 rounded-full font-bold flex items-center justify-center gap-2 transition-colors duration-300 ${
+                added
+                  ? 'bg-green-600 text-white'
+                  : 'bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] text-[#4b3621] hover:opacity-90'
               }`}
               lines={
                 selectedVariant
