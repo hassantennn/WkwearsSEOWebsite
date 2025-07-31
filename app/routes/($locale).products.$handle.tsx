@@ -111,19 +111,19 @@ function StickyCartBar({
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 border-t bg-white p-2 flex items-center gap-4 text-sm">
+    <div className="fixed bottom-0 left-0 right-0 z-50 border-t bg-white p-4 flex items-center gap-4 text-base">
       <div className="flex items-center gap-4 flex-1">
         <span>{size ? `Size: ${size}` : 'Size: -'}</span>
         <div className="flex items-center border rounded">
           <button
             type="button"
-            className="px-2"
+            className="px-3"
             onClick={() => setQuantity(Math.max(0, quantity - 1))}
           >
             -
           </button>
-          <span className="px-2 w-6 text-center">{quantity}</span>
-          <button type="button" className="px-2" onClick={() => setQuantity(quantity + 1)}>
+          <span className="px-3 w-6 text-center">{quantity}</span>
+          <button type="button" className="px-3" onClick={() => setQuantity(quantity + 1)}>
             +
           </button>
         </div>
@@ -131,8 +131,8 @@ function StickyCartBar({
       <AddToCartButton
         disabled={disabled}
         onClick={handleClick}
-        className={`flex-1 py-2 rounded text-white transition-colors duration-300 ${
-          added ? 'bg-green-500' : 'bg-black'
+        className={`flex-1 py-4 rounded-full text-white font-bold flex items-center justify-center gap-2 transition-colors duration-300 ${
+          added ? 'bg-green-600' : 'bg-orange-600 hover:bg-orange-700'
         }`}
         lines={
           selectedVariant
@@ -146,7 +146,7 @@ function StickyCartBar({
             : []
         }
       >
-        {added ? '✓ Added' : buttonText}
+        {added ? '✓ Added' : (<><span role="img" aria-label="cart">🛒</span> Add to Cart</>)}
       </AddToCartButton>
     </div>
   );
@@ -154,6 +154,7 @@ function StickyCartBar({
 
 export default function Product() {
   const {product} = useLoaderData<typeof loader>();
+  const {open} = useAside();
 
   // Optimistically selects a variant with given available variant information
   const selectedVariant = useOptimisticVariant(
@@ -184,25 +185,68 @@ export default function Product() {
         selectedVariantImage={selectedVariant?.image}
       />
       <div className="product-main">
-        <h1>{title}</h1>
-        <ReviewStars initialRating={4.8} />
-        <ProductPrice
-          price={selectedVariant?.price}
-          compareAtPrice={selectedVariant?.compareAtPrice}
-        />
-        <ProductForm
-          productOptions={productOptions}
-          selectedVariant={selectedVariant}
-        />
-        <p className="mt-2">
-          <a href="#size-modal" className="underline text-sm">View Size Guide</a>
-        </p>
-        <h2 className="text-lg font-bold">Description</h2>
-        <div className="mt-2" dangerouslySetInnerHTML={{__html: descriptionHtml}} />
-        <details className="mt-4">
-          <summary className="text-lg font-bold">Care Instructions</summary>
-          <p className="mt-2 text-sm">Hand wash cold, lay flat to dry. Do not bleach.</p>
-        </details>
+        <div className="space-y-2">
+          <h1 className="tracking-wide">{title}</h1>
+          <ReviewStars initialRating={4.8} />
+        </div>
+        <div className="mt-4 space-y-4">
+          <ProductPrice
+            price={selectedVariant?.price}
+            compareAtPrice={selectedVariant?.compareAtPrice}
+          />
+          <ProductForm
+            productOptions={productOptions}
+            selectedVariant={selectedVariant}
+          />
+          <AddToCartButton
+            disabled={!selectedVariant?.availableForSale}
+            onClick={() => open('cart')}
+            className="hidden lg:flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 rounded-full transition-colors"
+            lines={
+              selectedVariant
+                ? [
+                    {
+                      merchandiseId: selectedVariant.id,
+                      quantity: 1,
+                      selectedVariant,
+                    },
+                  ]
+                : []
+            }
+          >
+            <span role="img" aria-label="cart">🛒</span> Add to Cart
+          </AddToCartButton>
+          <p className="mt-2">
+            <a href="#size-modal" className="underline text-sm">View Size Guide</a>
+          </p>
+        </div>
+        <div className="mt-8 space-y-4">
+          <details open className="border-t pt-4">
+            <summary className="font-bold flex items-center gap-2 cursor-pointer">
+              <span role="img" aria-label="Description">📄</span> Description
+            </summary>
+            <div
+              className="mt-2 text-sm leading-relaxed tracking-wide"
+              dangerouslySetInnerHTML={{__html: descriptionHtml}}
+            />
+          </details>
+          <details className="border-t pt-4">
+            <summary className="font-bold flex items-center gap-2 cursor-pointer">
+              <span role="img" aria-label="Care">🧼</span> Care instructions
+            </summary>
+            <p className="mt-2 text-sm leading-relaxed tracking-wide">
+              Hand wash cold, lay flat to dry. Do not bleach.
+            </p>
+          </details>
+          <details className="border-t pt-4">
+            <summary className="font-bold flex items-center gap-2 cursor-pointer">
+              <span role="img" aria-label="Shipping">🚚</span> Shipping info
+            </summary>
+            <p className="mt-2 text-sm leading-relaxed tracking-wide">
+              Ships worldwide in 3-5 business days.
+            </p>
+          </details>
+        </div>
       </div>
       <StickyCartBar selectedVariant={selectedVariant} />
       <Analytics.ProductView

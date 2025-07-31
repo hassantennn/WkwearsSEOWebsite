@@ -3,6 +3,9 @@ html, body {
   padding: 0;
   width: 100%;
   overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
 }
 
 *, *::before, *::after {
@@ -14,6 +17,11 @@ img, video {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', 'Montserrat', sans-serif;
+  letter-spacing: 0.03em;
 }
 
 
@@ -517,6 +525,8 @@ button.reset:hover:not(:has(> *)) {
 
 .product h1 {
   margin-top: 0;
+  font-size: 2.5rem;
+  font-weight: 700;
 }
 
 .product-image img {
@@ -528,15 +538,21 @@ button.reset:hover:not(:has(> *)) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   margin: 0 auto;
 }
 
 .gallery-main-image {
-  width: 500px;
+  width: 100%;
   height: 500px;
   object-fit: cover;
   margin-bottom: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+.gallery-main-image:hover {
+  transform: scale(1.05);
 }
 
 .gallery-thumbnails {
@@ -570,9 +586,9 @@ button.reset:hover:not(:has(> *)) {
   top: 6rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
   text-align: center;
-  width: 65%;
+  width: 100%;
 }
 
 .product-price-on-sale {
@@ -582,6 +598,12 @@ button.reset:hover:not(:has(> *)) {
 
 .product-price-on-sale s {
   opacity: 0.5;
+}
+
+.product-price {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #d97706;
 }
 
 .product-options-grid {
@@ -598,15 +620,23 @@ button.reset:hover:not(:has(> *)) {
 
 .product-options-item,
 .product-options-item:disabled {
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 1rem;
   background-color: transparent;
   font-size: 1rem;
   font-family: inherit;
+  border: 1px solid #d1d5db;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+.product-options-item:hover:not(:disabled) {
+  transform: scale(1.05);
 }
 .product-options-item.selected {
   border-color: #d4af37 !important;
-  background-image: linear-gradient(to bottom, #d4af37, #f5e18a);
+  background-image: none;
+  background-color: #000;
   color: #fff;
+  box-shadow: 0 0 0 2px #d4af37;
 }
 
 .product-option-label-swatch {
@@ -617,6 +647,23 @@ button.reset:hover:not(:has(> *)) {
 
 .product-option-label-swatch img {
   width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .product {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .product-gallery {
+    max-width: 45%;
+    margin: 0;
+  }
+  .product-main {
+    width: 55%;
+    text-align: left;
+    padding-left: 2rem;
+  }
 }
 
 /*
