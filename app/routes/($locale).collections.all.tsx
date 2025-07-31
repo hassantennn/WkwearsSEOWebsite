@@ -87,7 +87,7 @@ export default function Collection() {
                 onClick={() => setActiveFilter(filter)}
                 className={`px-4 py-2 rounded-full border transition font-medium ${
                   activeFilter === filter
-                    ? 'bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] text-white border-transparent'
+                    ? 'bg-gradient-to-b from-[#d4af37] to-[#f5e18a] text-[#4b3621] border-[#d4af37] shadow-md hover:from-[#e0c15a] hover:to-[#f9e9b1]'
                     : 'bg-white/80 text-gray-800 hover:bg-white border border-[#d9c5b2]'
                 }`}
               >
@@ -97,7 +97,7 @@ export default function Collection() {
           </div>
           <div>
             <select
-              className="border border-[#d9c5b2] rounded px-3 py-2 text-gray-800 bg-white/80"
+              className="px-4 py-2 rounded-full border border-[#d4af37] bg-gradient-to-b from-[#d4af37] to-[#f5e18a] text-[#4b3621] font-medium shadow-md focus:outline-none hover:from-[#e0c15a] hover:to-[#f9e9b1]"
               value={sortOption}
               onChange={(e) => setSortOption(e.target.value)}
             >

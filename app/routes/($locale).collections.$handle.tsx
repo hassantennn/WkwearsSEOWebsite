@@ -55,7 +55,6 @@ export default function Collection() {
   const [sortOption, setSortOption] = useState('featured');
 
   const products = collection.products?.nodes || [];
-
   const sortedProducts = [...products].sort((a, b) => {
     const aPrice = parseFloat(a.priceRange.minVariantPrice.amount);
     const bPrice = parseFloat(b.priceRange.minVariantPrice.amount);
@@ -64,6 +63,13 @@ export default function Collection() {
     if (sortOption === 'price-desc') return bPrice - aPrice;
     return 0;
   });
+
+  let filteredProducts = sortedProducts;
+  if (activeFilter === 'New Arrivals') {
+    filteredProducts = sortedProducts.slice(0, 8);
+  } else if (activeFilter === 'Sale') {
+    filteredProducts = sortedProducts.slice(-8);
+  }
 
   return (
     <section className="collection-page w-full font-['Playfair_Display'] bg-gradient-to-b from-[#f5f0e6] to-[#e0d5c3]">
@@ -85,7 +91,7 @@ export default function Collection() {
                 onClick={() => setActiveFilter(filter)}
                 className={`px-4 py-2 rounded-full border transition font-medium ${
                   activeFilter === filter
-                    ? 'bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] text-white border-transparent'
+                    ? 'bg-gradient-to-b from-[#d4af37] to-[#f5e18a] text-[#4b3621] border-[#d4af37] shadow-md hover:from-[#e0c15a] hover:to-[#f9e9b1]'
                     : 'bg-white/80 text-gray-800 hover:bg-white border border-[#d9c5b2]'
                 }`}
               >
@@ -95,7 +101,7 @@ export default function Collection() {
           </div>
           <div>
             <select
-              className="border border-[#d9c5b2] rounded px-3 py-2 text-gray-800 bg-white/80"
+              className="px-4 py-2 rounded-full border border-[#d4af37] bg-gradient-to-b from-[#d4af37] to-[#f5e18a] text-[#4b3621] font-medium shadow-md focus:outline-none hover:from-[#e0c15a] hover:to-[#f9e9b1]"
               value={sortOption}
               onChange={(e) => setSortOption(e.target.value)}
             >
@@ -110,7 +116,7 @@ export default function Collection() {
       {/* Product Grid */}
       <div id="products" className="container mx-auto px-4 py-10">
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {sortedProducts.map((product, index) => (
+          {filteredProducts.map((product, index) => (
             <ProductItem
               key={product.id}
               product={product}
