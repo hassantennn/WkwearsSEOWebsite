@@ -1,5 +1,3 @@
-/* global describe, beforeEach, cy, it, expect */
-
 describe('Limelight Yarn-Dyed Embroidered Shirt page', () => {
   beforeEach(() => {
     cy.viewport(1280, 800);
@@ -77,11 +75,14 @@ describe('Limelight Yarn-Dyed Embroidered Shirt page', () => {
       expect($badges.eq(2)).to.contain.text('Easy Care');
     });
 
-    // Size guide panel
-    cy.log('Open and close size guide panel');
+    // Size guide modal
+    cy.log('Open and close size guide modal');
     cy.contains('a', 'View Size Guide').click();
     cy.get('#size-modal').should('be.visible').within(() => {
-      cy.get('img[alt="Size guide chart"]').should('exist');
+      const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+      sizes.forEach((size) => {
+        cy.contains('th', size).should('exist');
+      });
       cy.get('button.close').click();
     });
     cy.get('#size-modal').should('not.be.visible');
