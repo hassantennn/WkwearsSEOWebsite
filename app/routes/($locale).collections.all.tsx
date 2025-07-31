@@ -73,7 +73,6 @@ export default function Collection() {
     <section className="collection-page w-full font-['Playfair_Display'] bg-gradient-to-b from-[#f5f0e6] to-[#e0d5c3]">
       <div className="relative h-[25vh] flex flex-col items-center justify-center bg-gradient-to-b from-[#e7d8c7] to-[#f8e8e4] text-center px-4">
         <h1 className="text-5xl md:text-7xl font-['Cinzel'] dark-brown-text drop-shadow-lg">
-
           All Products
         </h1>
       </div>
@@ -97,7 +96,7 @@ export default function Collection() {
           </div>
           <div>
             <select
-              className="px-4 py-2 rounded-full border border-[#4b3621] bg-[#4b3621] text-white font-medium shadow-md focus:outline-none hover:bg-[#5e472a]"
+              className="px-4 py-2 rounded-full border border-[#d4af37] bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] text-white font-medium shadow-md focus:outline-none"
               value={sortOption}
               onChange={(e) => setSortOption(e.target.value)}
             >
