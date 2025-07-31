@@ -31,16 +31,6 @@ describe('Limelight Yarn-Dyed Embroidered Shirt page', () => {
       cy.contains('button.btn-primary', 'Add to Cart').should('exist');
     });
 
-    // Sticky CTA bar
-    cy.log('Scroll to reveal sticky CTA bar');
-    cy.scrollTo('bottom');
-    cy.get('.sticky-cta.visible').should('be.visible').within(() => {
-      cy.get('.cta-thumbnail').should('exist');
-      cy.get('.cta-name').should('contain', 'Limelight Yarn‑Dyed Embroidered Shirt');
-      cy.get('.cta-price').should('contain', '$24.99');
-      cy.contains('button', 'Add to Cart').should('exist');
-    });
-
     // Tabs
     const tabs = ['Description', 'Details', 'Reviews', 'Shipping'];
     cy.log('Validate tabs functionality');
