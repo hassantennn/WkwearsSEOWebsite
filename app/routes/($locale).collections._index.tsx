@@ -72,23 +72,24 @@ function CollectionItem({
   index: number;
 }) {
   return (
-    <Link
-      className="collection-item"
-      key={collection.id}
-      to={`/collections/${collection.handle}`}
-      prefetch="intent"
-    >
-      {collection?.image && (
-        <Image
-          alt={collection.image.altText || collection.title}
-          aspectRatio="1/1"
-          data={collection.image}
-          loading={index < 3 ? 'eager' : undefined}
-          sizes="(min-width: 45em) 400px, 100vw"
-        />
-      )}
+    <div key={collection.id} className="collection-item">
+      <Link
+        className="block no-underline hover:no-underline"
+        to={`/collections/${collection.handle}`}
+        prefetch="intent"
+      >
+        {collection?.image && (
+          <Image
+            alt={collection.image.altText || collection.title}
+            aspectRatio="1/1"
+            data={collection.image}
+            loading={index < 3 ? 'eager' : undefined}
+            sizes="(min-width: 45em) 400px, 100vw"
+          />
+        )}
+      </Link>
       <h5>{collection.title}</h5>
-    </Link>
+    </div>
   );
 }
 
