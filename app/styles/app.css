@@ -619,14 +619,6 @@ button.reset:hover:not(:has(> *)) {
   width: 100%;
 }
 
-.sticky-atc {
-  position: sticky;
-  bottom: 0;
-  background: #fff;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
 /*
 * --------------------------------------------------
 * routes/blog._index.tsx

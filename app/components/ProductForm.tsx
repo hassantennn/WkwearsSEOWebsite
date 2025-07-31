@@ -4,8 +4,6 @@ import type {
   Maybe,
   ProductOptionValueSwatch,
 } from '@shopify/hydrogen/storefront-api-types';
-import {AddToCartButton} from './AddToCartButton';
-import {useAside} from './Aside';
 import type {ProductFragment} from 'storefrontapi.generated';
 
 export function ProductForm({
@@ -16,7 +14,6 @@ export function ProductForm({
   selectedVariant: ProductFragment['selectedOrFirstAvailableVariant'];
 }) {
   const navigate = useNavigate();
-  const {open} = useAside();
   return (
     <div className="product-form">
       {productOptions.map((option) => {
@@ -101,26 +98,6 @@ export function ProductForm({
           </div>
         );
       })}
-      <AddToCartButton
-        disabled={!selectedVariant || !selectedVariant.availableForSale}
-        onClick={() => {
-          open('cart');
-        }}
-        className="w-full mt-4 bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] text-white font-semibold py-3 rounded-lg shadow-lg"
-        lines={
-          selectedVariant
-            ? [
-                {
-                  merchandiseId: selectedVariant.id,
-                  quantity: 1,
-                  selectedVariant,
-                },
-              ]
-            : []
-        }
-      >
-        {selectedVariant?.availableForSale ? 'Add to cart' : 'Sold out'}
-      </AddToCartButton>
     </div>
   );
 }
