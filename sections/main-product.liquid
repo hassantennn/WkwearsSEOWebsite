@@ -68,27 +68,74 @@
   </div>
 </section>
 
-<!-- Product Information -->
-<section id="product-info" class="max-w-3xl mx-auto py-16">
-  <h2 class="font-playfair text-2xl mb-4">Description</h2>
-  <div class="space-y-4 font-lato text-lg text-gray-700 leading-relaxed">
+<!-- Tabs -->
+<div class="tabs">
+  <ul class="tablist" role="tablist">
+    <li role="tab" id="tab-label-desc" aria-controls="tab-desc" aria-selected="true" tabindex="0">Description</li>
+    <li role="tab" id="tab-label-details" aria-controls="tab-details" aria-selected="false" tabindex="-1">Details</li>
+    <li role="tab" id="tab-label-reviews" aria-controls="tab-reviews" aria-selected="false" tabindex="-1">Reviews</li>
+    <li role="tab" id="tab-label-shipping" aria-controls="tab-shipping" aria-selected="false" tabindex="-1">Shipping</li>
+  </ul>
+  <div id="tab-desc" role="tabpanel" aria-labelledby="tab-label-desc">
     <p>Product description content goes here.</p>
-    <p>Shipping: Shipping information content goes here.</p>
-    <p>Care Instructions: Care instructions content goes here.</p>
   </div>
-</section>
+  <div id="tab-details" role="tabpanel" aria-labelledby="tab-label-details" hidden>
+    <p>Product details content goes here.</p>
+  </div>
+  <div id="tab-reviews" role="tabpanel" aria-labelledby="tab-label-reviews" hidden>
+    <p>Product reviews content goes here.</p>
+  </div>
+  <div id="tab-shipping" role="tabpanel" aria-labelledby="tab-label-shipping" hidden>
+    <p>Shipping information content goes here.</p>
+  </div>
+</div>
 
 <style>
-#product-info h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
+.tabs .tablist {
+  display: flex;
+  list-style: none;
+  margin: 0 0 1rem 0;
+  padding: 0;
+  border-bottom: 1px solid #ccc;
 }
-#product-info p {
-  font-family: 'Lato', sans-serif;
-  font-size: 18px;
-  line-height: 1.6;
+.tabs [role="tab"] {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+.tabs [role="tab"][aria-selected="true"] {
+  font-weight: bold;
+  border-bottom: 2px solid #000;
+}
+.tabs [role="tabpanel"] {
+  padding: 1rem 0;
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var tabs = document.querySelectorAll('.tabs [role="tab"]');
+  var panels = document.querySelectorAll('.tabs [role="tabpanel"]');
+
+  function activateTab(tab) {
+    tabs.forEach(function (t) {
+      var selected = t === tab;
+      t.setAttribute('aria-selected', selected);
+      t.tabIndex = selected ? 0 : -1;
+    });
+    panels.forEach(function (p) {
+      p.hidden = p.id !== tab.getAttribute('aria-controls');
+    });
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      activateTab(tab);
+    });
+  });
+
+  activateTab(tabs[0]);
+});
+</script>
 
 <!-- Accessible FAQ Accordion -->
 <div class="faq-accordion">
