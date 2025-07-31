@@ -132,7 +132,7 @@ export default function Product() {
           <h1 className="tracking-wide">{title}</h1>
           <ReviewStars initialRating={4.8} />
         </div>
-        <div className="mt-4 space-y-4">
+        <div className="space-y-2">
           <ProductPrice
             price={selectedVariant?.price}
             compareAtPrice={selectedVariant?.compareAtPrice}
@@ -141,7 +141,7 @@ export default function Product() {
             productOptions={productOptions}
             selectedVariant={selectedVariant}
           />
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div className="flex items-center border border-[#d4af37] rounded">
               <button
                 type="button"
@@ -188,7 +188,7 @@ export default function Product() {
             </a>
           </p>
         </div>
-        <div className="mt-8 space-y-4">
+        <div className="mt-4 space-y-2">
           <details open className="border-t pt-4">
             <summary className="font-bold flex items-center gap-2 cursor-pointer">
               Description
