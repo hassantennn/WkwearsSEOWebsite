@@ -474,6 +474,7 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .collection-item img {
+  display: block;
   height: auto;
 }
 
