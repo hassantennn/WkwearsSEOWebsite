@@ -87,8 +87,8 @@ export default function Collection() {
                 onClick={() => setActiveFilter(filter)}
                 className={`px-4 py-2 rounded-full border transition font-medium ${
                   activeFilter === filter
-                    ? 'bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] text-white border-[#d4af37] shadow-md hover:opacity-90'
-                    : 'bg-white/80 text-gray-800 hover:bg-white border border-[#d9c5b2]'
+                    ? 'bg-[#4b3621] text-white border-[#4b3621] shadow-md hover:bg-[#5e472a]'
+                    : 'bg-white/80 dark-brown-text hover:bg-white border border-[#4b3621]'
                 }`}
               >
                 {filter}
