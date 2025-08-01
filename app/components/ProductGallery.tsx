@@ -26,6 +26,7 @@ export function ProductGallery({
   const [index, setIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const mainImage = gallery[index];
+  const [zoomPos, setZoomPos] = useState<{x: number; y: number} | null>(null);
 
   useEffect(() => {
     const first = gallery[0];
@@ -69,7 +70,14 @@ export function ProductGallery({
             animate={{opacity: 1}}
             exit={{opacity: 0}}
             transition={{duration: 0.3}}
-            className="w-full"
+            className="relative w-full"
+            onMouseMove={(e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              const x = ((e.clientX - rect.left) / rect.width) * 100;
+              const y = ((e.clientY - rect.top) / rect.height) * 100;
+              setZoomPos({x, y});
+            }}
+            onMouseLeave={() => setZoomPos(null)}
           >
             <Image
               data={mainImage}
@@ -82,6 +90,17 @@ export function ProductGallery({
               onClick={() => setLightboxOpen(true)}
               style={{cursor: 'zoom-in'}}
             />
+            {zoomPos && (
+              <div
+                className="hidden md:block absolute top-0 left-full ml-4 w-64 h-64 border rounded bg-white overflow-hidden"
+                style={{
+                  backgroundImage: `url(${mainImage.url})`,
+                  backgroundPosition: `${zoomPos.x}% ${zoomPos.y}%`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: '200% 200%',
+                }}
+              />
+            )}
           </motion.div>
         </AnimatePresence>
       )}
