@@ -90,17 +90,6 @@ export function ProductGallery({
               onClick={() => setLightboxOpen(true)}
               style={{cursor: 'zoom-in'}}
             />
-            {zoomPos && (
-              <div
-                className="hidden md:block absolute top-0 left-full ml-4 w-64 h-64 border rounded bg-white overflow-hidden"
-                style={{
-                  backgroundImage: `url(${mainImage.url})`,
-                  backgroundPosition: `${zoomPos.x}% ${zoomPos.y}%`,
-                  backgroundRepeat: 'no-repeat',
-                  backgroundSize: '200% 200%',
-                }}
-              />
-            )}
           </motion.div>
         </AnimatePresence>
       )}
@@ -116,6 +105,17 @@ export function ProductGallery({
           </button>
         ))}
       </div>
+      {zoomPos && mainImage && (
+        <div
+          className="hidden md:block mt-4 w-64 h-64 border rounded bg-white overflow-hidden self-start"
+          style={{
+            backgroundImage: `url(${mainImage.url})`,
+            backgroundPosition: `${zoomPos.x}% ${zoomPos.y}%`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: '200% 200%',
+          }}
+        />
+      )}
       {lightboxOpen && (
         <div
           className="lightbox-overlay"
