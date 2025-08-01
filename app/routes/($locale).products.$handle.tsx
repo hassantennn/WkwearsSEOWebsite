@@ -189,15 +189,13 @@ export default function Product() {
           </p>
         </div>
         <div className="mt-2 space-y-1">
-          <details open className="border-t pt-4">
-            <summary className="font-bold flex items-center gap-2 cursor-pointer">
-              Description
-            </summary>
+          <div className="border-t pt-4">
+            <h2 className="font-bold flex items-center gap-2">Description</h2>
             <div
               className="mt-2 text-sm leading-relaxed tracking-wide"
               dangerouslySetInnerHTML={{__html: descriptionHtml}}
             />
-          </details>
+          </div>
         </div>
       </div>
       <Analytics.ProductView
