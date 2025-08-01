@@ -100,7 +100,7 @@ export default function Collection() {
           </div>
           <div>
             <select
-              className="px-4 py-2 rounded-full border border-[#d4af37] bg-gradient-to-r from-[#d4af37] via-[#f5e18a] to-[#d4af37] text-white font-medium shadow-md focus:outline-none"
+              className="px-4 py-2 rounded-full border border-[#4b3621] bg-[#4b3621] text-white font-medium shadow-md hover:bg-[#5e472a] focus:outline-none"
               value={sortOption}
               onChange={(e) => setSortOption(e.target.value)}
             >
