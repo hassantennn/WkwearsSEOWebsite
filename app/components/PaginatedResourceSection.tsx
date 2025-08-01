@@ -8,15 +8,38 @@ export function PaginatedResourceSection<NodesType>({
   connection,
   children,
   resourcesClassName,
+  transform,
 }: {
   connection: React.ComponentProps<typeof Pagination<NodesType>>['connection'];
   children: React.FunctionComponent<{node: NodesType; index: number}>;
   resourcesClassName?: string;
+  transform?: (nodes: NodesType[]) => NodesType[];
 }) {
+  const nextRef = React.useRef<HTMLAnchorElement | null>(null);
+  const isLoadingRef = React.useRef(false);
+
+  React.useEffect(() => {
+    const node = nextRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !isLoadingRef.current) {
+          node.click();
+        }
+      });
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+  });
+
   return (
     <Pagination connection={connection}>
       {({nodes, isLoading, PreviousLink, NextLink}) => {
-        const resourcesMarkup = nodes.map((node, index) =>
+        isLoadingRef.current = isLoading;
+
+        const processedNodes = transform ? transform(nodes) : nodes;
+
+        const resourcesMarkup = processedNodes.map((node, index) =>
           children({node, index}),
         );
 
@@ -30,7 +53,7 @@ export function PaginatedResourceSection<NodesType>({
             ) : (
               resourcesMarkup
             )}
-            <NextLink>
+            <NextLink ref={nextRef}>
               {isLoading ? 'Loading...' : <span>Load more ↓</span>}
             </NextLink>
           </div>
